@@ -48,7 +48,7 @@ fun BuilderHomeApp(
 @Preview
 @Composable
 private fun BuilderHomeAppPreview() {
-    MasiveProjectAppTheme {
+    MasiveProjectAppTheme(dynamicColor = false) {
         BuilderHomeApp()
     }
 }
