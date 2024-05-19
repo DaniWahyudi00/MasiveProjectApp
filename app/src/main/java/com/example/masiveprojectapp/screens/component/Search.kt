@@ -39,8 +39,8 @@ fun Search(modifier: Modifier = Modifier) {
         colors = TextFieldDefaults.colors(
             focusedContainerColor = Color.White,
             unfocusedContainerColor = Color.White,
-            focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent,
+            focusedIndicatorColor = Color.White,
+            unfocusedIndicatorColor = Color.White,
         ),
         placeholder = {
             Text(
