@@ -11,7 +11,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
-import com.example.masiveprojectapp.ui.theme.poppinsFontFamily
 
 @Composable
 fun SectionText(

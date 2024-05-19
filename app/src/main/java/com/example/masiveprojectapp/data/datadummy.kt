@@ -1,9 +1,10 @@
 package com.example.masiveprojectapp.data
 
+import com.example.masiveprojectapp.R
 import com.example.masiveprojectapp.model.Arsitek
 import com.example.masiveprojectapp.model.DesainRumah
 import com.example.masiveprojectapp.model.Project
-import com.example.masiveprojectapp.R
+import com.example.masiveprojectapp.model.SliderImage
 
 object datadummy {
 
@@ -55,5 +56,11 @@ object datadummy {
             photo = R.drawable.project1
         )
 
+    )
+
+    val sliderImage = listOf(
+        SliderImage(R.drawable.image_slider_one),
+        SliderImage(R.drawable.image_slider_two),
+        SliderImage(R.drawable.image_slider_three),
     )
 }
