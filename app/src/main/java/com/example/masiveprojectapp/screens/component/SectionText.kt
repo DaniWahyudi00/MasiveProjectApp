@@ -26,7 +26,7 @@ fun SectionText(
     ) {
         Text(
             text = text,
-            fontWeight = FontWeight.SemiBold,
+            fontWeight = FontWeight.Bold,
             modifier = Modifier
                 .weight(1f),
             fontSize = 12.sp

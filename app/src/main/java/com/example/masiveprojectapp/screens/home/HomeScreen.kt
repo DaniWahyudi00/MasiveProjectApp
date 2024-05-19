@@ -7,6 +7,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.masiveprojectapp.screens.component.HomeSection
+import com.example.masiveprojectapp.screens.component.ImageSlider
 import com.example.masiveprojectapp.screens.component.SearchBar
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 
@@ -22,7 +24,18 @@ fun HomeScreen(modifier: Modifier = Modifier) {
             modifier = Modifier
                 .padding(innerPadding)
         ) {
+            HomeSection(
+                title = "Hallo Users!",
+                content = {
+                    ImageSlider()
+                }
+            )
+            HomeSection(
+                title = "Rekomendasi Desain",
+                content = {
 
+                }
+            )
         }
     }
 }
@@ -30,7 +43,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 private fun HomeScreenPreview() {
-    MasiveProjectAppTheme {
+    MasiveProjectAppTheme(dynamicColor = false) {
         HomeScreen()
     }
 }
