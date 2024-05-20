@@ -11,10 +11,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.masiveprojectapp.navigation.Screen
 import com.example.masiveprojectapp.screens.component.BottomNavigation
+import com.example.masiveprojectapp.screens.component.ProfileScreens
 import com.example.masiveprojectapp.screens.home.HomeScreen
 import com.example.masiveprojectapp.screens.profile.ProfileScreen
 import com.example.masiveprojectapp.screens.service.ServiceScreen
-import com.example.masiveprojectapp.screens.transaction.TransactionScreen
+import com.example.masiveprojectapp.screens.component.transaction.TransactionScreen
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 
 @Composable
@@ -39,7 +40,7 @@ fun BuilderHomeApp(
                 TransactionScreen()
             }
             composable(route = Screen.Profile.route) {
-                ProfileScreen()
+                ProfileScreens(navController)
             }
         }
     }

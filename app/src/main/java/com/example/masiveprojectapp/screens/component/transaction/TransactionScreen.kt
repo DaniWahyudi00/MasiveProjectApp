@@ -1,4 +1,4 @@
-package com.example.masiveprojectapp.screens.transaction
+package com.example.masiveprojectapp.screens.component.transaction
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

@@ -4,6 +4,9 @@ import com.example.masiveprojectapp.model.Arsitek
 import com.example.masiveprojectapp.model.DesainRumah
 import com.example.masiveprojectapp.model.Project
 import com.example.masiveprojectapp.R
+import com.example.masiveprojectapp.myprofil.Myprofil
+import com.example.masiveprojectapp.myprofil.MyprofilItem
+import com.example.masiveprojectapp.navigation.Screen
 
 object datadummy {
 
@@ -56,4 +59,44 @@ object datadummy {
         )
 
     )
+
+//    val Myprofils = listOf(
+//        Myprofil(
+//            id = 1,
+//            name = "Richard Solikin",
+//            telephone = "+6212-3456-7890",
+//            email = "dummy@gmail.com",
+//            password = "password",
+//            gender = "man",
+//            screen =
+//        )
+//    )
+
+    val MyprofilItems = listOf(
+        MyprofilItem(
+            id = 1,
+            title = "My Profil",
+            icon = R.drawable.icon_profile_on_profile_screen,
+
+        ),
+        MyprofilItem(
+            id = 2,
+            title = "Forum",
+            icon = R.drawable.icon_forum_on_profile_screen,
+
+    ),
+        MyprofilItem(
+            id = 3,
+            title = "Help Center",
+            icon = R.drawable.icon_help_center_on_profile_screen,
+
+    ),
+        MyprofilItem(
+            id = 4,
+            title = "Logout",
+            icon = R.drawable.icon_forum_on_profile_screen,
+
+        )
+    )
+
 }
