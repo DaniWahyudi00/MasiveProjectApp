@@ -13,6 +13,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.masiveprojectapp.screens.arsitek.ArsitekScreen
 import com.example.masiveprojectapp.screens.component.HomeSection
 import com.example.masiveprojectapp.screens.component.ImageSlider
 import com.example.masiveprojectapp.screens.component.SearchBar
@@ -53,7 +54,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
             HomeSection(
                 title = "Rekomendasi Arsitek",
                 content = {
-                    DesainScreen()
+                    ArsitekScreen()
                 }
             )
         }
