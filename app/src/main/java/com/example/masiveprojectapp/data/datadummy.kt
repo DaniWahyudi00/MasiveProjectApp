@@ -6,6 +6,7 @@ import com.example.masiveprojectapp.model.Project
 import com.example.masiveprojectapp.R
 import com.example.masiveprojectapp.myprofil.Myprofil
 import com.example.masiveprojectapp.myprofil.MyprofilItem
+import com.example.masiveprojectapp.myprofil.UsertItem
 import com.example.masiveprojectapp.navigation.Screen
 
 object datadummy {
@@ -96,6 +97,14 @@ object datadummy {
             title = "Logout",
             icon = R.drawable.icon_forum_on_profile_screen,
 
+        )
+    )
+
+    val UsertItems = listOf(
+        UsertItem(
+            id = 1,
+            username = "Richard Solikin",
+            photo = R.drawable.user
         )
     )
 
