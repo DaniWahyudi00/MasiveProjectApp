@@ -40,6 +40,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                 .padding(innerPadding)
         ) {
             HomeSection(
+                showIcon = false,
                 title = "Hallo Users!",
                 content = {
                     ImageSlider()

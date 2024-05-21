@@ -2,6 +2,9 @@ package com.example.masiveprojectapp.screens.component
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowRight
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -15,6 +18,7 @@ import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 @Composable
 fun SectionText(
     text: String,
+    showIcon: Boolean
 ) {
     Row(
         modifier = Modifier
@@ -31,7 +35,12 @@ fun SectionText(
                 .weight(1f),
             fontSize = 12.sp
         )
-
+        if (showIcon) {
+            Icon(
+                imageVector = Icons.Default.KeyboardArrowRight,
+                contentDescription = "Arrow"
+            )
+        }
     }
 }
 
@@ -39,6 +48,6 @@ fun SectionText(
 @Composable
 private fun SectionTextPreview() {
     MasiveProjectAppTheme(dynamicColor = false) {
-        SectionText("Rekomendasi Desain")
+        SectionText("Rekomendasi Desain", true)
     }
 }
