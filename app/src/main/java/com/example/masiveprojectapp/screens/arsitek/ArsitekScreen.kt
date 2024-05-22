@@ -2,6 +2,7 @@ package com.example.masiveprojectapp.screens.arsitek
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -63,7 +64,8 @@ fun ArsitekScreen(modifier: Modifier = Modifier) {
                         start = 16.dp,
                         end = 16.dp,
                         top = 8.dp,
-                    ),
+                    )
+                    .fillMaxSize(),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 columns = GridCells.Adaptive(161.dp),

@@ -26,7 +26,9 @@ import com.example.masiveprojectapp.screens.component.SearchBar
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
+fun HomeScreen(
+    navigateToSeeAll: (String) -> Unit
+) {
     Scaffold(
         topBar = {
             Box(
@@ -49,7 +51,8 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                 title = "Hallo Users!",
                 content = {
                     ImageSlider()
-                }
+                },
+                navigateToSeeAll = {}
             )
             HomeSection(
                 title = "Rekomendasi Desain",
@@ -70,6 +73,9 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                             DesainItem()
                         }
                     }
+                },
+                navigateToSeeAll = {
+                    navigateToSeeAll("desain")
                 }
             )
             HomeSection(
@@ -90,6 +96,9 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                             ArsitekItem2()
                         }
                     }
+                },
+                navigateToSeeAll = {
+                    navigateToSeeAll("arsitek")
                 }
             )
         }
@@ -100,6 +109,6 @@ fun HomeScreen(modifier: Modifier = Modifier) {
 @Composable
 private fun HomeScreenPreview() {
     MasiveProjectAppTheme(dynamicColor = false) {
-        HomeScreen()
+        HomeScreen{}
     }
 }

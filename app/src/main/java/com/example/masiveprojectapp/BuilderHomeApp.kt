@@ -10,7 +10,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.masiveprojectapp.navigation.Screen
+import com.example.masiveprojectapp.screens.arsitek.ArsitekScreen
 import com.example.masiveprojectapp.screens.component.BottomNavigation
+import com.example.masiveprojectapp.screens.desain.DesainScreen
 import com.example.masiveprojectapp.screens.home.HomeScreen
 import com.example.masiveprojectapp.screens.profile.ProfileScreen
 import com.example.masiveprojectapp.screens.service.ServiceScreen
@@ -30,7 +32,15 @@ fun BuilderHomeApp(
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(route = Screen.Home.route) {
-                HomeScreen()
+                HomeScreen(
+                    navigateToSeeAll = {
+                        if (it == "desain"){
+                            navController.navigate(Screen.Desain.route)
+                        } else {
+                            navController.navigate(Screen.Arsitek.route)
+                        }
+                    }
+                )
             }
             composable(route = Screen.Service.route) {
                 ServiceScreen()
@@ -40,6 +50,12 @@ fun BuilderHomeApp(
             }
             composable(route = Screen.Profile.route) {
                 ProfileScreen()
+            }
+            composable(route = Screen.Desain.route){
+                DesainScreen()
+            }
+            composable(route = Screen.Arsitek.route){
+                ArsitekScreen()
             }
         }
     }

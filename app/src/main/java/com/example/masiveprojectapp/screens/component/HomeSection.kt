@@ -8,11 +8,13 @@ fun HomeSection(
     title: String,
     showIcon: Boolean = true,
     content: @Composable () -> Unit,
+    navigateToSeeAll: () -> Unit,
 ) {
     Column {
         SectionText(
             text = title,
-            showIcon = showIcon
+            showIcon = showIcon,
+            navigateToSeeAll = navigateToSeeAll
         )
         content()
     }
