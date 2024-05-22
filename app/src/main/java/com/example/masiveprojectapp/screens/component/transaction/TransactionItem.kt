@@ -161,7 +161,7 @@ fun TransactionScreenItem(
                 colors = ButtonDefaults.buttonColors(containerColor = Color.White),
                 border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary)
                 ,onClick = { /*TODO*/ }) {
-                Text(text = "Lihat", color = MaterialTheme.colorScheme.primary)
+                Text(text = "Lihat", color = Color.Green, fontSize = 5.sp)
                 
             }
         }

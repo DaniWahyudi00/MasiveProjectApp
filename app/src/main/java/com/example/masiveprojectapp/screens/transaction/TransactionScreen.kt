@@ -21,7 +21,8 @@ fun TransactionScreen(
             modifier = modifier
                 .height(330.dp)
                 .width(130.dp)
-                .padding(start = 15.dp, end = 15.dp, top = 9.dp),) {
+                .padding(start = 15.dp, end = 15.dp, top = 9.dp),
+            ) {
             item(2) {TransactionScreenItem() }
         }
 }

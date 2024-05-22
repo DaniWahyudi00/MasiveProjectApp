@@ -78,25 +78,31 @@ object datadummy {
             id = 1,
             title = "My Profil",
             icon = R.drawable.icon_profile_on_profile_screen,
+            screen = Screen.MyProfile
 
+        ),MyprofilItem(
+            id = 2,
+            title = "My Project",
+            icon = R.drawable.icon_my_project_on_profile_screen,
+            screen = Screen.MyProfile
         ),
         MyprofilItem(
-            id = 2,
+            id = 3,
             title = "Forum",
             icon = R.drawable.icon_forum_on_profile_screen,
-
-    ),
-        MyprofilItem(
-            id = 3,
-            title = "Help Center",
-            icon = R.drawable.icon_help_center_on_profile_screen,
-
+            screen = Screen.Profile
     ),
         MyprofilItem(
             id = 4,
+            title = "Help Center",
+            icon = R.drawable.icon_help_center_on_profile_screen,
+            screen = Screen.Profile
+    ),
+        MyprofilItem(
+            id = 5,
             title = "Logout",
             icon = R.drawable.icon_forum_on_profile_screen,
-
+            screen = Screen.Profile
         )
     )
 

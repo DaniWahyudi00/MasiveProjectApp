@@ -8,6 +8,7 @@ data class MyprofilItem(
     val id : Int,
     val title: String,
     val icon: Int,
+    val screen: Screen
 
 
 )

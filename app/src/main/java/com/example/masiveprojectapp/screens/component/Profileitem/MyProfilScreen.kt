@@ -24,6 +24,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.masiveprojectapp.R
 import com.example.masiveprojectapp.model.Arsitek
@@ -67,6 +68,7 @@ fun MyProfileScreen(
 @Composable
 fun Myprofil1(
     modifier: Modifier = Modifier,
+    navController: NavController = rememberNavController()
 //    onItemClicked: (Int) -> Unit
 ){
     Row(
@@ -74,7 +76,8 @@ fun Myprofil1(
         modifier = modifier
             .height(70.dp)
             .width(335.dp)
-            .clip(RoundedCornerShape(5.dp))
+            .clip(RoundedCornerShape(5.dp),
+                )
     ) {
         Spacer(modifier = Modifier.width(24.dp))
         Icon(

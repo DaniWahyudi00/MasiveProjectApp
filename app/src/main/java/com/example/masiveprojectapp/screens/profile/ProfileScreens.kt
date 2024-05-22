@@ -1,15 +1,12 @@
-package com.example.masiveprojectapp.screens.component
+package com.example.masiveprojectapp.screens.profile
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -18,6 +15,7 @@ import com.example.masiveprojectapp.R
 import com.example.masiveprojectapp.data.datadummy
 import com.example.masiveprojectapp.myprofil.MyprofilItem
 import com.example.masiveprojectapp.myprofil.UsertItem
+import com.example.masiveprojectapp.navigation.Screen
 import com.example.masiveprojectapp.screens.component.Profileitem.HeadMyProfileScreen
 import com.example.masiveprojectapp.screens.component.Profileitem.MyProfileScreen
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
@@ -44,7 +42,8 @@ fun ProfileScreens(
         ) {
             items(myprofils, key = { it.id }) {
                 MyProfileScreen(myprofile = it, modifier = Modifier.padding(horizontal = 10.dp))
-                {
+                {myprofileId ->
+                    navController.navigate(Screen.MyProfile.route + "/$myprofileId")
                 }
                 //( modifier = Modifier.padding(horizontal = 16.dp))
             }

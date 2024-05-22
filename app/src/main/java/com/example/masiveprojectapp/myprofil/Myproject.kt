@@ -1,4 +1,6 @@
 package com.example.masiveprojectapp.myprofil
 
-class Myproject {
-}
+data class Myproject(
+var fileName: String? = null,
+var data: String? = null
+)
