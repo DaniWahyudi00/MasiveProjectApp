@@ -57,4 +57,5 @@ fun MasiveProjectAppTheme(
         typography = Typography,
         content = content
     )
+
 }

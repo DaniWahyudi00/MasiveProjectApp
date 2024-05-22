@@ -5,6 +5,12 @@ import com.example.masiveprojectapp.model.Arsitek
 import com.example.masiveprojectapp.model.DesainRumah
 import com.example.masiveprojectapp.model.Project
 import com.example.masiveprojectapp.model.SliderImage
+import com.example.masiveprojectapp.R
+import com.example.masiveprojectapp.myprofil.Myprofil
+import com.example.masiveprojectapp.myprofil.MyprofilItem
+import com.example.masiveprojectapp.myprofil.UsertItem
+import com.example.masiveprojectapp.navigation.Screen
+
 
 object datadummy {
 
@@ -62,5 +68,58 @@ object datadummy {
         SliderImage(R.drawable.image_slider_one),
         SliderImage(R.drawable.image_slider_two),
         SliderImage(R.drawable.image_slider_three),
+    )
+
+//    val Myprofils = listOf(
+//        Myprofil(
+//            id = 1,
+//            name = "Richard Solikin",
+//            telephone = "+6212-3456-7890",
+//            email = "dummy@gmail.com",
+//            password = "password",
+//            gender = "man",
+//            screen =
+//        )
+//    )
+
+    val MyprofilItems = listOf(
+        MyprofilItem(
+            id = 1,
+            title = "My Profil",
+            icon = R.drawable.icon_profile_on_profile_screen,
+            screen = Screen.MyProfile
+
+        ),MyprofilItem(
+            id = 2,
+            title = "My Project",
+            icon = R.drawable.icon_my_project_on_profile_screen,
+            screen = Screen.MyProfile
+        ),
+        MyprofilItem(
+            id = 3,
+            title = "Forum",
+            icon = R.drawable.icon_forum_on_profile_screen,
+            screen = Screen.Profile
+    ),
+        MyprofilItem(
+            id = 4,
+            title = "Help Center",
+            icon = R.drawable.icon_help_center_on_profile_screen,
+            screen = Screen.Profile
+    ),
+        MyprofilItem(
+            id = 5,
+            title = "Logout",
+            icon = R.drawable.icon_forum_on_profile_screen,
+            screen = Screen.Profile
+        )
+    )
+
+    val UsertItems = listOf(
+        UsertItem(
+            id = 1,
+            username = "Richard Solikin",
+            photo = R.drawable.user
+        )
     )
 }

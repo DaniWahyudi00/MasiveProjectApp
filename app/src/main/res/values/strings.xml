@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">MasiveProjectApp</string>
     <string name="menu_message">menu_message\n</string>
+    <string name="Profile_Menu">Profile_menu</string>
 </resources>
