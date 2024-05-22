@@ -23,8 +23,6 @@ import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 
 @Composable
 fun Search(modifier: Modifier = Modifier) {
-fun Search(
-    modifier: Modifier = Modifier) {
     TextField(
         value = "",
         onValueChange = {},
@@ -44,15 +42,6 @@ fun Search(
             focusedIndicatorColor = Color.White,
             unfocusedIndicatorColor = Color.White,
         ),
-
-        colors = TextFieldDefaults.run {
-            colors(
-                focusedContainerColor = Color.White,
-                unfocusedContainerColor = Color.White,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-            )
-        },
         placeholder = {
             Text(
                 text = "Search Items",
@@ -71,6 +60,7 @@ fun Search(
             .height(50.dp)
     )
 }
+
 
 @Preview(showBackground = true)
 @Composable
