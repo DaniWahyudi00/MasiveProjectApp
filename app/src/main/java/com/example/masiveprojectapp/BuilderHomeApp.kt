@@ -3,11 +3,13 @@ package com.example.masiveprojectapp
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.masiveprojectapp.navigation.Screen
 import com.example.masiveprojectapp.screens.arsitek.ArsitekScreen
@@ -23,8 +25,17 @@ import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 fun BuilderHomeApp(
     navController: NavHostController = rememberNavController(),
 ) {
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
     Scaffold(
-        bottomBar = { BottomNavigation(navController = navController) }
+        bottomBar = {
+            if (currentRoute !in listOf(
+                Screen.Desain.route,
+                Screen.Arsitek.route
+            )){
+                BottomNavigation(navController = navController)
+            }
+        }
     ) { innerPadding ->
         NavHost(
             navController = navController,
