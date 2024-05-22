@@ -6,13 +6,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.masiveprojectapp.navigation.Screen
 import com.example.masiveprojectapp.screens.component.BottomNavigation
+import com.example.masiveprojectapp.screens.profile.ProfileScreens
 import com.example.masiveprojectapp.screens.home.HomeScreen
-import com.example.masiveprojectapp.screens.profile.ProfileScreen
+import com.example.masiveprojectapp.screens.myproject.MyProjectContent
+import com.example.masiveprojectapp.screens.myproject.MyProjectScreen
+import com.example.masiveprojectapp.screens.myproject.MyProjectScreens
+import com.example.masiveprojectapp.screens.myproject.myprojecitem.AddProjectScreens
 import com.example.masiveprojectapp.screens.service.ServiceScreen
 import com.example.masiveprojectapp.screens.transaction.TransactionScreen
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
@@ -39,7 +45,22 @@ fun BuilderHomeApp(
                 TransactionScreen()
             }
             composable(route = Screen.Profile.route) {
-                ProfileScreen()
+                ProfileScreens(navController)
+            }
+            composable(route = Screen.MyProject.route){
+                MyProjectScreens(navController)
+            }
+            composable(
+                Screen.MyProfile.route + "/{myprofileId}",
+                arguments = listOf(navArgument("myprofileId") { type = NavType.IntType })
+            ) { navBackStackEntry ->
+                MyProjectScreens(
+                    navController = navController,
+                )
+            }
+            composable(
+                Screen.AddProject.route){
+             AddProjectScreens()
             }
         }
     }
