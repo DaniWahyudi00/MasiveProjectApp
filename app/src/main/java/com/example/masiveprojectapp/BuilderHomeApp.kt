@@ -52,10 +52,18 @@ fun BuilderHomeApp(
                 ProfileScreen()
             }
             composable(route = Screen.Desain.route){
-                DesainScreen()
+                DesainScreen(
+                    navigateBack = {
+                        navController.navigateUp()
+                    }
+                )
             }
             composable(route = Screen.Arsitek.route){
-                ArsitekScreen()
+                ArsitekScreen(
+                    navigateBack = {
+                        navController.navigateUp()
+                    }
+                )
             }
         }
     }

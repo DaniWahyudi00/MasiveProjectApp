@@ -1,5 +1,6 @@
 package com.example.masiveprojectapp.screens.arsitek
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -27,7 +28,10 @@ import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ArsitekScreen(modifier: Modifier = Modifier) {
+fun ArsitekScreen(
+    modifier: Modifier = Modifier,
+    navigateBack: () -> Unit
+) {
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
         topBar = {
@@ -36,7 +40,8 @@ fun ArsitekScreen(modifier: Modifier = Modifier) {
                     colors = TopAppBarDefaults.topAppBarColors(
                         containerColor = MaterialTheme.colorScheme.background
                     ),
-                    modifier = Modifier.padding(horizontal = 16.dp),
+                    modifier = Modifier
+                        .padding(horizontal = 16.dp),
                     title = {
                         Text(
                             text = "Arsitek",
@@ -48,7 +53,11 @@ fun ArsitekScreen(modifier: Modifier = Modifier) {
                     navigationIcon = {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "Arrow Back"
+                            contentDescription = "Arrow Back",
+                            modifier = Modifier
+                                .clickable {
+                                    navigateBack()
+                                }
                         )
                     }
                 )
@@ -82,6 +91,6 @@ fun ArsitekScreen(modifier: Modifier = Modifier) {
 @Composable
 private fun ArsitekScreenPreview() {
     MasiveProjectAppTheme(dynamicColor = false) {
-        ArsitekScreen()
+        ArsitekScreen {}
     }
 }
