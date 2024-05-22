@@ -1,13 +1,16 @@
 package com.example.masiveprojectapp.data
 
+import com.example.masiveprojectapp.R
 import com.example.masiveprojectapp.model.Arsitek
 import com.example.masiveprojectapp.model.DesainRumah
 import com.example.masiveprojectapp.model.Project
+import com.example.masiveprojectapp.model.SliderImage
 import com.example.masiveprojectapp.R
 import com.example.masiveprojectapp.myprofil.Myprofil
 import com.example.masiveprojectapp.myprofil.MyprofilItem
 import com.example.masiveprojectapp.myprofil.UsertItem
 import com.example.masiveprojectapp.navigation.Screen
+
 
 object datadummy {
 
@@ -59,6 +62,12 @@ object datadummy {
             photo = R.drawable.project1
         )
 
+    )
+
+    val sliderImage = listOf(
+        SliderImage(R.drawable.image_slider_one),
+        SliderImage(R.drawable.image_slider_two),
+        SliderImage(R.drawable.image_slider_three),
     )
 
 //    val Myprofils = listOf(
@@ -113,5 +122,4 @@ object datadummy {
             photo = R.drawable.user
         )
     )
-
 }

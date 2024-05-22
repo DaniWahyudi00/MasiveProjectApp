@@ -22,6 +22,7 @@ import androidx.core.graphics.toColorInt
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 
 @Composable
+fun Search(modifier: Modifier = Modifier) {
 fun Search(
     modifier: Modifier = Modifier) {
     TextField(
@@ -37,6 +38,13 @@ fun Search(
             )
         },
         shape = RoundedCornerShape(8.dp),
+        colors = TextFieldDefaults.colors(
+            focusedContainerColor = Color.White,
+            unfocusedContainerColor = Color.White,
+            focusedIndicatorColor = Color.White,
+            unfocusedIndicatorColor = Color.White,
+        ),
+
         colors = TextFieldDefaults.run {
             colors(
                 focusedContainerColor = Color.White,
