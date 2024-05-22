@@ -5,8 +5,6 @@ import com.example.masiveprojectapp.model.Arsitek
 import com.example.masiveprojectapp.model.DesainRumah
 import com.example.masiveprojectapp.model.Project
 import com.example.masiveprojectapp.model.SliderImage
-import com.example.masiveprojectapp.R
-import com.example.masiveprojectapp.myprofil.Myprofil
 import com.example.masiveprojectapp.myprofil.MyprofilItem
 import com.example.masiveprojectapp.myprofil.UsertItem
 import com.example.masiveprojectapp.navigation.Screen
