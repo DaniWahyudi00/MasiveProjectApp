@@ -19,6 +19,7 @@ fun TransactionScreen(
 )
 {
         LazyColumn(
+
             verticalArrangement = Arrangement.spacedBy(26.dp),
             modifier = modifier
                 .height(150.dp)
