@@ -217,7 +217,7 @@ private fun CustomOutlinedTextField(label: String, onValueChange: (String) -> Un
             textState.value = it
             onValueChange(it)
         },
-        label = { if (isLabelVisible) Text(text = label) },
+        label = { if (isLabelVisible) Text (text = label) },
         keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
         keyboardActions = KeyboardActions(onDone = { /* Handle action done if needed */ }),
         modifier = Modifier.fillMaxWidth()
