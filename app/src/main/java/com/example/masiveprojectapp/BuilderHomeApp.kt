@@ -24,6 +24,7 @@ import com.example.masiveprojectapp.screens.home.HomeScreen
 import com.example.masiveprojectapp.screens.myproject.MyProjectScreens
 import com.example.masiveprojectapp.screens.myproject.myprojecitem.AddProjectScreens
 import com.example.masiveprojectapp.screens.profile.ProfileScreens
+import com.example.masiveprojectapp.screens.registration.LoginScreen
 import com.example.masiveprojectapp.screens.service.ServiceScreen
 import com.example.masiveprojectapp.screens.transaction.TransactionScreen
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
@@ -51,6 +52,9 @@ fun BuilderHomeApp(
             enterTransition = { fadeIn(tween(500)) },
             exitTransition = { fadeOut(tween(500)) }
         ) {
+            composable(route = Screen.Login.route){
+                LoginScreen()
+            }
             composable(route = Screen.Home.route) {
                 HomeScreen(
                     navigateToSeeAll = {

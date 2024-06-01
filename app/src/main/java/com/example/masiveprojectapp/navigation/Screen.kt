@@ -13,4 +13,5 @@ sealed class Screen(val route: String) {
     object HelpCenter : Screen("HelpCenter")
     object Logout : Screen("Logout")
     object AddProject : Screen("addproject")
+    object Login : Screen("login")
 }
