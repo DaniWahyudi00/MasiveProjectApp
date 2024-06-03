@@ -27,6 +27,7 @@ import com.example.masiveprojectapp.screens.profile.ProfileScreens
 import com.example.masiveprojectapp.screens.registration.LoginScreen
 import com.example.masiveprojectapp.screens.registration.SignUpScreen
 import com.example.masiveprojectapp.screens.registration.WelcomeScreen
+import com.example.masiveprojectapp.screens.registration.changepassword.ForgotPassScreen
 import com.example.masiveprojectapp.screens.service.ServiceScreen
 import com.example.masiveprojectapp.screens.transaction.TransactionScreen
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
@@ -61,14 +62,30 @@ fun BuilderHomeApp(
                 WelcomeScreen(
                     navigateToSignIn = {
                         navController.navigate(Screen.Login.route)
+                    },
+                    navigateToSignUp = {
+                        navController.navigate(Screen.SignUp.route)
                     }
                 )
             }
             composable(route = Screen.Login.route){
-                LoginScreen()
+                LoginScreen(
+                    navigateToHome = {
+                        navController.navigate(Screen.Home.route)
+                    },
+                    navigateToSignUp = {
+                        navController.navigate(Screen.SignUp.route)
+                    },
+                    navigateToForgotPassword = {
+                        navController.navigate(Screen.ForgotPassword.route)
+                    }
+                )
             }
             composable(route = Screen.SignUp.route){
                 SignUpScreen()
+            }
+            composable(route = Screen.ForgotPassword.route){
+                ForgotPassScreen()
             }
             composable(route = Screen.Home.route) {
                 HomeScreen(

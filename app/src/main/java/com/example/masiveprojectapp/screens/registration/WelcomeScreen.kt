@@ -30,6 +30,7 @@ import com.example.masiveprojectapp.ui.theme.poppinsFontFamily
 @Composable
 fun WelcomeScreen(
     navigateToSignIn: () -> Unit,
+    navigateToSignUp: () -> Unit
 ) {
     Column (
         modifier = Modifier
@@ -95,7 +96,7 @@ fun WelcomeScreen(
         Spacer(modifier = Modifier.height(14.dp))
 
         Button(
-            onClick = { /*TODO*/ },
+            onClick = navigateToSignUp,
             colors = ButtonDefaults.buttonColors(containerColor = Color.White),
             modifier = Modifier
                 .width(320.dp)
@@ -120,7 +121,8 @@ fun WelcomeScreen(
 @Preview(showBackground = true)
 @Composable
 private fun WelcomeScreenPreview() {
-    WelcomeScreen {
-
-    }
+    WelcomeScreen(
+        navigateToSignIn = {},
+        navigateToSignUp = {}
+    )
 }
