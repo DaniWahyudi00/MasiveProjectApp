@@ -19,8 +19,7 @@ fun TransactionScreen(
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(26.dp),
             modifier = modifier
-                .height(330.dp)
-                .width(130.dp)
+                .height(150.dp)
                 .padding(start = 15.dp, end = 15.dp, top = 9.dp),
             ) {
             item(2) {TransactionScreenItem() }
