@@ -54,7 +54,8 @@ fun MyProjectContents(
                 verticalArrangement = Arrangement.spacedBy(8.dp),
                 modifier = modifier.padding(innerPadding)
             ) {
-                item(1) { myprojectitem()
+                item(1) {
+                    myprojectitem()
                 }
                 }
             }

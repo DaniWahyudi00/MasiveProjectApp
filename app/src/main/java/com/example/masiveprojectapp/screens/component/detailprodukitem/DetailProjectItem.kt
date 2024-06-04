@@ -26,17 +26,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.motionEventSpy
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.masiveprojectapp.R
+import com.example.masiveprojectapp.model.DetailProject
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 
 @Composable
 fun DetailProjectItem (
-
+    detailproject : DetailProject,
     modifier: Modifier,
     navController: NavController
 
@@ -54,23 +56,30 @@ fun DetailProjectItem (
 
 
             )
-        Text("Masukkan harga Project :", style = MaterialTheme.typography.bodyLarge)
-
-
-        Text("Masukkan nama Project :", style = MaterialTheme.typography.bodyLarge)
-
-        Text(
-            "Product Detail :", style = MaterialTheme.typography.bodyLarge,
+        Text(detailproject.price, style = MaterialTheme.typography.titleLarge,
             modifier = Modifier
-                .padding(top = 15.dp)
+                .padding(top = 10.dp)
         )
+
+        Text(detailproject.name, style = MaterialTheme.typography.titleMedium,
+            modifier = Modifier
+                .padding(top = 10.dp)
+        )
+        Row () {
+            Text(
+                "Product Detail :", style = MaterialTheme.typography.bodyLarge,
+                modifier = Modifier
+                    .padding(top = 15.dp)
+            )
+        }
         Row(
             modifier = Modifier
                 .padding(top = 15.dp)
 
         ) {
-            Text("Owner :", modifier = Modifier)
+            Text("Owner ", modifier = Modifier)
             Spacer(modifier = Modifier.padding(start = 50.dp))
+            Text(": "+detailproject.owner, fontWeight = FontWeight.Light)
 
         }
         Row(
@@ -78,9 +87,9 @@ fun DetailProjectItem (
                 .padding(top = 10.dp)
 
         ) {
-            Text("Size house :", modifier = Modifier)
+            Text("Size house ", modifier = Modifier)
             Spacer(modifier = Modifier.padding(start = 15.dp))
-
+            Text(": "+ detailproject.roomarea, fontWeight = FontWeight.Light)
         }
         Row(
 
@@ -88,14 +97,22 @@ fun DetailProjectItem (
                 .padding(top = 10.dp)
 
         ) {
-            Text("Condition :", modifier = Modifier)
+            Text("Condition ", modifier = Modifier)
             Spacer(modifier = Modifier.padding(start = 20.dp))
+            Text(": "+ detailproject.condition, fontWeight = FontWeight.Light)
+
 
         }
         Text(
             "Project Deskripsi :",
-            style = MaterialTheme.typography.bodyLarge,
+            style = MaterialTheme.typography.titleMedium,
             modifier = Modifier.padding(top = 15.dp)
+        )
+        Text(
+            detailproject.description,
+            style = MaterialTheme.typography.bodyLarge,
+            modifier = Modifier.padding(top = 15.dp),
+            fontWeight = FontWeight.Light
         )
 
 //        Text("Masukkan harga Project :", style = MaterialTheme.typography.bodyLarge)
@@ -162,6 +179,6 @@ fun DetailProjectItem (
 @Composable
 private fun DetailProjectItemPreview(){
     MasiveProjectAppTheme {
-        DetailProjectItem(modifier = Modifier, navController = rememberNavController())
+        DetailProjectItem(detailproject = DetailProject(1,"Modern Home","Rivza","Rp xxx.xxx.xxx","10 X 10 M","Ini Berisi Deskripsi Project", "Perfect"), modifier = Modifier, navController = rememberNavController())
     }
 }

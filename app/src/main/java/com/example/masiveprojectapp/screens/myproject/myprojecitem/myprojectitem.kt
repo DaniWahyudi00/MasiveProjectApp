@@ -25,7 +25,9 @@ import androidx.compose.ui.unit.sp
 import com.example.masiveprojectapp.R
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 @Composable
-fun myprojectitem() {
+fun myprojectitem(
+
+) {
     Column(
         modifier = Modifier
             .background(color = Color.White)

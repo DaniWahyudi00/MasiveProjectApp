@@ -128,7 +128,8 @@ object datadummy {
             owner = "Rizva",
             price = "Rp xxx.xxx.xxx",
             roomarea = "10 X 10 M",
-            description = "Ini berisi desrkripsi"
+            description = "Ini berisi desrkripsi",
+            condition = "Sempura"
         )
 
     )
