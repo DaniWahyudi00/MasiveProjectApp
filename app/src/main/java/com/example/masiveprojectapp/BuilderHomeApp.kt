@@ -15,6 +15,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.masiveprojectapp.navigation.Screen
+import com.example.masiveprojectapp.screens.addmyproject.AddMyProjectScreen
 import com.example.masiveprojectapp.screens.arsitek.ArsitekScreen
 import com.example.masiveprojectapp.screens.component.BottomNavigation
 import com.example.masiveprojectapp.screens.desain.DesainScreen
@@ -81,7 +82,7 @@ fun BuilderHomeApp(
 //                )
             }
             composable(route = Screen.AddProject.route){
-             AddProjectScreens()
+             AddMyProjectScreen()
             }
             composable(route = Screen.UserProfile.route){
                 UserProfileScreens()
