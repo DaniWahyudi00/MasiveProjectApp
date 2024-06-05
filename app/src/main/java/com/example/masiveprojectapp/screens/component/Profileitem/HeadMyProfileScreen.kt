@@ -38,7 +38,7 @@ fun HeadMyProfileScreen(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .height(40.dp)
-            .width(229.dp)
+
     ) {
         Spacer(modifier = Modifier.width(24.dp))
             Image(
