@@ -3,6 +3,7 @@ package com.example.masiveprojectapp.data
 import com.example.masiveprojectapp.R
 import com.example.masiveprojectapp.model.Arsitek
 import com.example.masiveprojectapp.model.DesainRumah
+import com.example.masiveprojectapp.model.DetailProject
 import com.example.masiveprojectapp.model.Project
 import com.example.masiveprojectapp.model.SliderImage
 import com.example.masiveprojectapp.myprofil.MyprofilItem
@@ -120,4 +121,17 @@ object datadummy {
             photo = R.drawable.user
         )
     )
+    val DetailProjects = listOf(
+        DetailProject(
+            id = 1,
+            name = "Japan Modern Sakura",
+            owner = "Rizva",
+            price = "Rp xxx.xxx.xxx",
+            roomarea = "10 X 10 M",
+            description = "Ini berisi desrkripsi",
+            condition = "Sempura"
+        )
+
+    )
 }
+
