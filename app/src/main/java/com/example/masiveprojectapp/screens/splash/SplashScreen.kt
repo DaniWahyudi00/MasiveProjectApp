@@ -1,5 +1,6 @@
 package com.example.masiveprojectapp.screens.splash
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -23,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import com.example.masiveprojectapp.MainActivity
 import com.example.masiveprojectapp.R
 
+@SuppressLint("CustomSplashScreen")
 class SplashActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

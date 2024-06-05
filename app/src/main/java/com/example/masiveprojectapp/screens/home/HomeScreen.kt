@@ -1,6 +1,7 @@
 package com.example.masiveprojectapp.screens.home
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,7 +28,8 @@ import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 
 @Composable
 fun HomeScreen(
-    navigateToSeeAll: (String) -> Unit
+    navigateToSeeAll: (String) -> Unit,
+    navigateToDetail: (String) -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -70,7 +72,12 @@ fun HomeScreen(
                         columns = GridCells.Adaptive(161.dp),
                     ) {
                         items(2){
-                            DesainItem()
+                            DesainItem(
+                                modifier = Modifier
+                                    .clickable {
+                                        navigateToDetail("desain")
+                                    }
+                            )
                         }
                     }
                 },
@@ -93,7 +100,12 @@ fun HomeScreen(
                         columns = GridCells.Adaptive(161.dp),
                     ) {
                         items(2){
-                            ArsitekItem2()
+                            ArsitekItem2(
+                                modifier = Modifier
+                                    .clickable {
+                                        navigateToDetail("arsitek")
+                                    }
+                            )
                         }
                     }
                 },
@@ -109,6 +121,9 @@ fun HomeScreen(
 @Composable
 private fun HomeScreenPreview() {
     MasiveProjectAppTheme(dynamicColor = false) {
-        HomeScreen{}
+        HomeScreen(
+            navigateToSeeAll = {},
+            navigateToDetail = {}
+        )
     }
 }

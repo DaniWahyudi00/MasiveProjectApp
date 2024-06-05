@@ -28,7 +28,10 @@ import com.example.masiveprojectapp.R
 import com.example.masiveprojectapp.ui.theme.poppinsFontFamily
 
 @Composable
-fun WelcomeScreen() {
+fun WelcomeScreen(
+    navigateToSignIn: () -> Unit,
+    navigateToSignUp: () -> Unit
+) {
     Column (
         modifier = Modifier
             .fillMaxSize()
@@ -71,7 +74,7 @@ fun WelcomeScreen() {
         Spacer(modifier = Modifier.height(137.dp))
 
         Button(
-            onClick = { /*TODO*/ },
+            onClick = navigateToSignIn,
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5E8451)),
             modifier = Modifier
                 .width(320.dp)
@@ -93,7 +96,7 @@ fun WelcomeScreen() {
         Spacer(modifier = Modifier.height(14.dp))
 
         Button(
-            onClick = { /*TODO*/ },
+            onClick = navigateToSignUp,
             colors = ButtonDefaults.buttonColors(containerColor = Color.White),
             modifier = Modifier
                 .width(320.dp)
@@ -118,5 +121,8 @@ fun WelcomeScreen() {
 @Preview(showBackground = true)
 @Composable
 private fun WelcomeScreenPreview() {
-    WelcomeScreen()
+    WelcomeScreen(
+        navigateToSignIn = {},
+        navigateToSignUp = {}
+    )
 }

@@ -35,7 +35,7 @@ import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 @Composable
 fun ArsitekItem2(modifier: Modifier = Modifier) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .background(color = Color.White)
             .wrapContentHeight()
             .width(169.dp)

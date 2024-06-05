@@ -20,11 +20,17 @@ import com.example.masiveprojectapp.screens.arsitek.ArsitekScreen
 import com.example.masiveprojectapp.screens.checkout.CheckOutScreen
 import com.example.masiveprojectapp.screens.component.BottomNavigation
 import com.example.masiveprojectapp.screens.desain.DesainScreen
+import com.example.masiveprojectapp.screens.detailArsitek2.DetailArsitek
+import com.example.masiveprojectapp.screens.detailDesain.DetailDesain
 import com.example.masiveprojectapp.screens.home.HomeScreen
 import com.example.masiveprojectapp.screens.detailproduct.DetailProductItem
 import com.example.masiveprojectapp.screens.myproject.MyProjectScreens
 import com.example.masiveprojectapp.screens.profile.ProfileScreen
 import com.example.masiveprojectapp.screens.profile.ProfileScreens
+import com.example.masiveprojectapp.screens.registration.LoginScreen
+import com.example.masiveprojectapp.screens.registration.SignUpScreen
+import com.example.masiveprojectapp.screens.registration.WelcomeScreen
+import com.example.masiveprojectapp.screens.registration.changepassword.ForgotPassScreen
 import com.example.masiveprojectapp.screens.userprofile.UserProfileScreens
 import com.example.masiveprojectapp.screens.service.ServiceScreen
 import com.example.masiveprojectapp.screens.transaction.TransactionScreen
@@ -41,6 +47,10 @@ fun BuilderHomeApp(
             if (currentRoute !in listOf(
                 Screen.Desain.route,
                 Screen.Arsitek.route,
+                Screen.Welcome.route,
+                Screen.Login.route,
+                Screen.SignUp.route,
+                Screen.DetailDesain.route
             )){
                 BottomNavigation(navController = navController)
             }
@@ -48,11 +58,40 @@ fun BuilderHomeApp(
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Screen.Home.route,
+            startDestination = Screen.Welcome.route,
             modifier = Modifier.padding(innerPadding),
             enterTransition = { fadeIn(tween(500)) },
             exitTransition = { fadeOut(tween(500)) }
         ) {
+            composable(route = Screen.Welcome.route){
+                WelcomeScreen(
+                    navigateToSignIn = {
+                        navController.navigate(Screen.Login.route)
+                    },
+                    navigateToSignUp = {
+                        navController.navigate(Screen.SignUp.route)
+                    }
+                )
+            }
+            composable(route = Screen.Login.route){
+                LoginScreen(
+                    navigateToHome = {
+                        navController.navigate(Screen.Home.route)
+                    },
+                    navigateToSignUp = {
+                        navController.navigate(Screen.SignUp.route)
+                    },
+                    navigateToForgotPassword = {
+                        navController.navigate(Screen.ForgotPassword.route)
+                    }
+                )
+            }
+            composable(route = Screen.SignUp.route){
+                SignUpScreen()
+            }
+            composable(route = Screen.ForgotPassword.route){
+                ForgotPassScreen()
+            }
             composable(route = Screen.Home.route) {
                 HomeScreen(
                     navigateToSeeAll = {
@@ -61,11 +100,32 @@ fun BuilderHomeApp(
                         } else {
                             navController.navigate(Screen.Arsitek.route)
                         }
+                    },
+                    navigateToDetail = {
+                        if (it == "desain"){
+                            navController.navigate(Screen.DetailDesain.route)
+                        } else {
+                            navController.navigate(Screen.DetailArsitek.route)
+                        }
                     }
                 )
             }
+            composable(route = Screen.DetailDesain.route){
+                DetailDesain()
+            }
+            composable(route = Screen.DetailArsitek.route){
+                DetailArsitek()
+            }
             composable(route = Screen.Service.route) {
-                ServiceScreen()
+                ServiceScreen(
+                    navigateToDetail = {
+                       if (it == "desain") {
+                           navController.navigate(Screen.DetailDesain.route)
+                       } else {
+                           navController.navigate(Screen.DetailArsitek.route)
+                       }
+                    }
+                )
             }
             composable(route = Screen.Transaction.route) {
                 TransactionScreen(navController = navController)
@@ -92,6 +152,9 @@ fun BuilderHomeApp(
                 DesainScreen(
                     navigateBack = {
                         navController.navigateUp()
+                    },
+                    navigateToDetail = {
+                        navController.navigate(Screen.DetailDesain.route)
                     }
                 )
             }
@@ -99,6 +162,9 @@ fun BuilderHomeApp(
                 ArsitekScreen(
                     navigateBack = {
                         navController.navigateUp()
+                    },
+                    navigateToDetail = {
+                        navController.navigate(Screen.DetailArsitek.route)
                     }
                 )
             }

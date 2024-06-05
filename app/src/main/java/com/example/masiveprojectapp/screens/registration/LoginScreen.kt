@@ -2,6 +2,7 @@ package com.example.masiveprojectapp.screens.registration
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -38,7 +39,11 @@ import com.example.masiveprojectapp.R
 import com.example.masiveprojectapp.ui.theme.poppinsFontFamily
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(
+    navigateToHome: () -> Unit,
+    navigateToSignUp: () -> Unit,
+    navigateToForgotPassword: () -> Unit
+) {
 
     var text by remember { mutableStateOf("") }
 
@@ -99,14 +104,18 @@ fun LoginScreen() {
                     fontFamily = poppinsFontFamily,
                     fontWeight = FontWeight(400),
                     color = Color(0xFF000000),
-                )
+                ),
+                modifier = Modifier
+                    .clickable {
+                        navigateToForgotPassword()
+                    }
             )
         }
 
         Spacer(modifier = Modifier.height(65.dp))
 
         Button(
-            onClick = { /*TODO*/ },
+            onClick = navigateToHome,
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5E8451)),
             modifier = Modifier
                 .width(320.dp)
@@ -199,7 +208,11 @@ fun LoginScreen() {
                     fontFamily = poppinsFontFamily,
                     fontWeight = FontWeight(700),
                     color = Color(0xFF5E8451),
-                )
+                ),
+                modifier = Modifier
+                    .clickable {
+                        navigateToSignUp()
+                    }
             )
         }
 
@@ -227,5 +240,9 @@ private fun CustomOutlinedTextField(label: String, onValueChange: (String) -> Un
 @Preview(showBackground = true)
 @Composable
 private fun LoginScreenPreview() {
-    LoginScreen()
+    LoginScreen(
+        navigateToHome = {},
+        navigateToSignUp = {},
+        navigateToForgotPassword = {}
+    )
 }

@@ -15,5 +15,11 @@ sealed class Screen(val route: String) {
     object Forum : Screen("Forum")
     object HelpCenter : Screen("HelpCenter")
     object Logout : Screen("Logout")
+    object Login : Screen("login")
+    object SignUp : Screen("signup")
+    object Welcome : Screen("welcome")
+    object ForgotPassword : Screen("forgotpassword")
+    object DetailDesain : Screen("detaildesain")
+    object DetailArsitek : Screen("detailarsitek")
     object AddProject : Screen("addmyproject")
 }
