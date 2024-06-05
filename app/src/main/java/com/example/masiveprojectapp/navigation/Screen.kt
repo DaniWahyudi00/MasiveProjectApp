@@ -9,8 +9,11 @@ sealed class Screen(val route: String) {
     object Arsitek : Screen("arsitek")
     object MyProfile : Screen("MyProfile")
     object MyProject : Screen("myproject")
+    object UserProfile : Screen ("userprofile")
+    object Checkout : Screen ("checkout")
+    object DetailProduct : Screen ("detailproduct")
     object Forum : Screen("Forum")
     object HelpCenter : Screen("HelpCenter")
     object Logout : Screen("Logout")
-    object AddProject : Screen("addproject")
+    object AddProject : Screen("addmyproject")
 }
