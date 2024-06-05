@@ -145,7 +145,7 @@ fun ServiceScreen(
                                     ArsitekItem2(
                                         modifier = Modifier
                                             .clickable {
-                                                navigateToDetail("desain")
+                                                navigateToDetail("arsitek")
                                             }
                                     )
                                 }
@@ -168,7 +168,7 @@ fun ServiceScreen(
                                     DesainItem(
                                         modifier = Modifier
                                             .clickable {
-                                                navigateToDetail("arsitek")
+                                                navigateToDetail("desain")
                                             }
                                     )
                                 }

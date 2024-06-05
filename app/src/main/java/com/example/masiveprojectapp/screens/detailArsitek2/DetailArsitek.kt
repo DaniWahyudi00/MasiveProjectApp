@@ -1,4 +1,4 @@
-package com.example.masiveprojectapp.screens.detailDesain
+package com.example.masiveprojectapp.screens.detailArsitek2
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -39,7 +39,7 @@ import com.example.masiveprojectapp.screens.component.SearchBar
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 
 @Composable
-fun DetailDesain(modifier: Modifier = Modifier) {
+fun DetailArsitek(modifier: Modifier = Modifier) {
     Scaffold(
         topBar = {
             SearchBar()
@@ -57,19 +57,20 @@ fun DetailDesain(modifier: Modifier = Modifier) {
                     )
             ) {
                 Image(
-                    painter = painterResource(R.drawable.rumah1),
-                    contentDescription = "Desain",
+                    painter = painterResource(R.drawable.arsitel_cewe1),
+                    contentDescription = "Arsitek",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
                         .padding(
                             start = 16.dp,
                             end = 16.dp,
                         )
+                        .height(180.dp)
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(10.dp))
                 )
                 Text(
-                    text = "Japan Modern Sakura",
+                    text = "Allisa Gerand",
                     modifier = Modifier.padding(
                         top = 16.dp,
                         start = 16.dp,
@@ -78,7 +79,7 @@ fun DetailDesain(modifier: Modifier = Modifier) {
                     fontWeight = FontWeight.SemiBold
                 )
                 Text(
-                    text = "Interior Designer",
+                    text = "Architect & Building Designer",
                     modifier = Modifier.padding(
                         top = 6.dp,
                         start = 16.dp,
@@ -132,7 +133,8 @@ fun DetailDesain(modifier: Modifier = Modifier) {
                 }
                 Text(
                     text = """
-                        Japan Modern Sakura adalah desain arsitektur yang memadukan elemen tradisional Jepang dan modern minimalis. Dengan taman sakura sebagai pusat, penggunaan material alami seperti kayu dan batu, serta jendela besar yang memaksimalkan cahaya alami, bangunan ini menciptakan suasana harmonis dan elegan, menggabungkan estetika klasik Jepang dengan fungsionalitas modern.                """.trimIndent(),
+                        Halo, saya merupakan seorang arsitek yang sudah berpengalaman menyelesaikan beberapa project Pembuatan arsitektur rumah. Saat ini, saya sudah membuat banyak kebutuhan klien, mulai dari kebutuhan arsitektur. Saya siap melayani Anda dengan memberikan hasil yang terbaik. Segera konsultasikan kebutuhan Anda!
+                    """.trimIndent(),
                     fontSize = 12.sp,
                     modifier = Modifier.padding(
                         start = 16.dp,
@@ -156,7 +158,7 @@ fun DetailDesain(modifier: Modifier = Modifier) {
                         )
                 ) {
                     items(10){
-                        ProjectItem()
+                        com.example.masiveprojectapp.screens.detailDesain.ProjectItem()
                     }
                 }
                 Text(
@@ -173,7 +175,7 @@ fun DetailDesain(modifier: Modifier = Modifier) {
                         )
                     ) {
                         Text(
-                            text = "Webiste",
+                            text = "Nomor Handphone",
                             modifier = Modifier.padding(
                                 top = 16.dp,
                                 start = 16.dp,
@@ -183,7 +185,7 @@ fun DetailDesain(modifier: Modifier = Modifier) {
                             fontWeight = FontWeight.SemiBold
                         )
                         Text(
-                            text = "www.builderhome.com",
+                            text = "+62-8123-4567-8901",
                             modifier = Modifier.padding(
                                 start = 16.dp,
                                 end = 16.dp,
@@ -193,7 +195,7 @@ fun DetailDesain(modifier: Modifier = Modifier) {
                     }
                     Column {
                         Text(
-                            text = "Harga Desain",
+                            text = "Harga Jasa",
                             modifier = Modifier.padding(
                                 top = 16.dp,
                                 start = 16.dp,
@@ -203,7 +205,7 @@ fun DetailDesain(modifier: Modifier = Modifier) {
                             fontWeight = FontWeight.SemiBold
                         )
                         Text(
-                            text = "Rp 5.000.000,00",
+                            text = "Rp 30.000.000,00",
                             modifier = Modifier.padding(
                                 start = 16.dp,
                                 end = 16.dp,
@@ -212,6 +214,24 @@ fun DetailDesain(modifier: Modifier = Modifier) {
                         )
                     }
                 }
+                Text(
+                    text = "Webiste",
+                    modifier = Modifier.padding(
+                        top = 16.dp,
+                        start = 16.dp,
+                        end = 16.dp,
+                    ),
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.SemiBold
+                )
+                Text(
+                    text = "www.builderhome.com",
+                    modifier = Modifier.padding(
+                        start = 16.dp,
+                        end = 16.dp,
+                    ),
+                    fontSize = 12.sp
+                )
                 Button(
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.surface
@@ -296,10 +316,10 @@ private fun ProjectItemPreview() {
     }
 }
 
-@Preview(showBackground = true)
+@Preview
 @Composable
-private fun DetailDesainPreview() {
+private fun DetailArsitekPreview() {
     MasiveProjectAppTheme(dynamicColor = false) {
-        DetailDesain()
+        DetailArsitek()
     }
 }

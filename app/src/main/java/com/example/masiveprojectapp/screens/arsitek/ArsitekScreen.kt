@@ -30,7 +30,8 @@ import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 @Composable
 fun ArsitekScreen(
     modifier: Modifier = Modifier,
-    navigateBack: () -> Unit
+    navigateBack: () -> Unit,
+    navigateToDetail: () -> Unit
 ) {
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
@@ -80,7 +81,12 @@ fun ArsitekScreen(
                 columns = GridCells.Adaptive(161.dp),
             ) {
                 items(20){
-                    ArsitekItem2()
+                    ArsitekItem2(
+                        modifier = Modifier
+                            .clickable {
+                                navigateToDetail()
+                            }
+                    )
                 }
             }
         }
@@ -91,6 +97,9 @@ fun ArsitekScreen(
 @Composable
 private fun ArsitekScreenPreview() {
     MasiveProjectAppTheme(dynamicColor = false) {
-        ArsitekScreen {}
+        ArsitekScreen(
+            navigateBack = {},
+            navigateToDetail = {}
+        )
     }
 }

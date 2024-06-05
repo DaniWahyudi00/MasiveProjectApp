@@ -20,6 +20,7 @@ import com.example.masiveprojectapp.navigation.Screen
 import com.example.masiveprojectapp.screens.arsitek.ArsitekScreen
 import com.example.masiveprojectapp.screens.component.BottomNavigation
 import com.example.masiveprojectapp.screens.desain.DesainScreen
+import com.example.masiveprojectapp.screens.detailArsitek2.DetailArsitek
 import com.example.masiveprojectapp.screens.detailDesain.DetailDesain
 import com.example.masiveprojectapp.screens.home.HomeScreen
 import com.example.masiveprojectapp.screens.myproject.MyProjectScreens
@@ -101,6 +102,8 @@ fun BuilderHomeApp(
                     navigateToDetail = {
                         if (it == "desain"){
                             navController.navigate(Screen.DetailDesain.route)
+                        } else {
+                            navController.navigate(Screen.DetailArsitek.route)
                         }
                     }
                 )
@@ -108,10 +111,17 @@ fun BuilderHomeApp(
             composable(route = Screen.DetailDesain.route){
                 DetailDesain()
             }
+            composable(route = Screen.DetailArsitek.route){
+                DetailArsitek()
+            }
             composable(route = Screen.Service.route) {
                 ServiceScreen(
                     navigateToDetail = {
-                       navController.navigate(Screen.DetailDesain.route)
+                       if (it == "desain") {
+                           navController.navigate(Screen.DetailDesain.route)
+                       } else {
+                           navController.navigate(Screen.DetailArsitek.route)
+                       }
                     }
                 )
             }
@@ -150,6 +160,9 @@ fun BuilderHomeApp(
                 ArsitekScreen(
                     navigateBack = {
                         navController.navigateUp()
+                    },
+                    navigateToDetail = {
+                        navController.navigate(Screen.DetailArsitek.route)
                     }
                 )
             }
