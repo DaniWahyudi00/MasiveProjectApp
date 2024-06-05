@@ -26,9 +26,9 @@ import com.example.masiveprojectapp.R
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 
 @Composable
-fun DesainItem() {
+fun DesainItem(modifier: Modifier = Modifier) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .background(color = Color.White)
             .wrapContentHeight()
             .width(169.dp)

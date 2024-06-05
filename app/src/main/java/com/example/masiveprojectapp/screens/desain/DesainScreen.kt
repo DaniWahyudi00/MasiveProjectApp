@@ -31,7 +31,8 @@ import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DesainScreen(
-    navigateBack: () -> Unit
+    navigateBack: () -> Unit,
+    navigateToDetail: (String) -> Unit
 ) {
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
@@ -81,7 +82,12 @@ fun DesainScreen(
                 columns = GridCells.Adaptive(161.dp),
             ) {
                 items(20){
-                    DesainItem()
+                    DesainItem(
+                        modifier = Modifier
+                            .clickable {
+                                navigateToDetail("desain")
+                            }
+                    )
                 }
             }
         }
@@ -92,6 +98,9 @@ fun DesainScreen(
 @Composable
 private fun DesainScreenPreview() {
     MasiveProjectAppTheme(dynamicColor = false) {
-        DesainScreen{}
+        DesainScreen(
+            navigateToDetail = {},
+            navigateBack = {}
+        )
     }
 }

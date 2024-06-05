@@ -2,6 +2,7 @@ package com.example.masiveprojectapp.screens.service
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -41,7 +42,9 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ServiceScreen(modifier: Modifier = Modifier) {
+fun ServiceScreen(
+    navigateToDetail: (String) -> Unit
+) {
     Scaffold(
         topBar = {
             Box(
@@ -139,7 +142,12 @@ fun ServiceScreen(modifier: Modifier = Modifier) {
                                 columns = GridCells.Adaptive(161.dp),
                             ) {
                                 items(20){
-                                    ArsitekItem2()
+                                    ArsitekItem2(
+                                        modifier = Modifier
+                                            .clickable {
+                                                navigateToDetail("desain")
+                                            }
+                                    )
                                 }
                             }
                         }
@@ -157,7 +165,12 @@ fun ServiceScreen(modifier: Modifier = Modifier) {
                                 columns = GridCells.Adaptive(161.dp),
                             ) {
                                 items(20){
-                                    DesainItem()
+                                    DesainItem(
+                                        modifier = Modifier
+                                            .clickable {
+                                                navigateToDetail("arsitek")
+                                            }
+                                    )
                                 }
                             }
                         }
@@ -172,6 +185,8 @@ fun ServiceScreen(modifier: Modifier = Modifier) {
 @Composable
 private fun HomeScreenPreview() {
     MasiveProjectAppTheme(dynamicColor = false) {
-        ServiceScreen()
+        ServiceScreen(
+            navigateToDetail = {}
+        )
     }
 }

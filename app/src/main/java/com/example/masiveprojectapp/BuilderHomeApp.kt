@@ -20,6 +20,7 @@ import com.example.masiveprojectapp.navigation.Screen
 import com.example.masiveprojectapp.screens.arsitek.ArsitekScreen
 import com.example.masiveprojectapp.screens.component.BottomNavigation
 import com.example.masiveprojectapp.screens.desain.DesainScreen
+import com.example.masiveprojectapp.screens.detailDesain.DetailDesain
 import com.example.masiveprojectapp.screens.home.HomeScreen
 import com.example.masiveprojectapp.screens.myproject.MyProjectScreens
 import com.example.masiveprojectapp.screens.myproject.myprojecitem.AddProjectScreens
@@ -45,7 +46,8 @@ fun BuilderHomeApp(
                 Screen.Arsitek.route,
                 Screen.Welcome.route,
                 Screen.Login.route,
-                Screen.SignUp.route
+                Screen.SignUp.route,
+                Screen.DetailDesain.route
             )){
                 BottomNavigation(navController = navController)
             }
@@ -95,11 +97,23 @@ fun BuilderHomeApp(
                         } else {
                             navController.navigate(Screen.Arsitek.route)
                         }
+                    },
+                    navigateToDetail = {
+                        if (it == "desain"){
+                            navController.navigate(Screen.DetailDesain.route)
+                        }
                     }
                 )
             }
+            composable(route = Screen.DetailDesain.route){
+                DetailDesain()
+            }
             composable(route = Screen.Service.route) {
-                ServiceScreen()
+                ServiceScreen(
+                    navigateToDetail = {
+                       navController.navigate(Screen.DetailDesain.route)
+                    }
+                )
             }
             composable(route = Screen.Transaction.route) {
                 TransactionScreen()
@@ -126,6 +140,9 @@ fun BuilderHomeApp(
                 DesainScreen(
                     navigateBack = {
                         navController.navigateUp()
+                    },
+                    navigateToDetail = {
+                        navController.navigate(Screen.DetailDesain.route)
                     }
                 )
             }
