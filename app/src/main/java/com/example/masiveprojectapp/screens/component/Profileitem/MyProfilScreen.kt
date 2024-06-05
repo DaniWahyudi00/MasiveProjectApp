@@ -1,5 +1,6 @@
 package com.example.masiveprojectapp.screens.component.Profileitem
 
+import android.app.AlertDialog
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -16,6 +17,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -33,6 +36,7 @@ import com.example.masiveprojectapp.myprofil.Myprofil
 import com.example.masiveprojectapp.myprofil.MyprofilItem
 import com.example.masiveprojectapp.navigation.Screen
 import com.example.masiveprojectapp.screens.component.BottomNavigation
+import com.example.masiveprojectapp.screens.component.alertdialog.AlertProfileLogout
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 import com.example.masiveprojectapp.ui.theme.poppinsFontFamily
 
@@ -75,6 +79,7 @@ fun MyProfileScreen(
 //    onItemClicked: (Int) -> Unit
 ) {
     Column {
+        val openDialog = remember { mutableStateOf(false) }
         Row(
 
             verticalAlignment = Alignment.CenterVertically,
@@ -182,9 +187,10 @@ fun MyProfileScreen(
             modifier = modifier
                 .height(70.dp)
                 .width(335.dp)
-                .clickable { navController.navigate(Screen.MyProfile.route) }
+                .clickable { openDialog.value = true}
                 .clip(RoundedCornerShape(5.dp),
-                )
+                ),
+
         ) {
             Spacer(modifier = Modifier.width(24.dp))
             Icon(
@@ -202,8 +208,12 @@ fun MyProfileScreen(
             )
 
         }
+        if (openDialog.value){
+            AlertProfileLogout(onDismiss = { openDialog.value = false}, onConfirm = {})
+        }
     }
 }
+
 
 @Preview(showBackground = true)
 @Composable

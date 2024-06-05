@@ -1,5 +1,6 @@
 package com.example.masiveprojectapp.screens.transaction
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
@@ -11,12 +12,16 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.example.masiveprojectapp.R
+import com.example.masiveprojectapp.navigation.Screen
 import com.example.masiveprojectapp.screens.component.transaction.TransactionScreenItem
 
 
 @Composable
 fun TransactionScreen(
     modifier: Modifier = Modifier,
+    navController : NavController
 ) {
     Scaffold(containerColor = MaterialTheme.colorScheme.background,)
     { innerPadding ->
@@ -24,10 +29,8 @@ fun TransactionScreen(
             LazyColumn(
                 verticalArrangement = Arrangement.spacedBy(26.dp),
                 modifier = modifier
-                    .height(150.dp)
-                    .padding(start = 15.dp, end = 15.dp, top = 9.dp),
             ) {
-                item(2) { TransactionScreenItem() }
+                item(2) { TransactionScreenItem(modifier = Modifier, onLihat = { navController.navigate(Screen.Checkout.route) }, navController = navController) }
             }
         }
     }

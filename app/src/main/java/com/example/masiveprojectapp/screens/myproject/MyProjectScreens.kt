@@ -55,7 +55,7 @@ fun MyProjectContents(
                 modifier = modifier.padding(innerPadding)
             ) {
                 item(1) {
-                    myprojectitem()
+                    myprojectitem(navController)
                 }
                 }
             }

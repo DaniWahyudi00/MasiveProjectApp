@@ -17,11 +17,12 @@ import androidx.navigation.compose.rememberNavController
 import com.example.masiveprojectapp.navigation.Screen
 import com.example.masiveprojectapp.screens.addmyproject.AddMyProjectScreen
 import com.example.masiveprojectapp.screens.arsitek.ArsitekScreen
+import com.example.masiveprojectapp.screens.checkout.CheckOutScreen
 import com.example.masiveprojectapp.screens.component.BottomNavigation
 import com.example.masiveprojectapp.screens.desain.DesainScreen
 import com.example.masiveprojectapp.screens.home.HomeScreen
+import com.example.masiveprojectapp.screens.detailproduct.DetailProductItem
 import com.example.masiveprojectapp.screens.myproject.MyProjectScreens
-import com.example.masiveprojectapp.screens.myproject.myprojecitem.AddProjectScreens
 import com.example.masiveprojectapp.screens.profile.ProfileScreen
 import com.example.masiveprojectapp.screens.profile.ProfileScreens
 import com.example.masiveprojectapp.screens.userprofile.UserProfileScreens
@@ -67,7 +68,7 @@ fun BuilderHomeApp(
                 ServiceScreen()
             }
             composable(route = Screen.Transaction.route) {
-                TransactionScreen()
+                TransactionScreen(navController = navController)
             }
             composable(route = Screen.Profile.route) {
                 ProfileScreens(navController)
@@ -100,6 +101,12 @@ fun BuilderHomeApp(
                         navController.navigateUp()
                     }
                 )
+            }
+            composable(route = Screen.Checkout.route){
+                CheckOutScreen()
+            }
+            composable(route = Screen.DetailProduct.route){
+                DetailProductItem()
             }
         }
     }

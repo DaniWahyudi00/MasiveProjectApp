@@ -1,12 +1,15 @@
 package com.example.masiveprojectapp.screens.component.detailprodukitem
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.scrollable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -29,7 +32,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -37,10 +44,12 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.masiveprojectapp.R
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
+import com.example.masiveprojectapp.ui.theme.poppinsFontFamily
 
 @Composable
 fun AddMyProjectItem (
-
+    onDismiss : () -> Unit,
+    onConfirm : () -> Unit,
     modifier: Modifier,
     navController: NavController
 
@@ -49,6 +58,7 @@ fun AddMyProjectItem (
     var owner by remember { mutableStateOf("")}
     var size by remember { mutableStateOf("") }
     var condition by remember { mutableStateOf("") }
+    val openDialog by remember { mutableStateOf(false)}
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
@@ -73,7 +83,6 @@ fun AddMyProjectItem (
                 .fillMaxWidth()
 
         )
-
         Text("Masukkan nama Project :", style = MaterialTheme.typography.bodyLarge)
         OutlinedTextField(
             value = name,
@@ -89,8 +98,7 @@ fun AddMyProjectItem (
                 .padding(top = 15.dp)
         )
         Row(
-            modifier = Modifier
-                .padding(top = 15.dp)
+            horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
 
         ) {
             Text("Owner :", modifier = Modifier)
@@ -113,7 +121,8 @@ fun AddMyProjectItem (
             OutlinedTextField(
                 value = size,
                 singleLine = true,
-                onValueChange = { size = it }
+                onValueChange = { size = it },
+                label = { Text("Size: ")}
 
             )
         }
@@ -129,7 +138,7 @@ fun AddMyProjectItem (
                 value = condition,
                 singleLine = true,
                 onValueChange = { condition = it },
-                label = { Text("Size :") },
+                label = { Text("Condition :") },
 
                 )
         }
@@ -157,51 +166,57 @@ fun AddMyProjectItem (
 //            modifier = Modifier
 //                .fillMaxWidth()
 //        )
-        Row(modifier = Modifier) {
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.fillMaxWidth() .padding(top = 15.dp)
+        ) {
             Button(
-                onClick = {},
+                onClick = onDismiss,
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD9D9D9)),
                 modifier = Modifier
-                    .padding(
-                        start = 10.dp,
-                        top = 10.dp,
-                        bottom = 8.dp
+                    .width(128.dp)
+                    .height(40.dp)
+                    .background(
+                        color = Color(0xFFD9D9D9),
+                        shape = RoundedCornerShape(size = 11.dp)
                     )
-                    .align(alignment = Alignment.Top)
-                    .width(150.dp)
-                    .height(50.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.surface
-                ),
-                shape = RoundedCornerShape(4.dp)
             ) {
-
                 Text(
                     text = "Cancel",
-                    fontSize = 28.sp,
-                    modifier = Modifier.padding(start = 6.dp)
+                    style = TextStyle(
+                        fontSize = 16.sp,
+                        lineHeight = 25.sp,
+                        fontFamily = poppinsFontFamily,
+                        fontWeight = FontWeight(500),
+                        color = Color(0xFF000000),
+
+                        textAlign = TextAlign.Center,
+                    )
                 )
             }
-            Button(
-                onClick = {},
-                modifier = Modifier
-                    .padding(
-                        start = 50.dp,
-                        top = 10.dp,
-                        bottom = 8.dp
-                    )
-                    .align(alignment = Alignment.Top)
-                    .width(150.dp)
-                    .height(50.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.surface
-                ),
-                shape = RoundedCornerShape(4.dp)
-            ) {
 
+            Button(
+                onClick = onConfirm,
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE30000)),
+                modifier = Modifier
+                    .width(128.dp)
+                    .height(40.dp)
+                    .background(
+                        color = Color(0xFFE30000),
+                        shape = RoundedCornerShape(size = 11.dp)
+                    )
+            ) {
                 Text(
                     text = "Save",
-                    fontSize = 28.sp,
-                    modifier = Modifier.padding(start = 6.dp)
+                    style = TextStyle(
+                        fontSize = 16.sp,
+                        lineHeight = 25.sp,
+                        fontFamily = poppinsFontFamily,
+                        fontWeight = FontWeight(500),
+                        color = Color(0xFF000000),
+                        textAlign = TextAlign.Center,
+                    )
                 )
             }
         }
@@ -214,6 +229,7 @@ fun AddMyProjectItem (
 @Composable
 fun DetailProdukItemPreview(){
     MasiveProjectAppTheme {
-        AddMyProjectItem(modifier = Modifier, navController = rememberNavController())
+        AddMyProjectItem(modifier = Modifier, navController = rememberNavController(),
+            onConfirm = {}, onDismiss = {})
     }
 }

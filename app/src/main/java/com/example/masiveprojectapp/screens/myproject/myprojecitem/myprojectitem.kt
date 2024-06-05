@@ -2,6 +2,7 @@ package com.example.masiveprojectapp.screens.myproject.myprojecitem
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -22,10 +23,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.masiveprojectapp.R
+import com.example.masiveprojectapp.navigation.Screen
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 @Composable
 fun myprojectitem(
+    navController : NavController
 
 ) {
     Column(
@@ -33,6 +38,7 @@ fun myprojectitem(
             .background(color = Color.White)
             .wrapContentHeight()
             .width(169.dp)
+            .clickable { navController.navigate(Screen.DetailProduct.route) }
             .clip(RoundedCornerShape(8.dp))
     ) {
         Image(
@@ -69,6 +75,6 @@ fun myprojectitem(
 @Composable
 private fun DesainItemPreview() {
     MasiveProjectAppTheme {
-        myprojectitem()
+        myprojectitem(navController = rememberNavController())
     }
 }

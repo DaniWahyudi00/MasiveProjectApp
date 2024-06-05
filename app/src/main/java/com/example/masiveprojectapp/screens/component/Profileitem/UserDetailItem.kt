@@ -43,6 +43,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.masiveprojectapp.R
 import com.example.masiveprojectapp.navigation.Screen
+import com.example.masiveprojectapp.screens.component.alertdialog.AlertChangeProfile
+import com.example.masiveprojectapp.screens.component.alertdialog.AlertProfileLogout
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 import com.example.masiveprojectapp.ui.theme.poppinsFontFamily
 
@@ -58,6 +60,7 @@ fun UserDetailItem(
     var email by remember { mutableStateOf("")}
     var password by remember { mutableStateOf("")}
     var gender by remember { mutableStateOf("")}
+    val openDialog = remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
@@ -305,6 +308,7 @@ fun UserDetailItem(
                 .fillMaxWidth()
         ){
         Button(modifier = Modifier
+            .clickable { openDialog.value = true }
             .padding(top = 16.dp,
                 end = 10.dp,
                 start = 250.dp,
@@ -318,6 +322,9 @@ fun UserDetailItem(
             ,onClick = { navController.navigate(Screen.UserProfile.route) }) {
             Text(text = "Save", color = MaterialTheme.colorScheme.primary)
         }
+        }
+        if (openDialog.value){
+            AlertChangeProfile(onDismiss = {}, onConfirm = { openDialog.value = false})
         }
     }
 
