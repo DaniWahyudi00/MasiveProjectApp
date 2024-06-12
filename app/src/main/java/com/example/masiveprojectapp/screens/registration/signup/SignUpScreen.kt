@@ -39,18 +39,22 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.masiveprojectapp.screens.component.alertdialog.AlertChangeProfile
+import com.example.masiveprojectapp.screens.component.alertdialog.AlertSuccessSignUp
 import com.example.masiveprojectapp.ui.theme.poppinsFontFamily
 import kotlinx.coroutines.launch
 
 @Composable
 fun SignUpScreen(
-    viewModel: SignUpViewModel = hiltViewModel()
+    viewModel: SignUpViewModel = hiltViewModel(),
+    navigateToLogin: () -> Unit
 ) {
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
-    val state = viewModel.signUpState.collectAsState(initial = null)
+    val state by viewModel.signUpState.collectAsState(initial = null)
+    var showDialog by remember { mutableStateOf(false) }
 
     Column (
         modifier = Modifier
@@ -168,15 +172,26 @@ fun SignUpScreen(
                 )
             )
         }
-        LaunchedEffect(key1 = state.value?.isError) {
+        LaunchedEffect(key1 = state) {
             scope.launch {
-                if (state.value?.isError?.isNotEmpty() == true) {
-                    val error = state.value?.isError
+                if (state?.isError?.isNotEmpty() == true) {
+                    val error = state?.isError
                     Toast.makeText(context, "$error", Toast.LENGTH_SHORT).show()
                     Log.d("Error coi", error.toString())
+                } else if (state?.isSucces?.isNotEmpty() == true) {
+                    showDialog = true
                 }
             }
         }
+    }
+
+    if (showDialog){
+        AlertSuccessSignUp(
+            onConfirm = {
+                navigateToLogin()
+            },
+            onDismiss = {}
+        )
     }
 }
 
@@ -201,5 +216,5 @@ private fun CustomOutlinedTextField(label: String, onValueChange: (String) -> Un
 @Preview(showBackground = true)
 @Composable
 private fun SignUpPreview() {
-    SignUpScreen()
+    SignUpScreen {}
 }

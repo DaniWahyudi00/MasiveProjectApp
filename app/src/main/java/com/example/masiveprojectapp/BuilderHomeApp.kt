@@ -88,7 +88,11 @@ fun BuilderHomeApp(
                 )
             }
             composable(route = Screen.SignUp.route){
-                SignUpScreen()
+                SignUpScreen(
+                    navigateToLogin = {
+                        navController.navigate(Screen.Login.route)
+                    }
+                )
             }
             composable(route = Screen.ForgotPassword.route){
                 ForgotPassScreen()
