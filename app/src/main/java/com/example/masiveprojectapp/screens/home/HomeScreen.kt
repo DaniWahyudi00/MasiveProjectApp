@@ -67,7 +67,7 @@ fun HomeScreen(
                                 top = 8.dp,
                                 bottom = 12.dp
                             )
-                            .height(221.dp),
+                            .height(243.dp),
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                         columns = GridCells.Adaptive(161.dp),
                     ) {
@@ -95,7 +95,7 @@ fun HomeScreen(
                                 end = 16.dp,
                                 top = 8.dp,
                             )
-                            .height(259.dp),
+                            .height(340.dp),
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                         columns = GridCells.Adaptive(161.dp),
                     ) {

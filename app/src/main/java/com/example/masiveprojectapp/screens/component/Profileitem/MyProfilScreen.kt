@@ -209,7 +209,9 @@ fun MyProfileScreen(
 
         }
         if (openDialog.value){
-            AlertProfileLogout(onDismiss = { openDialog.value = false}, onConfirm = {})
+            AlertProfileLogout(onDismiss = { openDialog.value = false}, onConfirm = {
+                navController.navigate(Screen.Welcome.route)
+            })
         }
     }
 }

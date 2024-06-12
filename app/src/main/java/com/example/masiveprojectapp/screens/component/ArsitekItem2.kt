@@ -55,7 +55,7 @@ fun ArsitekItem2(modifier: Modifier = Modifier) {
         )
         Text(
             text = "Architect & Building Designer",
-            fontSize = 8.sp,
+            fontSize = 12.sp,
             fontWeight = FontWeight.Light,
             modifier = Modifier
                 .padding(start = 8.dp)
@@ -72,12 +72,12 @@ fun ArsitekItem2(modifier: Modifier = Modifier) {
                 contentDescription = "Rating",
                 tint = Color("#FBE418".toColorInt()),
                 modifier = Modifier
-                    .size(16.dp)
+                    .size(20.dp)
             )
             Row(modifier = Modifier.padding(start = 8.dp)) {
                 Text(
                     text = "5.0 ( 30 Reviews )",
-                    fontSize = 8.sp,
+                    fontSize = 12.sp,
                     modifier = Modifier
                 )
             }
@@ -99,12 +99,12 @@ fun ArsitekItem2(modifier: Modifier = Modifier) {
             Column(modifier = Modifier.padding(start = 8.dp)) {
                 Text(
                     text = "Verified License",
-                    fontSize = 6.sp,
+                    fontSize = 10.sp,
                     fontWeight = FontWeight.Light
                 )
                 Text(
-                    text = "$100 - $1500",
-                    fontSize = 8.sp,
+                    text = "RP 30.000.000,00",
+                    fontSize = 10.sp,
                 )
             }
         }
@@ -118,13 +118,13 @@ fun ArsitekItem2(modifier: Modifier = Modifier) {
                 )
                 .align(Alignment.End)
                 .wrapContentWidth()
-                .height(24.dp),
+                .height(30.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = MaterialTheme.colorScheme.surface
             ),
             shape = RoundedCornerShape(8.dp)
         ) {
-            Row(modifier = Modifier.scale(1.4f)) {
+            Row() {
                 Icon(
                     painter = painterResource(R.drawable.icon_email),
                     contentDescription = "Email",
@@ -135,7 +135,7 @@ fun ArsitekItem2(modifier: Modifier = Modifier) {
                 )
                 Text(
                     text = "Send Message",
-                    fontSize = 6.sp,
+                    fontSize = 10.sp,
                     modifier = Modifier.padding(start = 6.dp)
                 )
             }

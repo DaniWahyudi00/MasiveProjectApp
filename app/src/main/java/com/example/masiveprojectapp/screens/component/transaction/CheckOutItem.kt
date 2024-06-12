@@ -52,36 +52,36 @@ fun CheckOutItem(modifier: Modifier = Modifier) {
     ){
         ShippingAddres(modifier = Modifier
             .fillMaxWidth()
-            .padding(start = 10.dp, end = 10.dp))
+            .padding(start = 16.dp, end = 10.dp))
         ContactInformation(modifier = modifier
             .fillMaxWidth()
-            .padding(start = 10.dp, end = 10.dp))
+            .padding(start = 16.dp, end = 10.dp))
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .requiredHeight(height = 2.dp)
-                .padding(start = 10.dp, end = 10.dp)
+                .padding(start = 16.dp, end = 10.dp)
                 .background(color = Color(0xffd9d9d9)))
         AddVoucher(modifier = Modifier
             .fillMaxWidth()
-            .padding(start = 10.dp, end = 10.dp))
+            .padding(start = 16.dp, end = 10.dp))
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .requiredHeight(height = 2.dp)
-                .padding(start = 10.dp, end = 10.dp)
+                .padding(start = 16.dp, end = 10.dp)
                 .background(color = Color(0xffd9d9d9)))
         Spacer(modifier = Modifier .padding(10.dp))
 
         Item(modifier = Modifier
             .fillMaxWidth()
-            .padding(start = 10.dp, end = 10.dp))
+            .padding(start = 16.dp, end = 10.dp))
         PaymentMethode(modifier = Modifier
             .fillMaxWidth()
-            .padding(start = 10.dp, end = 10.dp))
+            .padding(start = 16.dp, end = 10.dp))
         PaymentDetail(modifier = Modifier
             .fillMaxWidth()
-            .padding(start = 10.dp, end = 10.dp))
+            .padding(start = 16.dp, end = 10.dp))
         ButtonPay(modifier = Modifier, onConfirm = {})
 
     }
@@ -389,11 +389,13 @@ fun PaymentMethode(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
+                    .padding()
                     .fillMaxWidth()
             ) {
                 Text(
                     text = "Payment Method",
                     color = Color(0xff202020),
+                    modifier = Modifier.padding(start = 16.dp),
                     lineHeight = 1.88.em,
                     style = TextStyle(
                         fontSize = 16.sp,

@@ -50,7 +50,8 @@ fun BuilderHomeApp(
                 Screen.Welcome.route,
                 Screen.Login.route,
                 Screen.SignUp.route,
-                Screen.DetailDesain.route
+                Screen.DetailDesain.route,
+                Screen.Checkout.route
             )){
                 BottomNavigation(navController = navController)
             }
