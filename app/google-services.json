@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "171926609339",
+    "project_id": "masiveprojectapp",
+    "storage_bucket": "masiveprojectapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:171926609339:android:bbda161879ce5225d8b89e",
+        "android_client_info": {
+          "package_name": "com.example.masiveprojectapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFO7vHpaZo6eHpPtc9pAoZfasHe51AkYQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
