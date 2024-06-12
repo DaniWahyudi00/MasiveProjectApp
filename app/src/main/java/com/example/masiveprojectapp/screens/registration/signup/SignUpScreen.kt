@@ -1,5 +1,7 @@
-package com.example.masiveprojectapp.screens.registration
+package com.example.masiveprojectapp.screens.registration.signup
 
+import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -18,24 +20,37 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.masiveprojectapp.ui.theme.poppinsFontFamily
+import kotlinx.coroutines.launch
 
 @Composable
-fun SignUpScreen() {
-    var text by remember { mutableStateOf("") }
+fun SignUpScreen(
+    viewModel: SignUpViewModel = hiltViewModel()
+) {
+    var email by rememberSaveable { mutableStateOf("") }
+    var password by rememberSaveable { mutableStateOf("") }
+    val scope = rememberCoroutineScope()
+    val context = LocalContext.current
+    val state = viewModel.signUpState.collectAsState(initial = null)
 
     Column (
         modifier = Modifier
@@ -61,20 +76,20 @@ fun SignUpScreen() {
             horizontalAlignment = Alignment.Start,
             modifier = Modifier.width(320.dp)
         ){
-            Text(text = "Username")
+//            Text(text = "Username")
+//
+//            CustomOutlinedTextField(
+//                label = "Your Username",
+//                onValueChange = { newText -> text = newText }
+//            )
 
-            CustomOutlinedTextField(
-                label = "Your Username",
-                onValueChange = { newText -> text = newText }
-            )
-
-            Spacer(modifier = Modifier.height(22.dp))
+//            Spacer(modifier = Modifier.height(22.dp))
 
             Text(text = "Email Address")
 
             CustomOutlinedTextField(
                 label = "Your Email Address",
-                onValueChange = { newText -> text = newText }
+                onValueChange = { newText -> email = newText }
             )
 
             Spacer(modifier = Modifier.height(22.dp))
@@ -83,23 +98,29 @@ fun SignUpScreen() {
 
             CustomOutlinedTextField(
                 label = "Password",
-                onValueChange = { newText -> text = newText }
+                onValueChange = { newText -> password = newText }
             )
 
-            Spacer(modifier = Modifier.height(22.dp))
-
-            Text(text = "Confirm Password")
-
-            CustomOutlinedTextField(
-                label = "Confirm Password",
-                onValueChange = { newText -> text = newText }
-            )
+//            Spacer(modifier = Modifier.height(22.dp))
+//
+////            Text(text = "Confirm Password")
+////
+////            CustomOutlinedTextField(
+////                label = "Confirm Password",
+////                onValueChange = { newText -> text = newText }
+////            )
         }
 
         Spacer(modifier = Modifier.height(44.dp))
 
         Button(
-            onClick = { /*TODO*/ },
+            onClick = {
+                scope.launch {
+                    val trimmedEmail = email.trim()
+                    val trimmedPassword = password.trim()
+                    viewModel.registerUser(trimmedEmail, trimmedPassword)
+                }
+            },
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5E8451)),
             modifier = Modifier
                 .width(320.dp)
@@ -126,7 +147,7 @@ fun SignUpScreen() {
             modifier = Modifier.fillMaxWidth()
         ){
             Text(
-                text = "DAlready have an account?",
+                text = "Already have an account?",
                 style = TextStyle(
                     fontSize = 14.sp,
                     lineHeight = 17.5.sp,
@@ -146,6 +167,15 @@ fun SignUpScreen() {
                     color = Color(0xFF5E8451),
                 )
             )
+        }
+        LaunchedEffect(key1 = state.value?.isError) {
+            scope.launch {
+                if (state.value?.isError?.isNotEmpty() == true) {
+                    val error = state.value?.isError
+                    Toast.makeText(context, "$error", Toast.LENGTH_SHORT).show()
+                    Log.d("Error coi", error.toString())
+                }
+            }
         }
     }
 }

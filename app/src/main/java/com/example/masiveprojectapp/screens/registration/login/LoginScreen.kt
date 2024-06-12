@@ -1,4 +1,4 @@
-package com.example.masiveprojectapp.screens.registration
+package com.example.masiveprojectapp.screens.registration.login
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

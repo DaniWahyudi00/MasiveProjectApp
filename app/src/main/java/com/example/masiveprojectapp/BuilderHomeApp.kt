@@ -27,9 +27,9 @@ import com.example.masiveprojectapp.screens.detailproduct.DetailProductItem
 import com.example.masiveprojectapp.screens.myproject.MyProjectScreens
 import com.example.masiveprojectapp.screens.profile.ProfileScreen
 import com.example.masiveprojectapp.screens.profile.ProfileScreens
-import com.example.masiveprojectapp.screens.registration.LoginScreen
-import com.example.masiveprojectapp.screens.registration.SignUpScreen
-import com.example.masiveprojectapp.screens.registration.WelcomeScreen
+import com.example.masiveprojectapp.screens.registration.login.LoginScreen
+import com.example.masiveprojectapp.screens.registration.signup.SignUpScreen
+import com.example.masiveprojectapp.screens.registration.welcome.WelcomeScreen
 import com.example.masiveprojectapp.screens.registration.changepassword.ForgotPassScreen
 import com.example.masiveprojectapp.screens.userprofile.UserProfileScreens
 import com.example.masiveprojectapp.screens.service.ServiceScreen
