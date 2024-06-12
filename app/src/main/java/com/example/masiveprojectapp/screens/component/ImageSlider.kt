@@ -28,7 +28,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.toColorInt
-import com.example.masiveprojectapp.data.datadummy
+import com.example.masiveprojectapp.data.local.datadummy
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 import kotlinx.coroutines.delay
 

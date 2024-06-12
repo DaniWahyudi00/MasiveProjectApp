@@ -1,4 +1,4 @@
-package com.example.masiveprojectapp.data
+package com.example.masiveprojectapp.data.local
 
 import com.example.masiveprojectapp.R
 import com.example.masiveprojectapp.model.Arsitek

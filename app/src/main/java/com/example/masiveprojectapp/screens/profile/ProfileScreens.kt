@@ -5,10 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -21,10 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.masiveprojectapp.R
-import com.example.masiveprojectapp.data.datadummy
-import com.example.masiveprojectapp.myprofil.MyprofilItem
 import com.example.masiveprojectapp.myprofil.UsertItem
-import com.example.masiveprojectapp.navigation.Screen
 import com.example.masiveprojectapp.screens.component.Profileitem.HeadMyProfileScreen
 import com.example.masiveprojectapp.screens.component.Profileitem.MyProfileScreen
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
