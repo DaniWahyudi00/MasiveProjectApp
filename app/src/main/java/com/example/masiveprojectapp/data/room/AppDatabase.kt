@@ -11,7 +11,7 @@ import com.example.masiveprojectapp.data.entity.ProjectEntity
 @Database(entities = [ProjectEntity::class, AddressEntity::class, ContactInformationEntity::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun projectDao(): ProjectDao
+    abstract fun appDao(): AppDao
 
     companion object {
         @Volatile
