@@ -1,23 +1,18 @@
-package com.example.masiveprojectapp.screens.component.transaction
+package com.example.masiveprojectapp.screens.component.wishlist
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.layout.requiredSize
-import androidx.compose.foundation.layout.requiredWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -48,15 +43,15 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.masiveprojectapp.R
-import com.example.masiveprojectapp.navigation.Screen
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 import com.example.masiveprojectapp.ui.theme.poppinsFontFamily
 
 @Composable
-fun TransactionScreenItem2(
-    modifier: Modifier = Modifier,
+fun WishlistItem(
+    modifier: Modifier = Modifier
 ) {
     Column(
+
         modifier = Modifier
             .background(color = Color.White)
             .clip(RoundedCornerShape(8.dp))
@@ -113,7 +108,7 @@ fun TransactionScreenItem2(
                             text = "Lahan Minimal",
                             fontSize = 12.sp,
 
-                        )
+                            )
                         Text(
                             text = "16 m x 7 m",
                             fontSize = 12.sp,
@@ -137,7 +132,7 @@ fun TransactionScreenItem2(
                             text = "Biaya Konstruksi",
                             fontSize = 12.sp,
 
-                        )
+                            )
                         Text(
                             text = "Biaya Konstruksi",
                             fontSize = 12.sp,
@@ -176,7 +171,7 @@ fun TransactionScreenItem2(
 }
 
 @Composable
-fun TransactionScreenItem(
+fun WishlistScreenItem(
     modifier: Modifier,
     navController: NavController,
     onLihat: () -> Unit
@@ -189,37 +184,10 @@ fun TransactionScreenItem(
             .background(color = Color.White)
     ) {
         Row(
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.Bottom,
-            modifier = Modifier
-                .fillMaxWidth()
-        ) {
-            Text(
-                text = "Allisa Gerand",
-                color = Color(0xff111928),
-                lineHeight = 12.5.em,
-                style = TextStyle(
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Medium
-                )
-            )
-            Text(
-                text = "Selesai",
-                color = Color(0xff5e8451),
-                fontStyle = FontStyle.Italic,
-                lineHeight = 12.5.em,
-                modifier = Modifier
-                    .padding(end = 10.dp),
-                style = TextStyle(
-                    fontSize = 14.sp
-                )
-            )
-        }
-        Row(
             horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.Start),
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
-
+                .wrapContentHeight()
         ) {
             Box(
                 modifier = Modifier
@@ -329,27 +297,52 @@ fun TransactionScreenItem(
                     }
                 }
 
-                OutlinedButton(
-                    onClick = onLihat,
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally),
+                    verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
-                        .align(Alignment.Start)
-                        .wrapContentWidth()
-                        .requiredHeight(32.dp),
-                    border = BorderStroke(1.dp, Color(0xFF5E8451)),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5E8451)),
-                    shape = RoundedCornerShape(8.dp)
+                        .fillMaxWidth()
+                        .padding(top = 6.dp)
                 ) {
-                    Text(
-                        text = "Lihat",
-                        style = TextStyle(
-                            fontSize = 12.sp,
-                            lineHeight = 12.sp,
+                    OutlinedButton(
+                        onClick = {  },
+                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFF42C2C)),
+                        modifier = Modifier
+                            .width(90.dp)
+                            .requiredHeight(27.dp),
+                        shape = RoundedCornerShape(8.dp)
+                    ) {
+                        Text(
+                            text = "Delete",
+                            style = TextStyle(
+                                fontSize = 10.sp,
+                                lineHeight = 10.sp,
+                                fontFamily = poppinsFontFamily,
+                                fontWeight = FontWeight(500),
+                                color = Color(0xFFFFFFFF),
+                                textAlign = TextAlign.Center,
+                            )
+                        )
+                    }
+
+                    OutlinedButton(
+                        onClick = { },
+                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5E8451)),
+                        modifier = Modifier
+                            .width(114.dp)
+                            .height(27.dp),
+                        shape = RoundedCornerShape(8.dp)
+                    ) {
+                        Text(
+                            text = "Check Out",
+                            fontSize = 10.sp,
+                            lineHeight = 10.sp,
                             fontFamily = poppinsFontFamily,
                             fontWeight = FontWeight(500),
                             color = Color(0xFFFFFFFF),
                             textAlign = TextAlign.Center,
                         )
-                    )
+                    }
                 }
             }
         }
@@ -358,9 +351,10 @@ fun TransactionScreenItem(
 
 @Preview(showBackground = true)
 @Composable
-private fun TransactionScreenPrev(
-){
+fun WishlistScreenPrev(
+    modifier: Modifier = Modifier
+) {
     MasiveProjectAppTheme {
-        TransactionScreenItem(modifier = Modifier, onLihat = { }, navController = rememberNavController() )
+        WishlistScreenItem(modifier = Modifier, onLihat = { }, navController = rememberNavController() )
     }
 }

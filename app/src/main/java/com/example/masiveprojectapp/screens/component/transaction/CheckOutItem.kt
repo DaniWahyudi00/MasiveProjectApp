@@ -47,41 +47,59 @@ import com.example.masiveprojectapp.ui.theme.poppinsFontFamily
 
 @Composable
 fun CheckOutItem(modifier: Modifier = Modifier) {
-    Column (modifier = Modifier
-        .fillMaxHeight()
-    ){
-        ShippingAddres(modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 16.dp, end = 10.dp))
-        ContactInformation(modifier = modifier
-            .fillMaxWidth()
-            .padding(start = 16.dp, end = 10.dp))
+    Column(
+        modifier = Modifier
+            .fillMaxHeight()
+    ) {
+        ShippingAddres(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 16.dp, end = 10.dp)
+        )
+        ContactInformation(
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(start = 16.dp, end = 10.dp)
+        )
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .requiredHeight(height = 2.dp)
                 .padding(start = 16.dp, end = 10.dp)
-                .background(color = Color(0xffd9d9d9)))
-        AddVoucher(modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 16.dp, end = 10.dp))
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .requiredHeight(height = 2.dp)
-                .padding(start = 16.dp, end = 10.dp)
-                .background(color = Color(0xffd9d9d9)))
-        Spacer(modifier = Modifier .padding(10.dp))
+                .background(color = Color(0xffd9d9d9))
+        )
 
-        Item(modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 16.dp, end = 10.dp))
-        PaymentMethode(modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 16.dp, end = 10.dp))
-        PaymentDetail(modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 16.dp, end = 10.dp))
+        Spacer(modifier = Modifier.height(18.dp))
+
+        AddVoucher(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 16.dp, end = 10.dp)
+        )
+        /*Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .requiredHeight(height = 2.dp)
+                .padding(start = 16.dp, end = 10.dp)
+                .background(color = Color(0xffd9d9d9)))*/
+
+        Spacer(modifier = Modifier.padding(10.dp))
+
+        Item(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 16.dp, end = 10.dp)
+        )
+        PaymentMethode(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 16.dp, end = 10.dp)
+        )
+        PaymentDetail(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 16.dp, end = 10.dp)
+        )
         ButtonPay(modifier = Modifier, onConfirm = {})
 
     }
@@ -89,7 +107,7 @@ fun CheckOutItem(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun ContactInformation(modifier: Modifier = Modifier){
+fun ContactInformation(modifier: Modifier = Modifier) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.Bottom,
@@ -121,12 +139,12 @@ fun ContactInformation(modifier: Modifier = Modifier){
                     .requiredHeight(height = 28.dp)
             )
         }
-        Button2(modifier = Modifier .padding(end = 10.dp))
+        Button2(modifier = Modifier.padding(end = 10.dp))
     }
 }
 
 @Composable
-fun AddVoucher(modifier: Modifier = Modifier){
+fun AddVoucher(modifier: Modifier = Modifier) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
@@ -141,10 +159,12 @@ fun AddVoucher(modifier: Modifier = Modifier){
                 style = TextStyle(
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
-                    letterSpacing = (-0.21).sp),
+                    letterSpacing = (-0.21).sp
+                ),
                 modifier = Modifier
-                    .requiredWidth(width = 50.dp))
-            Box(
+                    .requiredWidth(width = 50.dp)
+            )
+            /*Box(
                 modifier = Modifier
                     .requiredWidth(width = 23.dp)
                     .requiredHeight(height = 22.dp)
@@ -171,9 +191,10 @@ fun AddVoucher(modifier: Modifier = Modifier){
                         .fillMaxWidth()
                         .requiredHeight(height = 15.dp)
                         .wrapContentHeight(align = Alignment.CenterVertically))
-            }
+            }*/
         }
-        OutlinedButton(
+
+        /*OutlinedButton(
             modifier = Modifier
                 .padding(end = 10.dp),
             onClick = { },
@@ -193,12 +214,12 @@ fun AddVoucher(modifier: Modifier = Modifier){
                     style = TextStyle(
                         fontSize = 12.sp))
             }
-        }
+        }*/
     }
 }
 
 @Composable
-fun ShippingAddres(modifier: Modifier = Modifier){
+fun ShippingAddres(modifier: Modifier = Modifier) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.Bottom,
@@ -230,12 +251,12 @@ fun ShippingAddres(modifier: Modifier = Modifier){
                     .requiredHeight(height = 28.dp)
             )
         }
-        Button(modifier = Modifier .padding(end = 10.dp))
+        Button(modifier = Modifier.padding(end = 10.dp))
     }
 }
 
 @Composable
-fun Item(modifier: Modifier = Modifier){
+fun Item(modifier: Modifier = Modifier) {
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
         modifier = modifier
@@ -250,8 +271,8 @@ fun Item(modifier: Modifier = Modifier){
             ) {
                 Box(
                     modifier = Modifier
-                        .requiredWidth(width = 64.dp)
-                        .requiredHeight(height = 43.dp)
+                        .requiredWidth(width = 74.dp)
+                        .requiredHeight(height = 53.dp)
                         .clip(shape = MaterialTheme.shapes.small)
                         .background(color = Color.White)
                 ) {
@@ -260,10 +281,13 @@ fun Item(modifier: Modifier = Modifier){
                         contentDescription = "arsitek",
                         modifier = Modifier
                             .align(alignment = Alignment.TopStart)
-                            .offset(x = (-2).dp,
-                                y = (-2).dp)
+                            .offset(
+                                x = (-2).dp,
+                                y = (-2).dp
+                            )
                             .requiredWidth(width = 73.dp)
-                            .requiredHeight(height = 49.dp))
+                            .requiredHeight(height = 49.dp)
+                    )
                 }
                 Column() {
                     Text(
@@ -272,21 +296,25 @@ fun Item(modifier: Modifier = Modifier){
                         lineHeight = 1.33.em,
                         style = TextStyle(
                             fontSize = 12.sp,
-                            fontWeight = FontWeight.Medium),
+                            fontWeight = FontWeight.Medium
+                        ),
                         modifier = Modifier
                             .requiredWidth(width = 93.dp)
                             .requiredHeight(height = 15.dp)
-                            .wrapContentHeight(align = Alignment.CenterVertically))
+                            .wrapContentHeight(align = Alignment.CenterVertically)
+                    )
                     Text(
                         text = "Architecture",
                         color = Color.Black,
                         lineHeight = 1.6.em,
                         style = TextStyle(
-                            fontSize = 10.sp),
+                            fontSize = 10.sp
+                        ),
                         modifier = Modifier
                             .requiredWidth(width = 93.dp)
                             .requiredHeight(height = 15.dp)
-                            .wrapContentHeight(align = Alignment.CenterVertically))
+                            .wrapContentHeight(align = Alignment.CenterVertically)
+                    )
                 }
             }
             Text(
@@ -297,14 +325,20 @@ fun Item(modifier: Modifier = Modifier){
                 style = TextStyle(
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,
-                    letterSpacing = (-0.18).sp),
+                    letterSpacing = (-0.18).sp
+                ),
                 modifier = Modifier
                     .align(alignment = Alignment.CenterStart)
-                    .offset(x = 0.dp,
-                        y = (-0.5).dp)
-                    .fillMaxWidth())
+                    .offset(
+                        x = 0.dp,
+                        y = (-0.5).dp
+                    )
+                    .fillMaxWidth()
+            )
         }
-        Box(
+
+        Spacer(modifier = Modifier.height(20.dp))
+        /*Box(
             modifier = Modifier
                 .requiredHeight(height = 43.dp)
         ) {
@@ -312,7 +346,8 @@ fun Item(modifier: Modifier = Modifier){
                 horizontalArrangement = Arrangement.spacedBy(6.dp, Alignment.Start),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Box(
+
+                *//*Box(
                     modifier = Modifier
                         .requiredWidth(width = 64.dp)
                         .requiredHeight(height = 43.dp)
@@ -324,36 +359,44 @@ fun Item(modifier: Modifier = Modifier){
                         contentDescription = "desainrumah",
                         modifier = Modifier
                             .align(alignment = Alignment.TopStart)
-                            .offset(x = (-4).dp,
-                                y = (-1).dp)
+                            .offset(
+                                x = (-4).dp,
+                                y = (-1).dp
+                            )
                             .requiredWidth(width = 73.dp)
-                            .requiredHeight(height = 49.dp))
-                }
-                Column() {
+                            .requiredHeight(height = 49.dp)
+                    )
+                }*//*
+                *//*Column() {
                     Text(
                         text = "Japan Minimalist",
                         color = Color.Black,
                         lineHeight = 1.6.em,
                         style = TextStyle(
                             fontSize = 10.sp,
-                            fontWeight = FontWeight.Medium),
+                            fontWeight = FontWeight.Medium
+                        ),
                         modifier = Modifier
                             .requiredWidth(width = 93.dp)
                             .requiredHeight(height = 15.dp)
-                            .wrapContentHeight(align = Alignment.CenterVertically))
+                            .wrapContentHeight(align = Alignment.CenterVertically)
+                    )
                     Text(
                         text = "Room are 3 x 4 ",
                         color = Color.Black,
                         lineHeight = 1.6.em,
                         style = TextStyle(
-                            fontSize = 10.sp),
+                            fontSize = 10.sp
+                        ),
                         modifier = Modifier
                             .requiredWidth(width = 93.dp)
                             .requiredHeight(height = 15.dp)
-                            .wrapContentHeight(align = Alignment.CenterVertically))
-                }
+                            .wrapContentHeight(align = Alignment.CenterVertically)
+                    )
+                }*//*
+
             }
-            Text(
+            *//*Text(
                 text = "Rp 4.000.000",
                 color = Color(0xff202020),
                 textAlign = TextAlign.End,
@@ -361,13 +404,18 @@ fun Item(modifier: Modifier = Modifier){
                 style = TextStyle(
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,
-                    letterSpacing = (-0.18).sp),
+                    letterSpacing = (-0.18).sp
+                ),
                 modifier = Modifier
                     .align(alignment = Alignment.CenterStart)
-                    .offset(x = 0.dp,
-                        y = (-0.5).dp)
-                    .fillMaxWidth())
-        }
+                    .offset(
+                        x = 0.dp,
+                        y = (-0.5).dp
+                    )
+                    .fillMaxWidth()
+            )*//*
+
+        }*/
     }
 }
 
@@ -375,7 +423,7 @@ fun Item(modifier: Modifier = Modifier){
 fun PaymentMethode(
     modifier: Modifier = Modifier
 
-){
+) {
     Column(
         verticalArrangement = Arrangement.spacedBy(3.dp, Alignment.Top),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -400,7 +448,9 @@ fun PaymentMethode(
                     style = TextStyle(
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
-                        letterSpacing = (-0.21).sp))
+                        letterSpacing = (-0.21).sp
+                    )
+                )
                 Box(
                     modifier = Modifier
                         .requiredSize(size = 30.dp)
@@ -410,7 +460,7 @@ fun PaymentMethode(
                         contentDescription = "edit_icon",
                         modifier = Modifier
                             .fillMaxSize()
-                            .clickable {  }
+                            .clickable { }
                     )
 //                    Image(
 //                        painter = painterResource(id = R.drawable.iconmaterialedit),
@@ -443,7 +493,9 @@ fun PaymentMethode(
                         color = Color.Black,
                         style = TextStyle(
                             fontSize = 12.sp,
-                            fontWeight = FontWeight.Medium))
+                            fontWeight = FontWeight.Medium
+                        )
+                    )
                 }
             }
         }
@@ -452,8 +504,7 @@ fun PaymentMethode(
 
 
 @Composable
-fun PaymentDetail(modifier: Modifier = Modifier)
-{
+fun PaymentDetail(modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
             .requiredHeight(height = 323.dp)
@@ -473,10 +524,12 @@ fun PaymentDetail(modifier: Modifier = Modifier)
                     color = Color.Black,
                     style = TextStyle(
                         fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold),
+                        fontWeight = FontWeight.Bold
+                    ),
                     modifier = Modifier
                         .requiredHeight(height = 25.dp)
-                        .wrapContentHeight(align = Alignment.CenterVertically))
+                        .wrapContentHeight(align = Alignment.CenterVertically)
+                )
             }
             Column(
                 verticalArrangement = Arrangement.spacedBy(7.dp, Alignment.Top),
@@ -493,14 +546,18 @@ fun PaymentDetail(modifier: Modifier = Modifier)
                         color = Color.Black,
                         style = TextStyle(
                             fontSize = 14.sp,
-                            fontWeight = FontWeight.Medium))
+                            fontWeight = FontWeight.Medium
+                        )
+                    )
                     Text(
-                        text = "Rp 12.800.000",
+                        text = "Rp 7.800.000",
                         color = Color.Black,
                         textAlign = TextAlign.End,
                         style = TextStyle(
                             fontSize = 14.sp,
-                            fontWeight = FontWeight.Bold))
+                            fontWeight = FontWeight.Bold
+                        )
+                    )
                 }
                 Row(
                     horizontalArrangement = Arrangement.SpaceBetween,
@@ -513,14 +570,18 @@ fun PaymentDetail(modifier: Modifier = Modifier)
                         color = Color.Black,
                         style = TextStyle(
                             fontSize = 14.sp,
-                            fontWeight = FontWeight.Medium))
+                            fontWeight = FontWeight.Medium
+                        )
+                    )
                     Text(
                         text = "Rp 10.000",
                         color = Color.Black,
                         textAlign = TextAlign.End,
                         style = TextStyle(
                             fontSize = 14.sp,
-                            fontWeight = FontWeight.Bold))
+                            fontWeight = FontWeight.Bold
+                        )
+                    )
                 }
                 Row(
                     horizontalArrangement = Arrangement.SpaceBetween,
@@ -533,13 +594,17 @@ fun PaymentDetail(modifier: Modifier = Modifier)
                         color = Color.Black,
                         style = TextStyle(
                             fontSize = 14.sp,
-                            fontWeight = FontWeight.Medium))
+                            fontWeight = FontWeight.Medium
+                        )
+                    )
                     Text(
                         text = "Rp 0",
                         color = Color.Black,
                         textAlign = TextAlign.End,
                         style = TextStyle(
-                            fontSize = 14.sp))
+                            fontSize = 14.sp
+                        )
+                    )
                 }
             }
             Column(
@@ -563,14 +628,18 @@ fun PaymentDetail(modifier: Modifier = Modifier)
                             color = Color.Black,
                             style = TextStyle(
                                 fontSize = 14.sp,
-                                fontWeight = FontWeight.Bold))
+                                fontWeight = FontWeight.Bold
+                            )
+                        )
                         Text(
-                            text = "Rp 12.810.000",
+                            text = "Rp 7.810.000",
                             color = Color.Black,
                             textAlign = TextAlign.End,
                             style = TextStyle(
                                 fontSize = 14.sp,
-                                fontWeight = FontWeight.Bold))
+                                fontWeight = FontWeight.Bold
+                            )
+                        )
                     }
                 }
             }
@@ -581,38 +650,37 @@ fun PaymentDetail(modifier: Modifier = Modifier)
 @Composable
 fun ButtonPay(
     modifier: Modifier,
-    onConfirm : () -> Unit
+    onConfirm: () -> Unit
 ) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.fillMaxWidth().padding(top = 15.dp)
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 15.dp)
     ) {
+
         Button(
             onClick = onConfirm,
-            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
+            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5E8451)),
             modifier = Modifier
-                .requiredWidth(width = 247.dp)
-                .requiredHeight(height = 41.dp)
-                .background(
-                    color = MaterialTheme.colorScheme.primary,
-                    shape = RoundedCornerShape(size = 11.dp)
-                )
+                .width(300.dp)
+                .height(46.dp)
+                .background(color = Color(0xFF5E8451), shape = RoundedCornerShape(size = 10.dp))
         ) {
             Text(
                 text = "Pay",
                 style = TextStyle(
                     fontSize = 16.sp,
-                    lineHeight = 25.sp,
+                    lineHeight = 20.sp,
                     fontFamily = poppinsFontFamily,
-                    fontWeight = FontWeight(500),
-                    textAlign = TextAlign.Center,
+                    fontWeight = FontWeight(600),
+                    color = Color(0xFFFFFFFF),
                 )
             )
         }
     }
 }
-
 
 
 @Composable
@@ -627,18 +695,22 @@ fun Button(modifier: Modifier = Modifier) {
             contentDescription = "Ellipse 149",
             modifier = Modifier
                 .fillMaxSize()
-                .clickable {  }
+                .clickable { }
         )
         Image(
             painter = painterResource(id = R.drawable.icon_pencil),
             contentDescription = "Icon material-edit",
             modifier = Modifier
                 .align(alignment = Alignment.TopStart)
-                .offset(x = 8.70001220703125.dp,
-                    y = 8.dp)
-                .requiredSize(size = 14.dp))
+                .offset(
+                    x = 8.70001220703125.dp,
+                    y = 8.dp
+                )
+                .requiredSize(size = 14.dp)
+        )
     }
 }
+
 @Composable
 fun Button2(modifier: Modifier = Modifier) {
 
@@ -651,16 +723,19 @@ fun Button2(modifier: Modifier = Modifier) {
             contentDescription = "Ellipse 149",
             modifier = Modifier
                 .fillMaxSize()
-                .clickable {  }
+                .clickable { }
         )
         Image(
             painter = painterResource(id = R.drawable.icon_pencil),
             contentDescription = "Icon material-edit",
             modifier = Modifier
                 .align(alignment = Alignment.TopStart)
-                .offset(x = 8.70001220703125.dp,
-                    y = 8.dp)
-                .requiredSize(size = 14.dp))
+                .offset(
+                    x = 8.70001220703125.dp,
+                    y = 8.dp
+                )
+                .requiredSize(size = 14.dp)
+        )
     }
 }
 
