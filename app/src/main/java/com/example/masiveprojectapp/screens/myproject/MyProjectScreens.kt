@@ -43,6 +43,7 @@ fun MyProjectContents(
         onFabClick: () -> Unit,
     ) {
         Scaffold(
+
             floatingActionButton = {
                 FloatingActionButton(onClick = onFabClick) {
                     Icon(imageVector = Icons.Default.Add, contentDescription = "Add Icon")

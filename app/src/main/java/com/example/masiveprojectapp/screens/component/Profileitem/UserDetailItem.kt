@@ -2,8 +2,10 @@ package com.example.masiveprojectapp.screens.component.Profileitem
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -18,6 +20,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -28,10 +32,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -70,44 +77,54 @@ fun UserDetailItem(
     ) {
         Row (
             modifier = Modifier
-
-
+                .background(color = Color.White)
+                .clip(RoundedCornerShape(8.dp))
         ) {
-            Spacer(modifier = Modifier.width(24.dp))
-            Image(
-                painter = painterResource(id = R.drawable.user),
-                contentDescription = null,
+            Spacer(modifier = Modifier.width(15.dp))
+            Box(
                 modifier = Modifier
+                    .padding(top = 10.dp, bottom = 10.dp, start = 10.dp)
+                    .shadow(5.dp, shape = CircleShape)
+                    .size(100.dp)
                     .clip(shape = CircleShape)
-            )
+                    .background(color = Color.White)
+            ) {
+                Box(
+                    modifier = Modifier
+                        .padding(top = 10.dp, bottom = 10.dp, start = 10.dp, end = 10.dp)
+                        .size(100.dp)
+                        .clip(shape = CircleShape)
+                        .background(color = Color.Gray)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.user),
+                        contentDescription = "User_photo",
+                        modifier = Modifier
+                            .clip(CircleShape)
+                            .size(100.dp)
+                    )
+                }
+            }
             Spacer(modifier = Modifier.width(16.dp))
-            Text(modifier = Modifier .weight(1f), text = "Hi, ", fontFamily = poppinsFontFamily)
-            OutlinedTextField(
-                value = "Richard Solikin",
-                onValueChange = {name = it},
-                label = { Text("name :")},
-                singleLine = true,
-                shape = RoundedCornerShape(8.dp),
-                modifier = modifier
-                    .padding(top = 35.dp)
-                    .border(
-                        width = 1.dp,
-                        color = Color("#D1D5DB".toColorInt()),
-                        shape = RoundedCornerShape(8.dp)
-                    )
+            Column(
+                modifier = Modifier
+                    .padding(top = 30.dp)
+                    .width(200.dp)
+            ) {
+                Text(
+                    modifier = Modifier,
+                    text = "Richard Solikin",
+                    fontSize = 14.sp,
+                    fontFamily = poppinsFontFamily
+                )
+                Text(
+                    modifier = Modifier,
+                    text = "richardsolikin@gmail.com",
+                    fontSize = 12.sp,
+                    fontFamily = poppinsFontFamily
+                )
 
-                    .fillMaxWidth(),
-                colors = TextFieldDefaults.run {
-                    colors(
-                        focusedContainerColor = Color.White,
-                        unfocusedContainerColor = Color.White,
-                        focusedIndicatorColor = Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent,
-                    )
-                },
-              )
-
-
+            }
         }
 
         Text(text = "Description : ",
@@ -116,32 +133,30 @@ fun UserDetailItem(
             fontFamily = poppinsFontFamily,
             style = MaterialTheme.typography.titleSmall,
         )
-        OutlinedTextField(
-            value = description,
-            onValueChange = {description = it},
-            maxLines = 3,
-            keyboardOptions = KeyboardOptions(
-                imeAction = ImeAction.Done
-            ),
-            shape = RoundedCornerShape(8.dp),
-            colors = TextFieldDefaults.run {
-                colors(
-                    focusedContainerColor = Color.White,
-                    unfocusedContainerColor = Color.White,
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent,
-                )
-            },
+        Row(
+
+            verticalAlignment = Alignment.CenterVertically,
             modifier = modifier
-                .border(
-                    width = 1.dp,
-                    color = Color("#D1D5DB".toColorInt()),
-                    shape = RoundedCornerShape(8.dp)
+                .background(Color.White)
+                .height(42.dp)
+                .width(335.dp)
+                .clickable { navController.navigate(Screen.UserProfile.route) }
+                .clip(
+                    RoundedCornerShape(15.dp),
                 )
-//                .defaultMinSize(minHeight = 40.dp)
-                .fillMaxWidth()
-//                .height(70.dp)
-                )
+        ) {
+            Spacer(modifier = Modifier.width(10.dp))
+            Icon(
+                painter = painterResource(id = R.drawable.icon_document),
+                contentDescription = stringResource(id = R.string.Profile_Menu),
+            )
+
+            Spacer(modifier = Modifier.width(16.dp))
+            Text(modifier = Modifier.weight(1f), text = "Description", fontFamily = poppinsFontFamily,
+                style = MaterialTheme.typography.bodyMedium
+            )
+
+        }
 
         Text(text = "Telephone :",
             modifier = Modifier
@@ -150,39 +165,30 @@ fun UserDetailItem(
             fontFamily = poppinsFontFamily,
             style = MaterialTheme.typography.titleSmall
         )
-        TextField(
-            value = telephone,
-            onValueChange = {telephone = it},
-            keyboardOptions = KeyboardOptions(
-                imeAction = ImeAction.Done),
-            singleLine = true,
-            shape = RoundedCornerShape(8.dp),
-            colors = TextFieldDefaults.run {
-                colors(
-                    focusedContainerColor = Color.White,
-                    unfocusedContainerColor = Color.White,
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent,
-                )
-            },
-            placeholder = {
-                Text(
-                    text = "Telephone",
-                    fontSize = 10.sp,
-                    color = MaterialTheme.colorScheme.outline,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                )
-            },
-            modifier = modifier
-                .border(
-                    width = 1.dp,
-                    color = Color("#D1D5DB".toColorInt()),
-                    shape = RoundedCornerShape(8.dp)
-                )
-                .fillMaxWidth()
+        Row(
 
-        )
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = modifier
+                .background(Color.White)
+                .height(42.dp)
+                .width(335.dp)
+                .clickable { navController.navigate(Screen.UserProfile.route) }
+                .clip(
+                    RoundedCornerShape(15.dp),
+                )
+        ) {
+            Spacer(modifier = Modifier.width(10.dp))
+            Icon(
+                painter = painterResource(id = R.drawable.icon_telephone),
+                contentDescription = stringResource(id = R.string.Profile_Menu),
+            )
+
+            Spacer(modifier = Modifier.width(16.dp))
+            Text(modifier = Modifier.weight(1f), text = "Description", fontFamily = poppinsFontFamily,
+                style = MaterialTheme.typography.bodyMedium
+            )
+
+        }
         Text(text = "Email :",
             modifier = Modifier
                 .padding(top = 10.dp),
@@ -190,39 +196,30 @@ fun UserDetailItem(
             fontFamily = poppinsFontFamily,
             style = MaterialTheme.typography.titleSmall
         )
-        TextField(
-            value = email,
-            onValueChange = {email = it},
-            keyboardOptions = KeyboardOptions(
-                imeAction = ImeAction.Done),
-            singleLine = true,
-            shape = RoundedCornerShape(8.dp),
-            colors = TextFieldDefaults.run {
-                colors(
-                    focusedContainerColor = Color.White,
-                    unfocusedContainerColor = Color.White,
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent,
-                )
-            },
-            placeholder = {
-                Text(
-                    text = "email@mail.com",
-                    fontSize = 10.sp,
-                    color = MaterialTheme.colorScheme.outline,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                )
-            },
-            modifier = modifier
-                .border(
-                    width = 1.dp,
-                    color = Color("#D1D5DB".toColorInt()),
-                    shape = RoundedCornerShape(8.dp)
-                )
-                .fillMaxWidth()
+        Row(
 
-        )
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = modifier
+                .background(Color.White)
+                .height(42.dp)
+                .width(335.dp)
+                .clickable { navController.navigate(Screen.UserProfile.route) }
+                .clip(
+                    RoundedCornerShape(15.dp),
+                )
+        ) {
+            Spacer(modifier = Modifier.width(10.dp))
+            Icon(
+                painter = painterResource(id = R.drawable.icon_email),
+                contentDescription = stringResource(id = R.string.Profile_Menu),
+            )
+
+            Spacer(modifier = Modifier.width(16.dp))
+            Text(modifier = Modifier.weight(1f), text = "Description", fontFamily = poppinsFontFamily,
+                style = MaterialTheme.typography.bodyMedium
+            )
+
+        }
         Text(text = "Password :",
             modifier = Modifier
                 .padding(top = 10.dp),
@@ -230,39 +227,30 @@ fun UserDetailItem(
             fontFamily = poppinsFontFamily,
             style = MaterialTheme.typography.titleSmall
         )
-        TextField(
-            value = password,
-            onValueChange = { password = it },
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Password,
-                imeAction = ImeAction.Done),
-            singleLine = true,
-            shape = RoundedCornerShape(8.dp),
-            colors = TextFieldDefaults.run {
-                colors(
-                    focusedContainerColor = Color.White,
-                    unfocusedContainerColor = Color.White,
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent,
-                )
-            },
-            placeholder = {
-                Text(
-                    text = "*********",
-                    fontSize = 10.sp,
-                    color = MaterialTheme.colorScheme.outline,
-                    modifier = Modifier
-                )
-            },
-            modifier = modifier
-                .border(
-                    width = 1.dp,
-                    color = Color("#D1D5DB".toColorInt()),
-                    shape = RoundedCornerShape(8.dp)
-                )
-                .fillMaxWidth()
+        Row(
 
-        )
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = modifier
+                .background(Color.White)
+                .height(42.dp)
+                .width(335.dp)
+                .clickable { navController.navigate(Screen.UserProfile.route) }
+                .clip(
+                    RoundedCornerShape(15.dp),
+                )
+        ) {
+            Spacer(modifier = Modifier.width(10.dp))
+            Icon(
+                painter = painterResource(id = R.drawable.icon_pencil_profile),
+                contentDescription = stringResource(id = R.string.Profile_Menu),
+            )
+
+            Spacer(modifier = Modifier.width(16.dp))
+            Text(modifier = Modifier.weight(1f), text = "*******", fontFamily = poppinsFontFamily,
+                style = MaterialTheme.typography.bodyMedium
+            )
+
+        }
         Text(text = "Gender :",
             modifier = Modifier
                 .padding(top = 10.dp),
@@ -270,67 +258,58 @@ fun UserDetailItem(
             fontFamily = poppinsFontFamily,
             style = MaterialTheme.typography.titleSmall
         )
-        TextField(
-            value = gender,
-            onValueChange = { gender = it },
-            keyboardOptions = KeyboardOptions(
-                imeAction = ImeAction.Done),
-            singleLine = true,
-            shape = RoundedCornerShape(8.dp),
-            colors = TextFieldDefaults.run {
-                colors(
-                    focusedContainerColor = Color.White,
-                    unfocusedContainerColor = Color.White,
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent,
-                )
-            },
-            placeholder = {
-                Text(
-                    text = "Gender",
-                    fontSize = 10.sp,
-                    color = MaterialTheme.colorScheme.outline,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                )
-            },
+        Row(
+
+            verticalAlignment = Alignment.CenterVertically,
             modifier = modifier
-                .border(
-                    width = 1.dp,
-                    color = Color("#D1D5DB".toColorInt()),
-                    shape = RoundedCornerShape(8.dp)
+                .background(Color.White)
+                .height(42.dp)
+                .width(335.dp)
+                .clickable { navController.navigate(Screen.UserProfile.route) }
+                .clip(
+                    RoundedCornerShape(15.dp),
                 )
-                .fillMaxWidth()
-        )
+        ) {
+            Spacer(modifier = Modifier.width(10.dp))
+            Icon(
+                painter = painterResource(id = R.drawable.icon_user_profile),
+                contentDescription = stringResource(id = R.string.Profile_Menu),
+            )
+
+            Spacer(modifier = Modifier.width(16.dp))
+            Text(
+                modifier = Modifier.weight(1f), text = "*******", fontFamily = poppinsFontFamily,
+                style = MaterialTheme.typography.bodyMedium
+            )
+        }
 
         Row (
             modifier = Modifier
                 .fillMaxWidth()
         ){
-        Button(modifier = Modifier
-            .clickable { openDialog.value = true }
-            .padding(top = 16.dp,
-                end = 10.dp,
-                start = 250.dp,
-                bottom = 4.dp)
-            .width(100.dp)
-            .height(32.dp)
-            .clickable {  },
-            shape = RoundedCornerShape(4.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = Color.White),
-            border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary)
-            ,onClick = { navController.navigate(Screen.UserProfile.route) }) {
-            Text(text = "Save", color = MaterialTheme.colorScheme.primary)
-        }
+            Button(modifier = Modifier
+                .clickable { openDialog.value = true }
+                .padding(top = 16.dp,
+                    end = 10.dp,
+                    start = 250.dp,
+                    bottom = 4.dp)
+                .width(100.dp)
+                .height(32.dp)
+                .clickable {  },
+                shape = RoundedCornerShape(4.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+                border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary)
+                ,onClick = { navController.navigate(Screen.UserProfile.route) }) {
+                Text(text = "Save", color = MaterialTheme.colorScheme.primary)
+            }
         }
         if (openDialog.value){
             AlertChangeProfile(onDismiss = {}, onConfirm = { openDialog.value = false})
         }
     }
-
-
-
 }
+
+
 
 @Preview(showBackground = true)
 @Composable
