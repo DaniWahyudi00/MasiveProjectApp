@@ -32,7 +32,7 @@ import com.example.masiveprojectapp.ui.theme.poppinsFontFamily
 fun HeadMyProfileScreen(
     modifier: Modifier = Modifier,
     userprofile: UsertItem
-){
+) {
     Row(
 
         verticalAlignment = Alignment.CenterVertically,
@@ -41,23 +41,29 @@ fun HeadMyProfileScreen(
 
     ) {
         Spacer(modifier = Modifier.width(24.dp))
-            Image(
-                painter = painterResource(id = userprofile.photo),
-                contentDescription = null,
-                modifier = Modifier
-                    .size(40.dp)
-                    .clip(shape = CircleShape)
-            )
+        Image(
+            painter = painterResource(id = userprofile.photo),
+            contentDescription = null,
+            modifier = Modifier
+                .size(40.dp)
+                .clip(shape = CircleShape)
+        )
+
         Spacer(modifier = Modifier.width(16.dp))
-        Text(modifier = Modifier .weight(1f), text = "Hi, "+ userprofile.username, fontFamily = poppinsFontFamily)
+
+        Text(
+            modifier = Modifier.weight(1f),
+            text = "Hi, " + userprofile.username,
+            fontFamily = poppinsFontFamily
+        )
     }
 
 }
 
 @Preview(showBackground = true)
 @Composable
-private fun HeadMyprofileScreenPrev(){
+private fun HeadMyprofileScreenPrev() {
     MasiveProjectAppTheme {
-       HeadMyProfileScreen(userprofile = UsertItem(1,"Richard",R.drawable.user))
+        HeadMyProfileScreen(userprofile = UsertItem(1, "Richard", R.drawable.user))
     }
 }

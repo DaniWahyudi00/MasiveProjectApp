@@ -1,79 +1,75 @@
 package com.example.masiveprojectapp.screens.splash
 
-import android.annotation.SuppressLint
-import android.content.Intent
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.masiveprojectapp.MainActivity
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.masiveprojectapp.R
 
-@SuppressLint("CustomSplashScreen")
-class SplashActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        setContent {
-            SplashScreen()
-        }
-    }
-}
-
 @Composable
-fun SplashScreen() {
-    Column (
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(20.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ){
-        Image(
-            painter = painterResource(id = R.drawable.logo),
-            contentDescription = "logo_icon",
-            modifier = Modifier
-                .width(140.dp)
-                .padding(top = 220.dp)
+fun SplashScreen(
+    navController: NavController,
+    viewModel: SplashViewModel = viewModel()
+) {
+    val splashFinished by viewModel.splashFinished.observeAsState(initial = false)
+
+    if (splashFinished) {
+        LaunchedEffect(Unit) {
+            navController.navigate("welcome") {
+                popUpTo("splash") { inclusive = true }
+            }
+        }
+    } else {
+        val infiniteTransition = rememberInfiniteTransition()
+        val rotation by infiniteTransition.animateFloat(
+            initialValue = 0f,
+            targetValue = 360f,
+            animationSpec = infiniteRepeatable(
+                animation = tween(2000, easing = LinearEasing),
+                repeatMode = RepeatMode.Restart
+            )
         )
 
-        Spacer(modifier = Modifier.height(218.dp))
-
         Box(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.White),
             contentAlignment = Alignment.Center
         ) {
-            CircularProgressIndicator()
+            Image(
+                painter = painterResource(id = R.drawable.logo),
+                contentDescription = "App Logo",
+                modifier = Modifier
+                    .size(90.dp)
+                    .rotate(rotation)
+            )
         }
     }
-
-    val context = LocalContext.current
-    android.os.Handler().postDelayed({
-        // change screen to main activity
-        val intent = Intent(context, MainActivity::class.java)
-        context.startActivity(intent)
-
-        (context as? SplashActivity)?.finish()
-    }, 4000) // 4000 ms = 4 second
-
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun SplashScreenPreview() {
-    SplashScreen()
+    SplashScreen(navController = rememberNavController())
 }

@@ -2,6 +2,7 @@ package com.example.masiveprojectapp.screens.component.Profileitem
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -32,6 +33,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -52,14 +55,15 @@ import com.example.masiveprojectapp.ui.theme.poppinsFontFamily
 @Composable
 fun UserDetailItem(
     modifier: Modifier,
-    navController : NavController
+    navController: NavController
 
-){ var name by remember { mutableStateOf("") }
-    var description by remember { mutableStateOf("")}
-    var telephone by remember { mutableStateOf("")}
-    var email by remember { mutableStateOf("")}
-    var password by remember { mutableStateOf("")}
-    var gender by remember { mutableStateOf("")}
+) {
+    var name by remember { mutableStateOf("") }
+    var description by remember { mutableStateOf("") }
+    var telephone by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var gender by remember { mutableStateOf("") }
     val openDialog = remember { mutableStateOf(false) }
 
     Column(
@@ -68,7 +72,7 @@ fun UserDetailItem(
             .fillMaxWidth()
             .padding(23.dp)
     ) {
-        Row (
+        Row(
             modifier = Modifier
 
 
@@ -81,11 +85,11 @@ fun UserDetailItem(
                     .clip(shape = CircleShape)
             )
             Spacer(modifier = Modifier.width(16.dp))
-            Text(modifier = Modifier .weight(1f), text = "Hi, ", fontFamily = poppinsFontFamily)
+            Text(modifier = Modifier.weight(1f), text = "Hi, ", fontFamily = poppinsFontFamily)
             OutlinedTextField(
                 value = "Richard Solikin",
-                onValueChange = {name = it},
-                label = { Text("name :")},
+                onValueChange = { name = it },
+                label = { Text("name :") },
                 singleLine = true,
                 shape = RoundedCornerShape(8.dp),
                 modifier = modifier
@@ -105,12 +109,13 @@ fun UserDetailItem(
                         unfocusedIndicatorColor = Color.Transparent,
                     )
                 },
-              )
+            )
 
 
         }
 
-        Text(text = "Description : ",
+        Text(
+            text = "Description : ",
             modifier = Modifier
                 .padding(top = 10.dp),
             fontFamily = poppinsFontFamily,
@@ -118,7 +123,7 @@ fun UserDetailItem(
         )
         OutlinedTextField(
             value = description,
-            onValueChange = {description = it},
+            onValueChange = { description = it },
             maxLines = 3,
             keyboardOptions = KeyboardOptions(
                 imeAction = ImeAction.Done
@@ -141,9 +146,10 @@ fun UserDetailItem(
 //                .defaultMinSize(minHeight = 40.dp)
                 .fillMaxWidth()
 //                .height(70.dp)
-                )
+        )
 
-        Text(text = "Telephone :",
+        Text(
+            text = "Telephone :",
             modifier = Modifier
                 .padding(top = 10.dp),
             fontSize = 15.sp,
@@ -152,9 +158,10 @@ fun UserDetailItem(
         )
         TextField(
             value = telephone,
-            onValueChange = {telephone = it},
+            onValueChange = { telephone = it },
             keyboardOptions = KeyboardOptions(
-                imeAction = ImeAction.Done),
+                imeAction = ImeAction.Done
+            ),
             singleLine = true,
             shape = RoundedCornerShape(8.dp),
             colors = TextFieldDefaults.run {
@@ -183,7 +190,8 @@ fun UserDetailItem(
                 .fillMaxWidth()
 
         )
-        Text(text = "Email :",
+        Text(
+            text = "Email :",
             modifier = Modifier
                 .padding(top = 10.dp),
             fontSize = 15.sp,
@@ -192,9 +200,10 @@ fun UserDetailItem(
         )
         TextField(
             value = email,
-            onValueChange = {email = it},
+            onValueChange = { email = it },
             keyboardOptions = KeyboardOptions(
-                imeAction = ImeAction.Done),
+                imeAction = ImeAction.Done
+            ),
             singleLine = true,
             shape = RoundedCornerShape(8.dp),
             colors = TextFieldDefaults.run {
@@ -223,7 +232,8 @@ fun UserDetailItem(
                 .fillMaxWidth()
 
         )
-        Text(text = "Password :",
+        Text(
+            text = "Password :",
             modifier = Modifier
                 .padding(top = 10.dp),
             fontSize = 15.sp,
@@ -235,7 +245,8 @@ fun UserDetailItem(
             onValueChange = { password = it },
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Password,
-                imeAction = ImeAction.Done),
+                imeAction = ImeAction.Done
+            ),
             singleLine = true,
             shape = RoundedCornerShape(8.dp),
             colors = TextFieldDefaults.run {
@@ -263,7 +274,8 @@ fun UserDetailItem(
                 .fillMaxWidth()
 
         )
-        Text(text = "Gender :",
+        Text(
+            text = "Gender :",
             modifier = Modifier
                 .padding(top = 10.dp),
             fontSize = 15.sp,
@@ -274,7 +286,8 @@ fun UserDetailItem(
             value = gender,
             onValueChange = { gender = it },
             keyboardOptions = KeyboardOptions(
-                imeAction = ImeAction.Done),
+                imeAction = ImeAction.Done
+            ),
             singleLine = true,
             shape = RoundedCornerShape(8.dp),
             colors = TextFieldDefaults.run {
@@ -303,38 +316,40 @@ fun UserDetailItem(
                 .fillMaxWidth()
         )
 
-        Row (
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
-        ){
-        Button(modifier = Modifier
-            .clickable { openDialog.value = true }
-            .padding(top = 16.dp,
-                end = 10.dp,
-                start = 250.dp,
-                bottom = 4.dp)
-            .width(100.dp)
-            .height(32.dp)
-            .clickable {  },
-            shape = RoundedCornerShape(4.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = Color.White),
-            border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary)
-            ,onClick = { navController.navigate(Screen.UserProfile.route) }) {
-            Text(text = "Save", color = MaterialTheme.colorScheme.primary)
+        ) {
+            Button(modifier = Modifier
+                .clickable { openDialog.value = true }
+                .padding(
+                    top = 16.dp,
+                    end = 10.dp,
+                    start = 250.dp,
+                    bottom = 4.dp
+                )
+                .width(100.dp)
+                .height(32.dp)
+                .clickable { },
+                shape = RoundedCornerShape(4.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+                border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary),
+                onClick = { navController.navigate(Screen.UserProfile.route) }
+            ) {
+                Text(text = "Save", color = MaterialTheme.colorScheme.primary)
+            }
         }
-        }
-        if (openDialog.value){
-            AlertChangeProfile(onDismiss = {}, onConfirm = { openDialog.value = false})
+        if (openDialog.value) {
+            AlertChangeProfile(onDismiss = {}, onConfirm = { openDialog.value = false })
         }
     }
-
 
 
 }
 
 @Preview(showBackground = true)
 @Composable
-private fun UserDetailItemPrev(){
+private fun UserDetailItemPrev() {
     MasiveProjectAppTheme {
         UserDetailItem(modifier = Modifier, navController = rememberNavController())
     }

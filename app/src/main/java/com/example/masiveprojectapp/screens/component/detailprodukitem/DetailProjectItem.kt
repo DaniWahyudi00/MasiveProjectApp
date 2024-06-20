@@ -3,6 +3,7 @@ package com.example.masiveprojectapp.screens.component.detailprodukitem
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -29,6 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.motionEventSpy
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -45,42 +47,78 @@ import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 import com.example.masiveprojectapp.ui.theme.poppinsFontFamily
 
 @Composable
-fun DetailProjectItem (
-    detailproject : DetailProject,
+fun DetailProjectItem(
+    detailproject: DetailProject,
     modifier: Modifier,
     navController: NavController
 
-){
+) {
     val openDialog = remember { mutableStateOf(false) }
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
-            .padding(start = 10.dp, end = 10.dp)
+            .padding(start = 15.dp, end = 15.dp)
     ) {
-        Image(
-            painter = painterResource(R.drawable.rumah1), contentDescription = null,
+        Box(
             modifier = Modifier
-                .fillMaxWidth(),
-            alignment = Alignment.Center,
-
-
+                .fillMaxWidth()
+                .height(245.dp)
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.rumah1),
+                contentDescription = null,
+                modifier = Modifier.matchParentSize(),
+                alignment = Alignment.Center,
+                contentScale = ContentScale.Crop  // or use ContentScale.FillBounds
             )
-        Text(detailproject.price, style = MaterialTheme.typography.titleLarge,
+        }
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Text(
+            detailproject.price,
+            style = TextStyle(
+                fontSize = 22.sp,
+                lineHeight = 33.sp,
+                fontFamily = poppinsFontFamily,
+                fontWeight = FontWeight(800),
+                color = Color(0xFF111928),
+
+                ),
             modifier = Modifier
                 .padding(top = 10.dp)
         )
 
-        Text(detailproject.name, style = MaterialTheme.typography.titleMedium,
+        Text(
+            detailproject.name,
+            style = TextStyle(
+                fontSize = 18.sp,
+                lineHeight = 18.sp,
+                fontFamily = poppinsFontFamily,
+                fontWeight = FontWeight(600),
+                color = Color(0xFF111928),
+
+                ),
             modifier = Modifier
                 .padding(top = 10.dp)
         )
-        Row () {
+
+        Row() {
             Text(
-                "Product Detail :", style = MaterialTheme.typography.bodyLarge,
+                "Product Detail :",
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    lineHeight = 22.sp,
+                    fontFamily = poppinsFontFamily,
+                    fontWeight = FontWeight(600),
+                    color = Color(0xFF111928),
+
+                    ),
                 modifier = Modifier
                     .padding(top = 15.dp)
             )
         }
+
         Row(
             modifier = Modifier
                 .padding(top = 15.dp)
@@ -88,9 +126,9 @@ fun DetailProjectItem (
         ) {
             Text("Owner ", modifier = Modifier)
             Spacer(modifier = Modifier.padding(start = 50.dp))
-            Text(": "+detailproject.owner, fontWeight = FontWeight.Light)
-
+            Text(": " + detailproject.owner, fontWeight = FontWeight.Light)
         }
+
         Row(
             modifier = Modifier
                 .padding(top = 10.dp)
@@ -98,8 +136,9 @@ fun DetailProjectItem (
         ) {
             Text("Size house ", modifier = Modifier)
             Spacer(modifier = Modifier.padding(start = 15.dp))
-            Text(": "+ detailproject.roomarea, fontWeight = FontWeight.Light)
+            Text(": " + detailproject.roomarea, fontWeight = FontWeight.Light)
         }
+
         Row(
 
             modifier = Modifier
@@ -108,31 +147,31 @@ fun DetailProjectItem (
         ) {
             Text("Condition ", modifier = Modifier)
             Spacer(modifier = Modifier.padding(start = 20.dp))
-            Text(": "+ detailproject.condition, fontWeight = FontWeight.Light)
+            Text(": " + detailproject.condition, fontWeight = FontWeight.Light)
 
 
         }
         Text(
             "Project Deskripsi :",
-            style = MaterialTheme.typography.titleMedium,
+            style = TextStyle(
+                fontSize = 14.sp,
+                lineHeight = 22.sp,
+                fontFamily = poppinsFontFamily,
+                fontWeight = FontWeight(600),
+                color = Color(0xFF111928),
+
+                ),
             modifier = Modifier.padding(top = 15.dp)
         )
         Text(
             detailproject.description,
             style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier.padding(top = 15.dp),
+            modifier = Modifier
+                .padding(top = 15.dp)
+                .fillMaxWidth(),
             fontWeight = FontWeight.Light
         )
 
-//        Text("Masukkan harga Project :", style = MaterialTheme.typography.bodyLarge)
-//        OutlinedTextField(
-//            value = price,
-//            onValueChange = { price = it },
-//            singleLine = true,
-//            label = { Text("Price :") },
-//            modifier = Modifier
-//                .fillMaxWidth()
-//        )
         Row(
             horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
             verticalAlignment = Alignment.CenterVertically,
@@ -140,39 +179,15 @@ fun DetailProjectItem (
                 .fillMaxWidth()
                 .padding(top = 20.dp)
         ) {
-            Button(
-                onClick = {},
-                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
-                modifier = Modifier
-                    .width(128.dp)
-                    .height(40.dp)
-                    .background(
-                        color = MaterialTheme.colorScheme.primary,
-                        shape = RoundedCornerShape(size = 11.dp)
-                    )
-            ) {
-                Text(
-                    text = "Save",
-                    style = TextStyle(
-                        fontSize = 16.sp,
-                        lineHeight = 25.sp,
-                        fontFamily = poppinsFontFamily,
-                        fontWeight = FontWeight(500),
-                        color = Color(0xFFFFFFFF),
-
-                        textAlign = TextAlign.Center,
-                    )
-                )
-            }
 
             Button(
-                onClick = {openDialog.value},
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE30000)),
+                onClick = { openDialog.value },
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFF42C2C)),
                 modifier = Modifier
-                    .width(128.dp)
-                    .height(40.dp)
+                    .width(160.dp)
+                    .height(37.dp)
                     .background(
-                        color = Color(0xFFE30000),
+                        color = Color(0xFFF42C2C),
                         shape = RoundedCornerShape(size = 11.dp)
                     )
             ) {
@@ -189,17 +204,51 @@ fun DetailProjectItem (
                     )
                 )
             }
+
+            Button(
+                onClick = { },
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5E8451)),
+                modifier = Modifier
+                    .width(160.dp)
+                    .height(37.dp)
+                    .background(
+                        color = Color(0xFF5E8451),
+                        shape = RoundedCornerShape(size = 11.dp)
+                    )
+            ) {
+                Text(
+                    text = "Save",
+                    style = TextStyle(
+                        fontSize = 16.sp,
+                        lineHeight = 25.sp,
+                        fontFamily = poppinsFontFamily,
+                        fontWeight = FontWeight(500),
+                        color = Color(0xFFFFFFFF),
+                        textAlign = TextAlign.Center,
+                    )
+                )
+            }
         }
-        if (openDialog.value){
-            AlertDeleteProduct (onDismiss = { openDialog.value = false}, onConfirm = {})
-    }
+        if (openDialog.value) {
+            AlertDeleteProduct(onDismiss = { openDialog.value = false }, onConfirm = {})
+        }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-private fun DetailProjectItemPreview(){
+private fun DetailProjectItemPreview() {
     MasiveProjectAppTheme {
-        DetailProjectItem(detailproject = DetailProject(1,"Modern Home","Rivza","Rp xxx.xxx.xxx","10 X 10 M","Ini Berisi Deskripsi Project", "Perfect"), modifier = Modifier, navController = rememberNavController())
+        DetailProjectItem(
+            detailproject = DetailProject(
+                1,
+                "Modern Home",
+                "Rivza",
+                "Rp xxx.xxx.xxx",
+                "10 X 10 M",
+                "Ini Berisi Deskripsi Project",
+                "Perfect"
+            ), modifier = Modifier, navController = rememberNavController()
+        )
     }
 }

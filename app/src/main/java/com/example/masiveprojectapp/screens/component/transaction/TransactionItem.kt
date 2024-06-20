@@ -96,7 +96,8 @@ fun TransactionScreenItem2(
     ) {
         Row(
             verticalAlignment = Alignment.Top,
-            modifier = Modifier.padding(top = 6.dp)
+            modifier = Modifier
+                .padding(top = 6.dp)
                 .fillMaxWidth()){
             Text(
                 text = "Allisa Gerand",
@@ -206,165 +207,187 @@ fun TransactionScreenItem2(
 }
 
 @Composable
-fun TransactionScreenItem(modifier: Modifier,
-                          navController: NavController,
-                          onLihat : () ->Unit
-){
-            Column(
-            verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
-            modifier = modifier
-                .fillMaxWidth()
+fun TransactionScreenItem(
+    modifier: Modifier,
+    navController: NavController,
+    onLihat: () -> Unit
+) {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
+        modifier = modifier
+            .fillMaxWidth()
             .clip(shape = MaterialTheme.shapes.medium)
             .background(color = Color.White)
-            ) {
-                Row(
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.Bottom,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                ) {
-                    Text(
-                        text = "Allisa Gerand",
-                        color = Color(0xff111928),
-                        lineHeight = 12.5.em,
-                        style = TextStyle(
-                            fontSize = 14.sp,
-                            fontWeight = FontWeight.Medium)
-                    )
-                    Text(
-                        text = "Selesai",
-                        color = Color(0xff5e8451),
-                        fontStyle = FontStyle.Italic,
-                        lineHeight = 12.5.em,
-                        modifier = Modifier
-                            .padding(end = 10.dp),
-                        style = TextStyle(
-                            fontSize = 14.sp))
-                }
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.Start),
-                        verticalAlignment = Alignment.Bottom,
-                        modifier = Modifier
+    ) {
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.Bottom,
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
+            Text(
+                text = "Allisa Gerand",
+                color = Color(0xff111928),
+                lineHeight = 12.5.em,
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Medium
+                )
+            )
+            Text(
+                text = "Selesai",
+                color = Color(0xff5e8451),
+                fontStyle = FontStyle.Italic,
+                lineHeight = 12.5.em,
+                modifier = Modifier
+                    .padding(end = 10.dp),
+                style = TextStyle(
+                    fontSize = 14.sp
+                )
+            )
+        }
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.Start),
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
 
+        ) {
+            Box(
+                modifier = Modifier
+                    .width(150.dp)
+                    .height(140.dp)
+            ) {
+
+                Image(
+                    painter = painterResource(id = R.drawable.rumah1),
+                    contentDescription = null,
+                    modifier = Modifier.matchParentSize(),
+                    alignment = Alignment.Center,
+                    contentScale = ContentScale.Crop                 )
+            }
+            Column(
+                verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Bottom)
+            ) {
+                Text(
+                    text = "Japan Modern Sakura",
+                    color = Color(0xff111928),
+                    lineHeight = 8.33.em,
+                    style = MaterialTheme.typography.titleMedium
+                )
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(2.dp, Alignment.Bottom)
+                ) {
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(
+                            8.dp,
+                            Alignment.CenterHorizontally
+                        ),
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .wrapContentHeight()
+                            .wrapContentHeight()
                     ) {
-                        Box(
+                        Icon(
+                            painter = painterResource(id = R.drawable.icon_arrows_expand),
+                            contentDescription = "Icon/Outline/arrows-expand",
                             modifier = Modifier
-                                .requiredWidth(width = 100.dp)
-                                .requiredHeight(height = 100.dp)
-                                .clip(shape = MaterialTheme.shapes.small)
-                                .background(color = Color.White)
-                        ) {
-                            Image(
-                                painter = painterResource(id = R.drawable.rumah1),
-                                contentDescription = "DesignRumah",
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .fillMaxHeight())
-                        }
+                                .requiredSize(size = 19.dp)
+                        )
                         Column(
-                            verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.Bottom)
+                            verticalArrangement = Arrangement.Center,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .wrapContentHeight()
                         ) {
                             Text(
-                                text = "Japan Modern Sakura",
-                                color = Color(0xff111928),
-                                lineHeight = 8.33.em,
-                                style = MaterialTheme.typography.titleMedium)
-                            Column(
-                                verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.Bottom)
-                            ) {
-                                Row(
-                                    horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
-                                    verticalAlignment = Alignment.CenterVertically,
-                                    modifier = Modifier
-                                        .requiredWidth(width = 145.dp)
-                                        .requiredHeight(height = 21.dp)
-                                ) {
-                                    Icon(
-                                        painter = painterResource(id = R.drawable.icon_arrows_expand),
-                                        contentDescription = "Icon/Outline/arrows-expand",
-                                        modifier = Modifier
-                                            .requiredSize(size = 19.dp))
-                                    Column(
-                                        verticalArrangement = Arrangement.Center,
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .requiredHeight(height = 30.dp)
-                                    ) {
-                                        Text(
-                                            text = "Lahan Minimal",
-                                            color = Color(0xff5c5c5c),
-                                            style = TextStyle(
-                                                fontSize = 14.sp,
-                                                fontWeight = FontWeight.Light))
-                                        Text(
-                                            text = "3 m x 4 m",
-                                            color = Color(0xff1c1c1c),
-                                            style = TextStyle(
-                                                fontSize = 14.sp,
-                                                letterSpacing = 0.5.sp))
-                                    }
-                                }
-                                Spacer(modifier = Modifier)
-                                Row(
-                                    horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
-                                    verticalAlignment = Alignment.CenterVertically,
-                                    modifier = Modifier
-                                        .requiredWidth(width = 145.dp)
-                                        .requiredHeight(height = 21.dp)
-                                ) {
-                                    Image(
-                                        painter = painterResource(id = R.drawable.icon_cash),
-                                        contentDescription = "Icon/Outline/cash",
-                                        modifier = Modifier
-                                            .requiredSize(size = 19.dp))
-                                    Column(
-                                        verticalArrangement = Arrangement.Center,
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .requiredHeight(height = 30.dp)
-                                    ) {
-                                        Text(
-                                            text = "Biaya Konstruksi",
-                                            color = Color(0xff5c5c5c),
-                                            style = TextStyle(
-                                                fontSize = 14.sp,
-                                                fontWeight = FontWeight.Light))
-                                        Text(
-                                            text = "Biaya Desain",
-                                            color = Color(0xff1c1c1c),
-                                            style = TextStyle(
-                                                fontSize = 14.sp,
-                                                letterSpacing = 0.5.sp))
-                                    }
-                                }
-                            }
+                                text = "Lahan Minimal",
+                                color = Color(0xff5c5c5c),
+                                style = TextStyle(
+                                    fontSize = 14.sp,
+                                    fontWeight = FontWeight.Light
+                                )
+                            )
+                            Text(
+                                text = "3 m x 4 m",
+                                color = Color(0xff1c1c1c),
+                                style = TextStyle(
+                                    fontSize = 14.sp,
+                                    letterSpacing = 0.5.sp
+                                )
+                            )
                         }
                     }
+                    Spacer(modifier = Modifier)
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(
+                            8.dp,
+                            Alignment.CenterHorizontally
+                        ),
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .wrapContentWidth()
+                            .wrapContentHeight()
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.icon_cash),
+                            contentDescription = "Icon/Outline/cash",
+                            modifier = Modifier
+                                .requiredSize(size = 19.dp)
+                        )
+                        Column(
+                            verticalArrangement = Arrangement.Center,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .wrapContentHeight()
+                        ) {
+                            Text(
+                                text = "Biaya Konstruksi",
+                                color = Color(0xff5c5c5c),
+                                style = TextStyle(
+                                    fontSize = 14.sp,
+                                    fontWeight = FontWeight.Light
+                                )
+                            )
+                            Text(
+                                text = "Biaya Desain",
+                                color = Color(0xff1c1c1c),
+                                style = TextStyle(
+                                    fontSize = 14.sp,
+                                    letterSpacing = 0.5.sp
+                                )
+                            )
+                        }
+                    }
+                }
+
                 OutlinedButton(
                     onClick = onLihat,
                     modifier = Modifier
-                        .padding(
-                            end = 8.dp,)
-                        .align(Alignment.End)
+                        .align(Alignment.Start)
                         .wrapContentWidth()
-                        .height(34.dp),
-                    border = BorderStroke (1.dp, MaterialTheme.colorScheme.primary),
+                        .requiredHeight(32.dp),
+                    border = BorderStroke(1.dp, Color(0xFF5E8451)),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.White
                     ),
                     shape = RoundedCornerShape(8.dp)
                 ) {
-                        Text(
-                            text = "Lihat",
-                            fontSize = 14.sp,
+                    Text(
+                        text = "Lihat",
+                        style = TextStyle(
+                            fontSize = 12.sp,
+                            lineHeight = 12.sp,
+                            fontFamily = poppinsFontFamily,
+                            fontWeight = FontWeight(500),
+                            color = Color(0xFF5E8451),
                             textAlign = TextAlign.Center,
-                            color = MaterialTheme.colorScheme.primary,
-                            modifier = Modifier.padding(start = 6.dp)
                         )
-
-                }
+                    )
                 }
             }
+        }
+    }
+}
 
 @Preview(showBackground = true)
 @Composable

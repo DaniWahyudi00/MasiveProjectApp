@@ -22,6 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -95,7 +96,7 @@ fun MyProfileScreen(
             Icon(
                 painter = painterResource(id = R.drawable.icon_profile_on_profile_screen),
                 contentDescription = stringResource(id = R.string.Profile_Menu),
-                tint = MaterialTheme.colorScheme.primary,
+                tint = Color(0xFF5E8451),
             )
 
             Spacer(modifier = Modifier.width(16.dp))
@@ -123,7 +124,7 @@ fun MyProfileScreen(
             Icon(
                 painter = painterResource(id = R.drawable.icon_my_project_on_profile_screen),
                 contentDescription = stringResource(id = R.string.Profile_Menu),
-                tint = MaterialTheme.colorScheme.primary
+                tint = Color(0xFF5E8451)
             )
 
             Spacer(modifier = Modifier.width(16.dp))
@@ -134,30 +135,7 @@ fun MyProfileScreen(
             )
 
         }
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = modifier
-                .height(70.dp)
-                .width(335.dp)
-                .clickable { navController.navigate(Screen.MyProfile.route) }
-                .clip(RoundedCornerShape(5.dp),
-                )
-        ) {
-            Spacer(modifier = Modifier.width(24.dp))
-            Icon(
-                painter = painterResource(id = R.drawable.icon_forum_on_profile_screen),
-                contentDescription = stringResource(id = R.string.Profile_Menu),
-                tint = MaterialTheme.colorScheme.primary
-            )
 
-            Spacer(modifier = Modifier.width(16.dp))
-            Text(modifier = Modifier .weight(1f), text = "Forum", fontFamily = poppinsFontFamily, fontSize = 20.sp)
-            Icon(
-                painter = painterResource(id = R.drawable.icon_arrow_nav),
-                contentDescription = "Arrow"
-            )
-
-        }
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = modifier
@@ -171,7 +149,7 @@ fun MyProfileScreen(
             Icon(
                 painter = painterResource(id = R.drawable.icon_help_center_on_profile_screen),
                 contentDescription = stringResource(id = R.string.Profile_Menu),
-                tint = MaterialTheme.colorScheme.primary
+                tint = Color(0xFF5E8451)
             )
 
             Spacer(modifier = Modifier.width(16.dp))
@@ -196,7 +174,7 @@ fun MyProfileScreen(
             Icon(
                 painter = painterResource(id = R.drawable.icon_logout_on_profile_screen),
                 contentDescription = stringResource(id = R.string.Profile_Menu),
-                tint = MaterialTheme.colorScheme.primary
+                tint = Color(0xFFE30000)
             )
 
             Spacer(modifier = Modifier.width(16.dp))
