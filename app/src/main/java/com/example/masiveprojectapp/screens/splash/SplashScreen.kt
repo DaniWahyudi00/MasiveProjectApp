@@ -36,21 +36,11 @@ fun SplashScreen(
 
     if (splashFinished) {
         LaunchedEffect(Unit) {
-            navController.navigate("welcome") {
+            navController.navigate("Builder") {
                 popUpTo("splash") { inclusive = true }
             }
         }
     } else {
-        val infiniteTransition = rememberInfiniteTransition()
-        val rotation by infiniteTransition.animateFloat(
-            initialValue = 0f,
-            targetValue = 360f,
-            animationSpec = infiniteRepeatable(
-                animation = tween(2000, easing = LinearEasing),
-                repeatMode = RepeatMode.Restart
-            )
-        )
-
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -62,7 +52,6 @@ fun SplashScreen(
                 contentDescription = "App Logo",
                 modifier = Modifier
                     .size(90.dp)
-                    .rotate(rotation)
             )
         }
     }

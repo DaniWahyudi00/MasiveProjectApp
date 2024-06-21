@@ -13,9 +13,8 @@ class SplashViewModel : ViewModel() {
         get() = _splashFinished
 
     init {
-        // Simulasi proses splash screen yang berjalan selama beberapa detik
         viewModelScope.launch {
-            delay(3000) // Delay simulasi selama 3 detik
+            delay(3000)
             _splashFinished.value = true
         }
     }
