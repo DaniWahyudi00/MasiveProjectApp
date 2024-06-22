@@ -2,13 +2,16 @@ package com.example.masiveprojectapp.screens.userprofile
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.masiveprojectapp.screens.component.Profileitem.UserDetailItem
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 
 @Composable
-fun UserProfileScreens(){
+fun UserProfileScreens(
+    navController: NavController
+){
     MasiveProjectAppTheme {
-        UserDetailItem(modifier = Modifier, navController = rememberNavController())
+        UserDetailItem(modifier = Modifier, navController = rememberNavController(), navigateBack = { navController.navigateUp()})
     }
 }

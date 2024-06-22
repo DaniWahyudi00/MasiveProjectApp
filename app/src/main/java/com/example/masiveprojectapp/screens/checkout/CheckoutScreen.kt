@@ -1,6 +1,7 @@
 package com.example.masiveprojectapp.screens.checkout
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.compose.rememberNavController
 import com.example.masiveprojectapp.screens.component.transaction.CheckOutItem
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 
@@ -8,6 +9,6 @@ import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 fun CheckOutScreen(){
 
     MasiveProjectAppTheme {
-        CheckOutItem()
+        CheckOutItem(navController = rememberNavController())
     }
 }

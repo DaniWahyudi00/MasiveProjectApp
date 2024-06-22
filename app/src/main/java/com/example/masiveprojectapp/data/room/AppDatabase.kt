@@ -7,8 +7,9 @@ import androidx.room.RoomDatabase
 import com.example.masiveprojectapp.data.entity.AddressEntity
 import com.example.masiveprojectapp.data.entity.ContactInformationEntity
 import com.example.masiveprojectapp.data.entity.ProjectEntity
+import com.example.masiveprojectapp.data.entity.UserEntity
 
-@Database(entities = [ProjectEntity::class, AddressEntity::class, ContactInformationEntity::class], version = 1)
+@Database(entities = [ProjectEntity::class, AddressEntity::class, ContactInformationEntity::class, UserEntity::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun appDao(): AppDao

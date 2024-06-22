@@ -3,13 +3,11 @@ package com.example.masiveprojectapp.screens.component.Profileitem
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -17,21 +15,14 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -39,19 +30,14 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.graphics.toColorInt
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.masiveprojectapp.R
 import com.example.masiveprojectapp.navigation.Screen
 import com.example.masiveprojectapp.screens.component.alertdialog.AlertChangeProfile
-import com.example.masiveprojectapp.screens.component.alertdialog.AlertProfileLogout
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 import com.example.masiveprojectapp.ui.theme.poppinsFontFamily
 
@@ -59,14 +45,10 @@ import com.example.masiveprojectapp.ui.theme.poppinsFontFamily
 @Composable
 fun UserDetailItem(
     modifier: Modifier,
-    navController : NavController
+    navController : NavController,
+    navigateBack: () -> Unit
 
-){ var name by remember { mutableStateOf("") }
-    var description by remember { mutableStateOf("")}
-    var telephone by remember { mutableStateOf("")}
-    var email by remember { mutableStateOf("")}
-    var password by remember { mutableStateOf("")}
-    var gender by remember { mutableStateOf("")}
+){
     val openDialog = remember { mutableStateOf(false) }
 
     Column(
@@ -77,8 +59,10 @@ fun UserDetailItem(
     ) {
         Row (
             modifier = Modifier
-                .background(color = Color.White)
                 .clip(RoundedCornerShape(8.dp))
+                .fillMaxWidth()
+                .background(color = Color.White)
+
         ) {
             Spacer(modifier = Modifier.width(15.dp))
             Box(
@@ -124,6 +108,14 @@ fun UserDetailItem(
                     fontFamily = poppinsFontFamily
                 )
 
+                Icon(
+                    painter = painterResource(id = R.drawable.icon_pencil),
+                    contentDescription = stringResource(id = R.string.Profile_Menu),
+                    modifier = Modifier
+                        .padding(top = 10.dp,start = 150.dp)
+                        .clickable { navController.navigate(Screen.UserProfile.route) }
+                )
+
             }
         }
 
@@ -137,13 +129,11 @@ fun UserDetailItem(
 
             verticalAlignment = Alignment.CenterVertically,
             modifier = modifier
+                .clip(RoundedCornerShape(15.dp))
                 .background(Color.White)
-                .height(42.dp)
-                .width(335.dp)
-                .clickable { navController.navigate(Screen.UserProfile.route) }
-                .clip(
-                    RoundedCornerShape(15.dp),
-                )
+                .height(55.dp)
+                .fillMaxWidth()
+                .clickable {},
         ) {
             Spacer(modifier = Modifier.width(10.dp))
             Icon(
@@ -169,13 +159,11 @@ fun UserDetailItem(
 
             verticalAlignment = Alignment.CenterVertically,
             modifier = modifier
+                .clip(RoundedCornerShape(15.dp))
                 .background(Color.White)
-                .height(42.dp)
-                .width(335.dp)
-                .clickable { navController.navigate(Screen.UserProfile.route) }
-                .clip(
-                    RoundedCornerShape(15.dp),
-                )
+                .height(55.dp)
+                .fillMaxWidth()
+                .clickable { navController.navigate(Screen.UserProfile.route) },
         ) {
             Spacer(modifier = Modifier.width(10.dp))
             Icon(
@@ -200,13 +188,11 @@ fun UserDetailItem(
 
             verticalAlignment = Alignment.CenterVertically,
             modifier = modifier
+                .clip(RoundedCornerShape(15.dp))
                 .background(Color.White)
-                .height(42.dp)
-                .width(335.dp)
-                .clickable { navController.navigate(Screen.UserProfile.route) }
-                .clip(
-                    RoundedCornerShape(15.dp),
-                )
+                .height(55.dp)
+                .fillMaxWidth()
+                .clickable { navController.navigate(Screen.UserProfile.route) },
         ) {
             Spacer(modifier = Modifier.width(10.dp))
             Icon(
@@ -231,13 +217,11 @@ fun UserDetailItem(
 
             verticalAlignment = Alignment.CenterVertically,
             modifier = modifier
+                .clip(RoundedCornerShape(15.dp))
                 .background(Color.White)
-                .height(42.dp)
-                .width(335.dp)
-                .clickable { navController.navigate(Screen.UserProfile.route) }
-                .clip(
-                    RoundedCornerShape(15.dp),
-                )
+                .height(55.dp)
+                .fillMaxWidth()
+                .clickable { navController.navigate(Screen.UserProfile.route) },
         ) {
             Spacer(modifier = Modifier.width(10.dp))
             Icon(
@@ -262,13 +246,11 @@ fun UserDetailItem(
 
             verticalAlignment = Alignment.CenterVertically,
             modifier = modifier
+                .clip(RoundedCornerShape(15.dp))
                 .background(Color.White)
-                .height(42.dp)
-                .width(335.dp)
-                .clickable { navController.navigate(Screen.UserProfile.route) }
-                .clip(
-                    RoundedCornerShape(15.dp),
-                )
+                .height(55.dp)
+                .fillMaxWidth()
+                .clickable { navController.navigate(Screen.UserProfile.route) },
         ) {
             Spacer(modifier = Modifier.width(10.dp))
             Icon(
@@ -297,10 +279,10 @@ fun UserDetailItem(
                 .height(32.dp)
                 .clickable {  },
                 shape = RoundedCornerShape(4.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = Color.White),
-                border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary)
-                ,onClick = { navController.navigate(Screen.UserProfile.route) }) {
-                Text(text = "Save", color = MaterialTheme.colorScheme.primary)
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
+                border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary),
+                onClick = {navigateBack}) {
+                Text(text = "Save", color = Color.White)
             }
         }
         if (openDialog.value){
@@ -313,8 +295,10 @@ fun UserDetailItem(
 
 @Preview(showBackground = true)
 @Composable
-private fun UserDetailItemPrev(){
+private fun UserDetailItemPrev(
+    navController: NavController = rememberNavController()
+){
     MasiveProjectAppTheme {
-        UserDetailItem(modifier = Modifier, navController = rememberNavController())
+        UserDetailItem(modifier = Modifier, navController = rememberNavController(), navigateBack = {navController.navigateUp()})
     }
 }

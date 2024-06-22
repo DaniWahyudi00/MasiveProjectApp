@@ -87,6 +87,9 @@ fun ShipingAddressItem(
 
             verticalAlignment = Alignment.CenterVertically,
             modifier = modifier
+                .clip(
+                    RoundedCornerShape(15.dp),
+                )
                 .background(Color.White)
                 .height(42.dp)
                 .fillMaxWidth()
@@ -113,6 +116,9 @@ fun ShipingAddressItem(
 
             verticalAlignment = Alignment.CenterVertically,
             modifier = modifier
+                .clip(
+                    RoundedCornerShape(15.dp),
+                )
                 .background(Color.White)
                 .height(42.dp)
                 .fillMaxWidth()
@@ -138,6 +144,9 @@ fun ShipingAddressItem(
 
             verticalAlignment = Alignment.CenterVertically,
             modifier = modifier
+                .clip(
+                    RoundedCornerShape(15.dp),
+                )
                 .background(Color.White)
                 .height(42.dp)
                 .fillMaxWidth()
@@ -164,6 +173,9 @@ fun ShipingAddressItem(
 
             verticalAlignment = Alignment.CenterVertically,
             modifier = modifier
+                .clip(
+                    RoundedCornerShape(15.dp),
+                )
                 .background(Color.White)
                 .height(42.dp)
                 .fillMaxWidth()
@@ -190,6 +202,9 @@ fun ShipingAddressItem(
 
             verticalAlignment = Alignment.CenterVertically,
             modifier = modifier
+                .clip(
+                    RoundedCornerShape(15.dp),
+                )
                 .background(Color.White)
                 .height(42.dp)
                 .fillMaxWidth()

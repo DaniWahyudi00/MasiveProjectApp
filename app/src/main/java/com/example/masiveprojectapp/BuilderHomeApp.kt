@@ -86,7 +86,7 @@ fun BuilderHomeApp(
              AddMyProjectScreen()
             }
             composable(route = Screen.UserProfile.route){
-                UserProfileScreens()
+                UserProfileScreens(navController)
             }
             composable(route = Screen.Desain.route){
                 DesainScreen(

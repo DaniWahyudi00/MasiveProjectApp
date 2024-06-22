@@ -55,7 +55,7 @@ object datadummy {
         Project(
             id = 1,
             name = "Modern House White",
-            place ="Bali",
+            place ="Indonesia, Bali",
             price = "Rp xxx.xxx.xxx",
             year = "2015",
             photo = R.drawable.project1
