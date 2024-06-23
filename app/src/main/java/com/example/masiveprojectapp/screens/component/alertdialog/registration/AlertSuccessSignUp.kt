@@ -1,4 +1,4 @@
-package com.example.masiveprojectapp.screens.component.alertdialog
+package com.example.masiveprojectapp.screens.component.alertdialog.registration
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

@@ -26,7 +26,7 @@ class SignUpViewModel @Inject constructor(
                     _signUpState.send(SignUpState(isSucces = "Sign Up Success"))
                 }
                 is Resource.Loading -> {
-                    _signUpState.send(SignUpState(isLoading = false))
+                    _signUpState.send(SignUpState(isLoading = true))
                 }
                 is Resource.Error -> {
                     _signUpState.send(SignUpState(isError = result.message))
