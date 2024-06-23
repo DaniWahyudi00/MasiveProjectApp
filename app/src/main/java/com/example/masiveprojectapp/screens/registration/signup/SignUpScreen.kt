@@ -49,6 +49,7 @@ fun SignUpScreen(
     viewModel: SignUpViewModel = hiltViewModel(),
     navigateToLogin: () -> Unit
 ) {
+    var username by rememberSaveable { mutableStateOf("") }
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
     val scope = rememberCoroutineScope()
@@ -80,14 +81,14 @@ fun SignUpScreen(
             horizontalAlignment = Alignment.Start,
             modifier = Modifier.width(320.dp)
         ){
-//            Text(text = "Username")
-//
-//            CustomOutlinedTextField(
-//                label = "Your Username",
-//                onValueChange = { newText -> text = newText }
-//            )
+            Text(text = "Username")
 
-//            Spacer(modifier = Modifier.height(22.dp))
+            CustomOutlinedTextField(
+                label = "Your Username",
+                onValueChange = { newText -> username = newText }
+            )
+
+            Spacer(modifier = Modifier.height(22.dp))
 
             Text(text = "Email Address")
 
@@ -120,9 +121,10 @@ fun SignUpScreen(
         Button(
             onClick = {
                 scope.launch {
+                    val trimmedUsername = username.trim()
                     val trimmedEmail = email.trim()
                     val trimmedPassword = password.trim()
-                    viewModel.registerUser(trimmedEmail, trimmedPassword)
+                    viewModel.registerUser(trimmedUsername, trimmedEmail, trimmedPassword)
                 }
             },
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5E8451)),
