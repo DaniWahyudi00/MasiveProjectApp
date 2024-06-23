@@ -75,6 +75,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.datastore.preferences)
 
     //Room
     implementation(libs.androidx.room.runtime)
@@ -90,4 +91,7 @@ dependencies {
     kapt(libs.androidx.hilt.compiler)
     kapt(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
+
+    // Google auth 
+    implementation(libs.play.services.auth)
 }

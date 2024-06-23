@@ -1,5 +1,9 @@
 package com.example.masiveprojectapp.screens.registration.login
 
+import android.util.Log
+import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -18,34 +22,84 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.masiveprojectapp.R
+import com.example.masiveprojectapp.data.Constant.ServerClient
+import com.example.masiveprojectapp.data.local.UserData
+import com.example.masiveprojectapp.screens.component.alertdialog.registration.AlertLoading
+import com.example.masiveprojectapp.screens.component.alertdialog.registration.AlertSuccess
 import com.example.masiveprojectapp.ui.theme.poppinsFontFamily
+import com.example.masiveprojectapp.utils.SessionPreferences
+import com.example.masiveprojectapp.utils.dataStore
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.GoogleAuthProvider
+import kotlinx.coroutines.launch
 
 @Composable
 fun LoginScreen(
     navigateToHome: () -> Unit,
     navigateToSignUp: () -> Unit,
-    navigateToForgotPassword: () -> Unit
+    navigateToForgotPassword: () -> Unit,
+    viewModel: LoginViewModel = hiltViewModel()
 ) {
+    val googleSignState = viewModel.googleState.value
 
-    var text by remember { mutableStateOf("") }
+    val launcher =
+        rememberLauncherForActivityResult(contract = ActivityResultContracts.StartActivityForResult()) {
+            val account = GoogleSignIn.getSignedInAccountFromIntent(it.data)
+            try {
+                val result = account.getResult(ApiException::class.java)
+                val credential = GoogleAuthProvider.getCredential(result.idToken, null)
+                viewModel.googleSignIn(credential)
+            } catch (it: ApiException) {
+                println(it)
+            }
+        }
+
+    val scope = rememberCoroutineScope()
+    val context = LocalContext.current
+    val state by viewModel.loginState.collectAsState(initial = null)
+    var showDialogSuccess by remember { mutableStateOf(false) }
+    var showDialogLoading by remember { mutableStateOf(false) }
+
+    var email by rememberSaveable { mutableStateOf("") }
+    var password by rememberSaveable { mutableStateOf("") }
+    var passwordError by remember { mutableStateOf(false) }
+    var passwordVisibility by remember { mutableStateOf(false) }
+
+    val icon = if (passwordVisibility)
+        painterResource(R.drawable.ic_visibility)
+    else
+        painterResource(R.drawable.ic_visibility_off)
 
     Column (
         modifier = Modifier
@@ -74,8 +128,12 @@ fun LoginScreen(
             Text(text = "Email Address")
 
             CustomOutlinedTextField(
-                label = "Your Email Address",
-                onValueChange = { newText -> text = newText }
+                value = email,
+                hint = "Enter your email",
+                onValueChange = { newText -> email = newText },
+                trailingIcon = {},
+                isError = false,
+                errorMessage = ""
             )
 
             Spacer(modifier = Modifier.height(22.dp))
@@ -83,8 +141,26 @@ fun LoginScreen(
             Text(text = "Password")
 
             CustomOutlinedTextField(
-                label = "Password",
-                onValueChange = { newText -> text = newText }
+                hint = "Enter your password",
+                onValueChange = {
+                    password = it
+                    passwordError = password.length < 8
+                },
+                value = password,
+                trailingIcon = {
+                    Icon(
+                        painter = icon,
+                        contentDescription = null,
+                        modifier = Modifier
+                            .clickable {
+                                passwordVisibility = !passwordVisibility
+                            }
+                    )
+                },
+                errorMessage = "Password must be at least 8 characters",
+                isError = passwordError,
+                visualTransformation = if (passwordVisibility) VisualTransformation.None
+                else PasswordVisualTransformation(),
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -115,7 +191,13 @@ fun LoginScreen(
         Spacer(modifier = Modifier.height(65.dp))
 
         Button(
-            onClick = navigateToHome,
+            onClick = {
+                scope.launch {
+                    val trimmedEmail = email.trim()
+                    val trimmedPassword = password.trim()
+                    viewModel.loginUser(trimmedEmail, trimmedPassword)
+                }
+            },
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5E8451)),
             modifier = Modifier
                 .width(320.dp)
@@ -178,7 +260,17 @@ fun LoginScreen(
             Image(
                 painter = painterResource(id = R.drawable.google),
                 contentDescription = "google_Icon",
-                modifier = Modifier.width(150.dp)
+                modifier = Modifier
+                    .width(150.dp)
+                    .clickable {
+                        val gso = GoogleSignInOptions
+                            .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                            .requestEmail()
+                            .requestIdToken(ServerClient)
+                            .build()
+                        val googleSignInClient = GoogleSignIn.getClient(context, gso)
+                        launcher.launch(googleSignInClient.signInIntent)
+                    }
             )
         }
 
@@ -217,23 +309,96 @@ fun LoginScreen(
         }
 
     }
+
+    LaunchedEffect(key1 = state) {
+        scope.launch {
+            if (state?.isError?.isNotEmpty() == true) {
+                showDialogLoading = false
+                val error = state?.isError
+                Toast.makeText(context, "$error", Toast.LENGTH_SHORT).show()
+                Log.d("Error coi", error.toString())
+            } else if (state?.isSucces?.isNotEmpty() == true) {
+                showDialogSuccess = true
+            } else if (state?.isLoading == true) {
+                Log.d("Loading", "Loading")
+                showDialogLoading = true
+            }
+        }
+    }
+
+    if (googleSignState.loading) {
+        AlertLoading()
+    }
+
+    LaunchedEffect(key1 = googleSignState.success) {
+        scope.launch {
+            if (googleSignState.success != null) {
+                showDialogSuccess = true
+            }
+        }
+    }
+
+    if (showDialogLoading){
+        AlertLoading()
+    } else {
+        showDialogLoading = false
+    }
+
+    if (showDialogSuccess){
+        AlertSuccess(
+            onConfirm = {
+                navigateToHome()
+            },
+            onDismiss = {},
+            text = "Sign In Success"
+        )
+    }
 }
 
 @Composable
-private fun CustomOutlinedTextField(label: String, onValueChange: (String) -> Unit) {
-    val textState = remember { mutableStateOf("") }
-    val isLabelVisible = textState.value.isEmpty()
-
+fun CustomOutlinedTextField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    trailingIcon: @Composable () -> Unit,
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    isError: Boolean,
+    errorMessage: String,
+    hint: String = ""
+) {
+    val keyboardController = LocalSoftwareKeyboardController.current
     OutlinedTextField(
-        value = textState.value,
-        onValueChange = {
-            textState.value = it
-            onValueChange(it)
+        value = value,
+        onValueChange = onValueChange,
+        placeholder =  {
+            Text(
+                text = hint,
+                color = MaterialTheme.colorScheme.outline
+            )
         },
-        label = { if (isLabelVisible) Text (text = label) },
         keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
-        keyboardActions = KeyboardActions(onDone = { /* Handle action done if needed */ }),
-        modifier = Modifier.fillMaxWidth()
+        keyboardActions = KeyboardActions(onDone = {
+            keyboardController?.hide()
+        }),
+        modifier = Modifier.fillMaxWidth(),
+        trailingIcon = {
+            trailingIcon()
+        },
+        visualTransformation = visualTransformation,
+        textStyle = TextStyle(
+            color = Color.Black,
+            fontFamily = poppinsFontFamily,
+            fontSize = 14.sp
+        ),
+        isError = isError,
+        supportingText = {
+            if (isError) {
+                Text(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = errorMessage,
+                    color = MaterialTheme.colorScheme.error
+                )
+            }
+        }
     )
 }
 

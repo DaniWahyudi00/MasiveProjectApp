@@ -48,7 +48,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.masiveprojectapp.R
 import com.example.masiveprojectapp.screens.component.alertdialog.registration.AlertLoading
-import com.example.masiveprojectapp.screens.component.alertdialog.registration.AlertSuccessSignUp
+import com.example.masiveprojectapp.screens.component.alertdialog.registration.AlertSuccess
 import com.example.masiveprojectapp.ui.theme.poppinsFontFamily
 import kotlinx.coroutines.launch
 
@@ -247,11 +247,12 @@ fun SignUpScreen(
     }
 
     if (showDialogSuccess){
-        AlertSuccessSignUp(
+        AlertSuccess(
             onConfirm = {
                 navigateToLogin()
             },
-            onDismiss = {}
+            onDismiss = {},
+            text = "Account has been created"
         )
     }
 }
