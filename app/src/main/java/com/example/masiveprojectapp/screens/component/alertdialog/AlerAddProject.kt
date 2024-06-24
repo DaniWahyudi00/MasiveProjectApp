@@ -30,13 +30,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.masiveprojectapp.R
 import com.example.masiveprojectapp.ui.theme.poppinsFontFamily
 
 @Composable
 fun AlertSuccessAddProject(
     onDismiss: () -> Unit,
-    onConfirm: () -> Unit
+    onConfirm: () -> Unit,
+    navController : NavController
 ) {
     Dialog(
         onDismissRequest = onDismiss,
@@ -103,7 +106,7 @@ fun AlertSuccessAddProject(
                         .offset(y = (-20).dp)
                 ) {
                     Button(
-                        onClick = onConfirm,
+                        onClick = { navController.navigateUp() },
                         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5E8451)),
                         modifier = Modifier
                             .width(128.dp)
@@ -136,7 +139,8 @@ fun AlertSuccessAddProject(
 fun SuccessAddProjectPreview() {
     AlertSuccessAddProject(
         onDismiss = { /* Preview action */ },
-        onConfirm = { /* Preview action */ }
+        onConfirm = { /* Preview action */ },
+        navController = rememberNavController()
     )
 }
 

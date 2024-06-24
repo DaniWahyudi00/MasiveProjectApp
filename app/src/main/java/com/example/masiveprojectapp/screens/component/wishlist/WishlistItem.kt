@@ -43,12 +43,15 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.masiveprojectapp.R
+import com.example.masiveprojectapp.navigation.Screen
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 import com.example.masiveprojectapp.ui.theme.poppinsFontFamily
 
 @Composable
 fun WishlistItem(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navController: NavController,
+    onLihat: () -> Unit
 ) {
     Column(
 
@@ -208,7 +211,6 @@ fun WishlistScreenItem(
                 Text(
                     text = "Japan Modern Sakura",
                     color = Color(0xff111928),
-                    lineHeight = 8.33.em,
                     style = MaterialTheme.typography.titleMedium
                 )
                 Column(
@@ -326,7 +328,7 @@ fun WishlistScreenItem(
                     }
 
                     OutlinedButton(
-                        onClick = { },
+                        onClick = { navController.navigate(Screen.Checkout.route) },
                         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5E8451)),
                         modifier = Modifier
                             .width(114.dp)

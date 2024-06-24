@@ -17,33 +17,4 @@ fun MyProjectScreen(
         navController: NavController,
         modifier: Modifier = Modifier
     ) {
-        val context = LocalContext.current
-        val myproject = Myproject()
-
-        var title by remember {
-            mutableStateOf("")
-        }
-        var desc by remember {
-            mutableStateOf("")
-        }
-        MyProjectContent(
-            header = "Task Baru",
-            title = title,
-            onTitleChange = { title = it },
-            desc = desc,
-            onDescChange = { desc = it },
-            onBackClick = { navController.navigateUp() },
-            onSaveFileClick = {
-                myproject.fileName = title
-                myproject.data = desc
-                FileHelper.writeToFile(myproject, context)
-                Toast.makeText(
-                    context,
-                    "Menyimpan File " + myproject.fileName + "Berhasil",
-                    Toast.LENGTH_SHORT
-                ).show()
-                navController.navigateUp()
-            },
-            modifier = modifier
-        )
     }

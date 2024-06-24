@@ -30,12 +30,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.masiveprojectapp.R
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 import com.example.masiveprojectapp.ui.theme.poppinsFontFamily
 
 @Composable
 fun AlertChangeProfile(
+    navController: NavController,
     onDismiss: () -> Unit,
     onConfirm: () -> Unit
 ) {
@@ -104,7 +107,7 @@ fun AlertChangeProfile(
                         .offset(y = (-20).dp)
                 ) {
                     Button(
-                        onClick = onConfirm,
+                        onClick = { onDismiss },
                         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5E8451)),
                         modifier = Modifier
                             .width(128.dp)
@@ -133,18 +136,13 @@ fun AlertChangeProfile(
     }
 }
 
-@Composable
-fun AlertChangeProfile() {
-    AlertSuccessAddProject(
-        onDismiss = { /* Preview action */ },
-        onConfirm = { /* Preview action */ }
-    )
-}
-
 @Preview(showBackground = true)
 @Composable
 fun Preview(){
     MasiveProjectAppTheme {
-        AlertChangeProfile()
+        AlertChangeProfile(        onDismiss = { /* Preview action */ },
+            onConfirm = { /* Preview action */ },
+            navController = rememberNavController()
+        )
     }
 }

@@ -321,7 +321,6 @@ fun UserDetailItem(
                 .fillMaxWidth()
         ) {
             Button(modifier = Modifier
-                .clickable { openDialog.value = true }
                 .padding(
                     top = 16.dp,
                     end = 10.dp,
@@ -329,18 +328,17 @@ fun UserDetailItem(
                     bottom = 4.dp
                 )
                 .width(100.dp)
-                .height(32.dp)
-                .clickable { },
+                .height(32.dp),
                 shape = RoundedCornerShape(4.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = Color.White),
                 border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary),
-                onClick = { navController.navigate(Screen.UserProfile.route) }
+                onClick = { openDialog.value = true }
             ) {
                 Text(text = "Save", color = MaterialTheme.colorScheme.primary)
             }
         }
-        if (openDialog.value) {
-            AlertChangeProfile(onDismiss = {}, onConfirm = { openDialog.value = false })
+        if (openDialog.value){
+            AlertChangeProfile(onDismiss = { openDialog.value = false}, navController = rememberNavController(), onConfirm = {navController.navigateUp()})
         }
     }
 

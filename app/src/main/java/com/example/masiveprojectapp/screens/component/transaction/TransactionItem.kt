@@ -58,15 +58,15 @@ fun TransactionScreenItem2(
 ) {
     Column(
         modifier = Modifier
-            .background(color = Color.White)
             .clip(RoundedCornerShape(8.dp))
+            .background(color = Color.White)
             .fillMaxWidth()
 
     ) {
         Row(
             verticalAlignment = Alignment.Top,
             modifier = Modifier
-                .padding(top = 6.dp)
+                .padding(top = 6.dp, start = 10.dp, end = 10.dp)
                 .fillMaxWidth()){
             Text(
                 text = "Allisa Gerand",
@@ -193,15 +193,17 @@ fun TransactionScreenItem(
             verticalAlignment = Alignment.Bottom,
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(top = 10.dp)
         ) {
             Text(
                 text = "Allisa Gerand",
                 color = Color(0xff111928),
-                lineHeight = 12.5.em,
                 style = TextStyle(
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Medium
-                )
+                ),
+                modifier = modifier
+                    .padding (start = 10.dp),
             )
             Text(
                 text = "Selesai",
@@ -224,13 +226,14 @@ fun TransactionScreenItem(
             Box(
                 modifier = Modifier
                     .width(150.dp)
-                    .height(140.dp)
+                    .height(100.dp)
             ) {
 
                 Image(
                     painter = painterResource(id = R.drawable.rumah1),
                     contentDescription = null,
-                    modifier = Modifier.matchParentSize(),
+                    modifier = Modifier.matchParentSize()
+                        .requiredHeight(100.dp),
                     alignment = Alignment.Center,
                     contentScale = ContentScale.Crop                 )
             }
@@ -240,7 +243,6 @@ fun TransactionScreenItem(
                 Text(
                     text = "Japan Modern Sakura",
                     color = Color(0xff111928),
-                    lineHeight = 8.33.em,
                     style = MaterialTheme.typography.titleMedium
                 )
                 Column(
@@ -332,7 +334,7 @@ fun TransactionScreenItem(
                 OutlinedButton(
                     onClick = onLihat,
                     modifier = Modifier
-                        .align(Alignment.Start)
+                        .align(Alignment.End)
                         .wrapContentWidth()
                         .requiredHeight(32.dp),
                     border = BorderStroke(1.dp, Color(0xFF5E8451)),

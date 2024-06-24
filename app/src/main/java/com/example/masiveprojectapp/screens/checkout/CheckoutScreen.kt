@@ -17,12 +17,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.masiveprojectapp.screens.component.transaction.CheckOutItem
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CheckOutScreen(){
+fun CheckOutScreen(
+    navController: NavController,
+    navigateBack: () -> Unit,
+    naviGateToContact: () -> Unit
+){
     Scaffold(
         topBar = {
             TopAppBar(
@@ -45,7 +51,7 @@ fun CheckOutScreen(){
                         contentDescription = "Arrow Back",
                         modifier = Modifier
                             .clickable {
-
+                                navigateBack()
                             }
                     )
                 }
@@ -53,7 +59,7 @@ fun CheckOutScreen(){
         }
     ) { innerPadding ->
         Column(modifier = Modifier.padding(innerPadding)) {
-            CheckOutItem()
+            CheckOutItem(modifier = Modifier, navController = navController, navigateToContact = {naviGateToContact})
         }
     }
 }
@@ -62,6 +68,6 @@ fun CheckOutScreen(){
 @Composable
 private fun CheckoutScreenPreview() {
     MasiveProjectAppTheme {
-        CheckOutScreen()
+        CheckOutScreen(navController = rememberNavController(), navigateBack = {}, naviGateToContact = {})
     }
 }

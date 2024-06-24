@@ -34,15 +34,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.toColorInt
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.masiveprojectapp.R
 import com.example.masiveprojectapp.screens.component.SearchBar
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 
 @Composable
-fun DetailArsitek(modifier: Modifier = Modifier) {
+fun DetailArsitek(modifier: Modifier = Modifier, navController: NavController) {
     Scaffold(
         topBar = {
-            SearchBar()
+            SearchBar(navController)
         }
     ) { innerPadding ->
         Box(
@@ -320,6 +322,6 @@ private fun ProjectItemPreview() {
 @Composable
 private fun DetailArsitekPreview() {
     MasiveProjectAppTheme(dynamicColor = false) {
-        DetailArsitek()
+        DetailArsitek(navController = rememberNavController())
     }
 }

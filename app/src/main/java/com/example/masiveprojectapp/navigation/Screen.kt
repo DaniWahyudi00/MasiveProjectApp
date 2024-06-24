@@ -12,6 +12,8 @@ sealed class Screen(val route: String) {
     object UserProfile : Screen ("userprofile")
     object Checkout : Screen ("checkout")
     object DetailProduct : Screen ("detailproduct")
+    object Address : Screen ("shippingaddress")
+    object Contact : Screen ("contactinformation")
     object Forum : Screen("Forum")
     object HelpCenter : Screen("HelpCenter")
     object Logout : Screen("Logout")
@@ -22,4 +24,5 @@ sealed class Screen(val route: String) {
     object DetailDesain : Screen("detaildesain")
     object DetailArsitek : Screen("detailarsitek")
     object AddProject : Screen("addmyproject")
+    object Wishlist : Screen ("wishlist")
 }

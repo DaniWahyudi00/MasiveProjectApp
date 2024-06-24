@@ -34,52 +34,6 @@ fun MyProjectContent(
     onSaveFileClick: () -> Unit = {},
     readOnly: Boolean = false,
 ) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(text = header) },
-                navigationIcon = {
-                    IconButton(onClick = onBackClick) {
-                        Icon(
-                            imageVector = Icons.Filled.ArrowBack,
-                            contentDescription = "Arrow Back"
-                        )
-                    }
-                }
-            )
-        }
-    ) { innerPadding ->
-        Column(
-            modifier = modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-                .padding(16.dp)
-        ) {
-            OutlinedTextFieldStyle(
-                value = title, onValueChange = onTitleChange,
-                label = "Tugas",
-                readOnly = readOnly,
-                modifier = Modifier.weight(1f)
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            OutlinedTextFieldStyle(
-                value = desc,
-                onValueChange = onDescChange,
-                label = "Deskripsi",
-                readOnly = readOnly,
-                modifier = Modifier.weight(1f)
-            )
-            Spacer(modifier = Modifier.height(24.dp))
-            if (!readOnly)
-                Button(
-                    onClick = onSaveFileClick,
-                    modifier = Modifier.fillMaxWidth(),
-                    shape = MaterialTheme.shapes.medium
-                ) {
-                    Text(text = "Simpan")
-                }
-        }
-    }
 }
 
 @Composable
