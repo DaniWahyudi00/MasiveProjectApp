@@ -35,11 +35,19 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.toColorInt
 import com.example.masiveprojectapp.R
+import com.example.masiveprojectapp.data.local.datadummy
+import com.example.masiveprojectapp.model.DesainNew
 import com.example.masiveprojectapp.screens.component.SearchBar
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 
 @Composable
-fun DetailDesain(modifier: Modifier = Modifier) {
+fun DetailDesain(
+    modifier: Modifier = Modifier,
+    id: Int,
+) {
+
+    val desain = datadummy.designNew
+
     Scaffold(
         topBar = {
             SearchBar()
@@ -57,7 +65,7 @@ fun DetailDesain(modifier: Modifier = Modifier) {
                     )
             ) {
                 Image(
-                    painter = painterResource(R.drawable.rumah1),
+                    painter = painterResource(desain[id].image),
                     contentDescription = "Desain",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
@@ -65,11 +73,12 @@ fun DetailDesain(modifier: Modifier = Modifier) {
                             start = 16.dp,
                             end = 16.dp,
                         )
+                        .height(250.dp)
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(10.dp))
                 )
                 Text(
-                    text = "Japan Modern Sakura",
+                    text = desain[id].name,
                     modifier = Modifier.padding(
                         top = 16.dp,
                         start = 16.dp,
@@ -78,7 +87,7 @@ fun DetailDesain(modifier: Modifier = Modifier) {
                     fontWeight = FontWeight.SemiBold
                 )
                 Text(
-                    text = "Interior Designer",
+                    text = desain[id].designBy,
                     modifier = Modifier.padding(
                         top = 6.dp,
                         start = 16.dp,
@@ -131,8 +140,7 @@ fun DetailDesain(modifier: Modifier = Modifier) {
                     )
                 }
                 Text(
-                    text = """
-                        Japan Modern Sakura adalah desain arsitektur yang memadukan elemen tradisional Jepang dan modern minimalis. Dengan taman sakura sebagai pusat, penggunaan material alami seperti kayu dan batu, serta jendela besar yang memaksimalkan cahaya alami, bangunan ini menciptakan suasana harmonis dan elegan, menggabungkan estetika klasik Jepang dengan fungsionalitas modern.                """.trimIndent(),
+                    text = desain[id].description,
                     fontSize = 12.sp,
                     modifier = Modifier.padding(
                         start = 16.dp,
@@ -140,28 +148,9 @@ fun DetailDesain(modifier: Modifier = Modifier) {
                     )
                 )
                 Text(
-                    text = "Project (10)",
-                    modifier = Modifier.padding(
-                        top = 20.dp,
-                        start = 16.dp,
-                        end = 16.dp,
-                    ),
-                    fontWeight = FontWeight.SemiBold
-                )
-                LazyRow(
-                    modifier = Modifier
-                        .padding(
-                            start = 16.dp,
-                            bottom = 25.dp
-                        )
-                ) {
-                    items(10){
-                        ProjectItem()
-                    }
-                }
-                Text(
                     text = "Detail",
                     modifier = Modifier.padding(
+                        top = 32.dp,
                         start = 16.dp,
                     ),
                     fontWeight = FontWeight.SemiBold
@@ -232,74 +221,13 @@ fun DetailDesain(modifier: Modifier = Modifier) {
     }
 }
 
-@Composable
-fun ProjectItem(modifier: Modifier = Modifier) {
-    Box(
-        modifier = Modifier
-            .width(170.dp)
-    ){
-        Column(
-            modifier = Modifier.padding(
-                top = 4.dp,
-                end = 8.dp,
-                bottom = 8.dp
-            )
-        ) {
-            Image(
-                painter = painterResource(R.drawable.rumah1),
-                contentDescription = "Project",
-                modifier = Modifier.clip(RoundedCornerShape(8.dp))
-            )
-            Text(
-                text = "Modern House White",
-                fontSize = 12.sp
-            )
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(
-                    imageVector = Icons.Default.LocationOn,
-                    contentDescription = "Location",
-                    modifier = Modifier
-                        .offset(y = (-1).dp)
-                        .size(12.dp),
-                    tint = Color("#888888".toColorInt())
-                )
-                Text(
-                    text = "Bali",
-                    fontSize = 12.sp,
-                    color = Color("#888888".toColorInt())
-                )
-            }
-            Button(
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.surface
-                ),
-                modifier = Modifier
-                    .padding(top = 8.dp, bottom = 16.dp)
-                    .height(33.dp),
-                shape = RoundedCornerShape(8.dp),
-                onClick = {}
-            ) {
-                Text(
-                    text = "Detail",
-                    modifier = Modifier.offset(y = -2.dp)
-                )
-            }
-        }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun ProjectItemPreview() {
-    MasiveProjectAppTheme(dynamicColor = false) {
-        ProjectItem()
-    }
-}
 
 @Preview(showBackground = true)
 @Composable
 private fun DetailDesainPreview() {
     MasiveProjectAppTheme(dynamicColor = false) {
-        DetailDesain()
+        DetailDesain(
+            id = 0
+        )
     }
 }

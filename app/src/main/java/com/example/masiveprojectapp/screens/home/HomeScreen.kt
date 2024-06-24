@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -36,11 +35,12 @@ import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 fun HomeScreen(
     navigateToSeeAll: (String) -> Unit,
     navigateToDetailArsitek: (Int) -> Unit,
-    navigateToDetailDesain: () -> Unit,
+    navigateToDetailDesain: (Int) -> Unit,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
 
-    val dataDummy = datadummy.arsiteksNew
+    val dataDummyDesain = datadummy.designNew
+    val dataDummyArsitek = datadummy.arsiteksNew
     val displayName by viewModel.displayName.collectAsState()
 
     Scaffold(
@@ -83,11 +83,12 @@ fun HomeScreen(
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                         columns = GridCells.Adaptive(161.dp),
                     ) {
-                        items(2){
+                        itemsIndexed(dataDummyDesain.take(2)) { index, item ->
                             DesainItem(
+                                desain = item,
                                 modifier = Modifier
                                     .clickable {
-                                        navigateToDetailDesain()
+                                        navigateToDetailDesain(index)
                                     }
                             )
                         }
@@ -111,7 +112,7 @@ fun HomeScreen(
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                         columns = GridCells.Adaptive(161.dp),
                     ) {
-                        itemsIndexed(dataDummy.take(2)) { index, item ->
+                        itemsIndexed(dataDummyArsitek.take(2)) { index, item ->
                             ArsitekItem2(
                                 data = item,
                                 modifier = Modifier

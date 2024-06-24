@@ -19,7 +19,9 @@ sealed class Screen(val route: String) {
     object SignUp : Screen("signup")
     object Welcome : Screen("welcome")
     object ForgotPassword : Screen("forgotpassword")
-    object DetailDesain : Screen("detaildesain")
+    object DetailDesain : Screen("home1/{id}") {
+        fun createRoute(id: Int) = "home1/$id"
+    }
     object DetailArsitek : Screen("home/{id}") {
         fun createRoute(id: Int) = "home/$id"
     }

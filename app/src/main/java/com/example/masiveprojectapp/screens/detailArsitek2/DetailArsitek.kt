@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -36,6 +37,7 @@ import androidx.compose.ui.unit.sp
 import androidx.core.graphics.toColorInt
 import com.example.masiveprojectapp.R
 import com.example.masiveprojectapp.data.local.datadummy
+import com.example.masiveprojectapp.model.DesainNew
 import com.example.masiveprojectapp.screens.component.SearchBar
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 
@@ -47,6 +49,7 @@ fun DetailArsitek(
 ) {
 
     val arsitek = datadummy.arsiteksNew
+    val desain = datadummy.designNew
 
     Scaffold(
         topBar = {
@@ -155,6 +158,7 @@ fun DetailArsitek(
                         top = 20.dp,
                         start = 16.dp,
                         end = 16.dp,
+                        bottom = 10.dp
                     ),
                     fontWeight = FontWeight.SemiBold
                 )
@@ -165,8 +169,10 @@ fun DetailArsitek(
                             bottom = 25.dp
                         )
                 ) {
-                    items(10){
-                        com.example.masiveprojectapp.screens.detailDesain.ProjectItem()
+                    items(desain.size) {
+                        ProjectItem(
+                            desain = desain[it]
+                        )
                     }
                 }
                 Text(
@@ -261,7 +267,9 @@ fun DetailArsitek(
 }
 
 @Composable
-fun ProjectItem(modifier: Modifier = Modifier) {
+fun ProjectItem(
+    desain: DesainNew
+) {
     Box(
         modifier = Modifier
             .width(170.dp)
@@ -274,44 +282,13 @@ fun ProjectItem(modifier: Modifier = Modifier) {
             )
         ) {
             Image(
-                painter = painterResource(R.drawable.rumah1),
+                painter = painterResource(desain.image),
                 contentDescription = "Project",
-                modifier = Modifier.clip(RoundedCornerShape(8.dp))
-            )
-            Text(
-                text = "Modern House White",
-                fontSize = 12.sp
-            )
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(
-                    imageVector = Icons.Default.LocationOn,
-                    contentDescription = "Location",
-                    modifier = Modifier
-                        .offset(y = (-1).dp)
-                        .size(12.dp),
-                    tint = Color("#888888".toColorInt())
-                )
-                Text(
-                    text = "Bali",
-                    fontSize = 12.sp,
-                    color = Color("#888888".toColorInt())
-                )
-            }
-            Button(
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.surface
-                ),
+                contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .padding(top = 8.dp, bottom = 16.dp)
-                    .height(33.dp),
-                shape = RoundedCornerShape(8.dp),
-                onClick = {}
-            ) {
-                Text(
-                    text = "Detail",
-                    modifier = Modifier.offset(y = -2.dp)
-                )
-            }
+                    .height(100.dp)
+                    .clip(RoundedCornerShape(8.dp))
+            )
         }
     }
 }
@@ -320,7 +297,18 @@ fun ProjectItem(modifier: Modifier = Modifier) {
 @Composable
 private fun ProjectItemPreview() {
     MasiveProjectAppTheme(dynamicColor = false) {
-        ProjectItem()
+        ProjectItem(
+            DesainNew(
+                image = R.drawable.rumah1,
+                name = "Modern House White",
+                designBy = "Bali",
+                description = "Modern House White",
+                rating = "5/5",
+                review = "30",
+                nohp = "+628574701234",
+                hargaDesain = "Rp 30.000.000,00"
+            )
+        )
     }
 }
 

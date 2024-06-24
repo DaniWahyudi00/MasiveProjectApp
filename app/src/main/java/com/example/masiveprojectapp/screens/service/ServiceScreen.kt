@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
@@ -47,10 +46,11 @@ import kotlinx.coroutines.launch
 @Composable
 fun ServiceScreen(
     navigateToDetailArsitek: (Int) -> Unit,
-    navigateToDetailDesain: () -> Unit,
+    navigateToDetailDesain: (Int) -> Unit,
 ) {
 
-    val dataDummy = datadummy.arsiteksNew
+    val dataDummyDesain = datadummy.designNew
+    val dataDummyArsitek = datadummy.arsiteksNew
 
     Scaffold(
         topBar = {
@@ -148,7 +148,7 @@ fun ServiceScreen(
                                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                                 columns = GridCells.Adaptive(161.dp),
                             ) {
-                                itemsIndexed(dataDummy) { index, item ->
+                                itemsIndexed(dataDummyArsitek) { index, item ->
                                     ArsitekItem2(
                                         data = item,
                                         modifier = Modifier
@@ -172,11 +172,12 @@ fun ServiceScreen(
                                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                                 columns = GridCells.Adaptive(161.dp),
                             ) {
-                                items(20){
+                                itemsIndexed(dataDummyDesain) { index, item ->
                                     DesainItem(
+                                        desain = item,
                                         modifier = Modifier
                                             .clickable {
-                                                navigateToDetailDesain()
+                                                navigateToDetailDesain(index)
                                             }
                                     )
                                 }
