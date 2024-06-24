@@ -35,11 +35,19 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.toColorInt
 import com.example.masiveprojectapp.R
+import com.example.masiveprojectapp.data.local.datadummy
 import com.example.masiveprojectapp.screens.component.SearchBar
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 
 @Composable
-fun DetailArsitek(modifier: Modifier = Modifier) {
+fun DetailArsitek(
+    modifier: Modifier = Modifier,
+    id: Int,
+    navigateBack: () -> Unit
+) {
+
+    val arsitek = datadummy.arsiteksNew
+
     Scaffold(
         topBar = {
             SearchBar()
@@ -57,7 +65,7 @@ fun DetailArsitek(modifier: Modifier = Modifier) {
                     )
             ) {
                 Image(
-                    painter = painterResource(R.drawable.arsitel_cewe1),
+                    painter = painterResource(arsitek[id].image),
                     contentDescription = "Arsitek",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
@@ -70,7 +78,7 @@ fun DetailArsitek(modifier: Modifier = Modifier) {
                         .clip(RoundedCornerShape(10.dp))
                 )
                 Text(
-                    text = "Allisa Gerand",
+                    text = arsitek[id].name,
                     modifier = Modifier.padding(
                         top = 16.dp,
                         start = 16.dp,
@@ -185,7 +193,7 @@ fun DetailArsitek(modifier: Modifier = Modifier) {
                             fontWeight = FontWeight.SemiBold
                         )
                         Text(
-                            text = "+62-8123-4567-8901",
+                            text = arsitek[id].nohp,
                             modifier = Modifier.padding(
                                 start = 16.dp,
                                 end = 16.dp,
@@ -205,7 +213,7 @@ fun DetailArsitek(modifier: Modifier = Modifier) {
                             fontWeight = FontWeight.SemiBold
                         )
                         Text(
-                            text = "Rp 30.000.000,00",
+                            text = arsitek[id].hargajasa,
                             modifier = Modifier.padding(
                                 start = 16.dp,
                                 end = 16.dp,
@@ -320,6 +328,9 @@ private fun ProjectItemPreview() {
 @Composable
 private fun DetailArsitekPreview() {
     MasiveProjectAppTheme(dynamicColor = false) {
-        DetailArsitek()
+        DetailArsitek(
+            id = 0,
+            navigateBack = {}
+        )
     }
 }

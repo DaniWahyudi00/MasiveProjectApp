@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -33,6 +35,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.masiveprojectapp.data.local.datadummy
 import com.example.masiveprojectapp.screens.component.ArsitekItem2
 import com.example.masiveprojectapp.screens.component.DesainItem
 import com.example.masiveprojectapp.screens.component.SearchBar
@@ -43,8 +46,12 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ServiceScreen(
-    navigateToDetail: (String) -> Unit
+    navigateToDetailArsitek: (Int) -> Unit,
+    navigateToDetailDesain: () -> Unit,
 ) {
+
+    val dataDummy = datadummy.arsiteksNew
+
     Scaffold(
         topBar = {
             Box(
@@ -141,11 +148,12 @@ fun ServiceScreen(
                                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                                 columns = GridCells.Adaptive(161.dp),
                             ) {
-                                items(20){
+                                itemsIndexed(dataDummy) { index, item ->
                                     ArsitekItem2(
+                                        data = item,
                                         modifier = Modifier
                                             .clickable {
-                                                navigateToDetail("arsitek")
+                                                navigateToDetailArsitek(index)
                                             }
                                     )
                                 }
@@ -168,7 +176,7 @@ fun ServiceScreen(
                                     DesainItem(
                                         modifier = Modifier
                                             .clickable {
-                                                navigateToDetail("desain")
+                                                navigateToDetailDesain()
                                             }
                                     )
                                 }
@@ -186,7 +194,8 @@ fun ServiceScreen(
 private fun HomeScreenPreview() {
     MasiveProjectAppTheme(dynamicColor = false) {
         ServiceScreen(
-            navigateToDetail = {}
+            navigateToDetailArsitek = {},
+            navigateToDetailDesain = {}
         )
     }
 }

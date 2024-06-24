@@ -10,10 +10,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.masiveprojectapp.navigation.Screen
 import com.example.masiveprojectapp.screens.addmyproject.AddMyProjectScreen
 import com.example.masiveprojectapp.screens.arsitek.ArsitekScreen
@@ -59,7 +61,7 @@ fun BuilderHomeApp(
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Screen.Welcome.route,
+            startDestination = Screen.Home.route,
             modifier = Modifier.padding(innerPadding),
             enterTransition = { fadeIn(tween(500)) },
             exitTransition = { fadeOut(tween(500)) }
@@ -106,29 +108,38 @@ fun BuilderHomeApp(
                             navController.navigate(Screen.Arsitek.route)
                         }
                     },
-                    navigateToDetail = {
-                        if (it == "desain"){
-                            navController.navigate(Screen.DetailDesain.route)
-                        } else {
-                            navController.navigate(Screen.DetailArsitek.route)
-                        }
+                    navigateToDetailDesain = {
+
+                    },
+                    navigateToDetailArsitek = {
+                        navController.navigate(Screen.DetailArsitek.createRoute(it))
                     }
                 )
             }
             composable(route = Screen.DetailDesain.route){
                 DetailDesain()
             }
-            composable(route = Screen.DetailArsitek.route){
-                DetailArsitek()
+            composable(
+                route = Screen.DetailArsitek.route,
+                arguments = listOf(navArgument("id") {
+                    type = NavType.IntType
+                })
+            ){
+                val id = it.arguments?.getInt("id") ?: 0
+                DetailArsitek(
+                    id = id,
+                    navigateBack = {
+                        navController.navigateUp()
+                    }
+                )
             }
             composable(route = Screen.Service.route) {
                 ServiceScreen(
-                    navigateToDetail = {
-                       if (it == "desain") {
-                           navController.navigate(Screen.DetailDesain.route)
-                       } else {
-                           navController.navigate(Screen.DetailArsitek.route)
-                       }
+                    navigateToDetailArsitek = {
+                        navController.navigate(Screen.DetailArsitek.createRoute(it))
+                    },
+                    navigateToDetailDesain = {
+
                     }
                 )
             }
@@ -169,7 +180,7 @@ fun BuilderHomeApp(
                         navController.navigateUp()
                     },
                     navigateToDetail = {
-                        navController.navigate(Screen.DetailArsitek.route)
+                        navController.navigate(Screen.DetailArsitek.createRoute(it))
                     }
                 )
             }

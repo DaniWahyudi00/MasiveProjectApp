@@ -20,6 +20,8 @@ sealed class Screen(val route: String) {
     object Welcome : Screen("welcome")
     object ForgotPassword : Screen("forgotpassword")
     object DetailDesain : Screen("detaildesain")
-    object DetailArsitek : Screen("detailarsitek")
+    object DetailArsitek : Screen("home/{id}") {
+        fun createRoute(id: Int) = "home/$id"
+    }
     object AddProject : Screen("addmyproject")
 }

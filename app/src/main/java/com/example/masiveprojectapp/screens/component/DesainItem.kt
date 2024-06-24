@@ -42,14 +42,15 @@ fun DesainItem(modifier: Modifier = Modifier) {
         )
         Text(
             text = "Japan Modern Sakura",
-            fontSize = 12.sp,
+            fontSize = 13.sp,
+            maxLines = 1,
             modifier = Modifier
                 .padding(top = 8.dp, start = 8.dp),
             fontWeight = FontWeight.SemiBold
         )
         Text(
             text = "design by indah NW",
-            fontSize = 11.sp,
+            fontSize = 12.sp,
             fontWeight = FontWeight.Light,
             modifier = Modifier
                 .padding(start = 8.dp)
@@ -61,19 +62,19 @@ fun DesainItem(modifier: Modifier = Modifier) {
             Icon(
                 modifier = Modifier
                     .padding(start = 8.dp)
-                    .size(24.dp),
+                    .size(26.dp),
                 painter = painterResource(R.drawable.icon_arrows_expand),
                 contentDescription = "Arrows Expand",
             )
             Column(modifier = Modifier.padding(start = 8.dp)) {
                 Text(
                     text = "Lahan Minimal",
-                    fontSize = 10.sp,
+                    fontSize = 12.sp,
                     fontWeight = FontWeight.Light
                 )
                 Text(
                     text = "16 m x 7 m",
-                    fontSize = 10.sp,
+                    fontSize = 12.sp,
                 )
             }
         }
@@ -84,19 +85,19 @@ fun DesainItem(modifier: Modifier = Modifier) {
             Icon(
                 modifier = Modifier
                     .padding(start = 8.dp)
-                    .size(24.dp),
+                    .size(26.dp),
                 painter = painterResource(R.drawable.icon_cash),
                 contentDescription = "Cash",
             )
             Column(modifier = Modifier.padding(start = 8.dp)) {
                 Text(
                     text = "Biaya Konstruksi",
-                    fontSize = 10.sp,
+                    fontSize = 12.sp,
                     fontWeight = FontWeight.Light
                 )
                 Text(
                     text = "Rp 5.000.000,00",
-                    fontSize = 10.sp,
+                    fontSize = 12.sp,
                 )
             }
         }

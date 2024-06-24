@@ -1,7 +1,9 @@
 package com.example.masiveprojectapp.data.local
 
+import androidx.compose.ui.res.painterResource
 import com.example.masiveprojectapp.R
 import com.example.masiveprojectapp.model.Arsitek
+import com.example.masiveprojectapp.model.ArsitekNew
 import com.example.masiveprojectapp.model.DesainRumah
 import com.example.masiveprojectapp.model.DetailProject
 import com.example.masiveprojectapp.model.Project
@@ -12,6 +14,101 @@ import com.example.masiveprojectapp.navigation.Screen
 
 
 object datadummy {
+
+    val arsiteksNew = listOf(
+        ArsitekNew(
+            image = R.drawable.arsitek1,
+            name = "Allisa Gerand",
+            description = "Halo, saya merupakan seorang arsitek yang sudah berpengalaman menyelesaikan beberapa project Pembuatan arsitektur rumah. Saat ini, saya sudah membuat banyak kebutuhan klien, mulai dari kebutuhan arsitektur. Saya siap melayani Anda dengan memberikan hasil yang terbaik. Segera konsultasikan kebutuhan Anda!",
+            nohp = "+628574701234",
+            hargajasa = "Rp 30.000.000,00",
+            rating = "5/5",
+            review = "30",
+        ),
+        ArsitekNew(
+            image = R.drawable.arsitek2,
+            name = "Geraldi",
+            description = "Halo, saya merupakan seorang arsitek yang sudah berpengalaman menyelesaikan beberapa project Pembuatan arsitektur rumah. Saat ini, saya sudah membuat banyak kebutuhan klien, mulai dari kebutuhan arsitektur. Saya siap melayani Anda dengan memberikan hasil yang terbaik. Segera konsultasikan kebutuhan Anda!",
+            nohp = "+628135246473",
+            hargajasa = "Rp 20.000.000,00",
+            rating = "5/5",
+            review = "30",
+        ),
+        ArsitekNew(
+            image = R.drawable.arsitek3,
+            name = "Ava Marie",
+            description = "Halo, saya merupakan seorang arsitek yang sudah berpengalaman menyelesaikan beberapa project Pembuatan arsitektur rumah. Saat ini, saya sudah membuat banyak kebutuhan klien, mulai dari kebutuhan arsitektur. Saya siap melayani Anda dengan memberikan hasil yang terbaik. Segera konsultasikan kebutuhan Anda!",
+            nohp = "+628574701234",
+            hargajasa = "Rp 7.000.000,00",
+            rating = "5/5",
+            review = "30",
+        ),
+        ArsitekNew(
+            image = R.drawable.arsitek4,
+            name = "Charlotte Louise",
+            description = "Halo, saya merupakan seorang arsitek yang sudah berpengalaman menyelesaikan beberapa project Pembuatan arsitektur rumah. Saat ini, saya sudah membuat banyak kebutuhan klien, mulai dari kebutuhan arsitektur. Saya siap melayani Anda dengan memberikan hasil yang terbaik. Segera konsultasikan kebutuhan Anda!",
+            nohp = "+628574701234",
+            hargajasa = "Rp 6.000.000,00",
+            rating = "5/5",
+            review = "30",
+        ),
+        ArsitekNew(
+            image = R.drawable.arsitek5,
+            name = "Amelia Claire",
+            description = "Halo, saya merupakan seorang arsitek yang sudah berpengalaman menyelesaikan beberapa project Pembuatan arsitektur rumah. Saat ini, saya sudah membuat banyak kebutuhan klien, mulai dari kebutuhan arsitektur. Saya siap melayani Anda dengan memberikan hasil yang terbaik. Segera konsultasikan kebutuhan Anda!",
+            nohp = "+628574701234",
+            hargajasa = "Rp 5.000.000,00",
+            rating = "5/5",
+            review = "30",
+        ),
+        ArsitekNew(
+            image = R.drawable.arsitek6,
+            name = "James Robert",
+            description = "Halo, saya merupakan seorang arsitek yang sudah berpengalaman menyelesaikan beberapa project Pembuatan arsitektur rumah. Saat ini, saya sudah membuat banyak kebutuhan klien, mulai dari kebutuhan arsitektur. Saya siap melayani Anda dengan memberikan hasil yang terbaik. Segera konsultasikan kebutuhan Anda!",
+            nohp = "+628574701234",
+            hargajasa = "Rp 22.000.000,00",
+            rating = "5/5",
+            review = "30",
+        ),
+        ArsitekNew(
+            image = R.drawable.arsitek7,
+            name = "Oliver John",
+            description = "Halo, saya merupakan seorang arsitek yang sudah berpengalaman menyelesaikan beberapa project Pembuatan arsitektur rumah. Saat ini, saya sudah membuat banyak kebutuhan klien, mulai dari kebutuhan arsitektur. Saya siap melayani Anda dengan memberikan hasil yang terbaik. Segera konsultasikan kebutuhan Anda!",
+            nohp = "+628574701234",
+            hargajasa = "Rp 10.000.000,00",
+            rating = "5/5",
+            review = "30",
+        ),
+        ArsitekNew(
+            image = R.drawable.arsitek8,
+            name = "Benjamin Thomas",
+            description = "Halo, saya merupakan seorang arsitek yang sudah berpengalaman menyelesaikan beberapa project Pembuatan arsitektur rumah. Saat ini, saya sudah membuat banyak kebutuhan klien, mulai dari kebutuhan arsitektur. Saya siap melayani Anda dengan memberikan hasil yang terbaik. Segera konsultasikan kebutuhan Anda!",
+            nohp = "+628574701234",
+            hargajasa = "Rp 34.000.000,00",
+            rating = "5/5",
+            review = "30",
+        ),
+        ArsitekNew(
+            image = R.drawable.arsitek9,
+            name = "Elijah Charles",
+            description = "Halo, saya merupakan seorang arsitek yang sudah berpengalaman menyelesaikan beberapa project Pembuatan arsitektur rumah. Saat ini, saya sudah membuat banyak kebutuhan klien, mulai dari kebutuhan arsitektur. Saya siap melayani Anda dengan memberikan hasil yang terbaik. Segera konsultasikan kebutuhan Anda!",
+            nohp = "+628574701234",
+            hargajasa = "Rp 56.000.000,00",
+            rating = "5/5",
+            review = "30",
+        ),
+        ArsitekNew(
+            image = R.drawable.arsitek10,
+            name = "Ethan Daniel",
+            description = "Halo, saya merupakan seorang arsitek yang sudah berpengalaman menyelesaikan beberapa project Pembuatan arsitektur rumah. Saat ini, saya sudah membuat banyak kebutuhan klien, mulai dari kebutuhan arsitektur. Saya siap melayani Anda dengan memberikan hasil yang terbaik. Segera konsultasikan kebutuhan Anda!",
+            nohp = "+628574701234",
+            hargajasa = "Rp 15.000.000,00",
+            rating = "5/5",
+            review = "30",
+        ),
+    )
+
+    // Arsitek //
 
     val Arsiteks = listOf(
         Arsitek(
@@ -40,6 +137,7 @@ object datadummy {
         )
 
     )
+
 
     val DesainRumahs = listOf(
         DesainRumah(
