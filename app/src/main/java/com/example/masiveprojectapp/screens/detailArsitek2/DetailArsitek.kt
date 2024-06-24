@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -37,11 +38,22 @@ import androidx.core.graphics.toColorInt
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.masiveprojectapp.R
+import com.example.masiveprojectapp.data.local.datadummy
+import com.example.masiveprojectapp.model.DesainNew
 import com.example.masiveprojectapp.screens.component.SearchBar
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 
 @Composable
-fun DetailArsitek(modifier: Modifier = Modifier, navController: NavController) {
+
+fun DetailArsitek(
+    modifier: Modifier = Modifier,
+    id: Int,
+    navigateBack: () -> Unit
+) {
+
+    val arsitek = datadummy.arsiteksNew
+    val desain = datadummy.designNew
+
     Scaffold(
         topBar = {
             SearchBar(navController)
@@ -59,7 +71,7 @@ fun DetailArsitek(modifier: Modifier = Modifier, navController: NavController) {
                     )
             ) {
                 Image(
-                    painter = painterResource(R.drawable.arsitel_cewe1),
+                    painter = painterResource(arsitek[id].image),
                     contentDescription = "Arsitek",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
@@ -72,7 +84,7 @@ fun DetailArsitek(modifier: Modifier = Modifier, navController: NavController) {
                         .clip(RoundedCornerShape(10.dp))
                 )
                 Text(
-                    text = "Allisa Gerand",
+                    text = arsitek[id].name,
                     modifier = Modifier.padding(
                         top = 16.dp,
                         start = 16.dp,
@@ -149,6 +161,7 @@ fun DetailArsitek(modifier: Modifier = Modifier, navController: NavController) {
                         top = 20.dp,
                         start = 16.dp,
                         end = 16.dp,
+                        bottom = 10.dp
                     ),
                     fontWeight = FontWeight.SemiBold
                 )
@@ -159,8 +172,10 @@ fun DetailArsitek(modifier: Modifier = Modifier, navController: NavController) {
                             bottom = 25.dp
                         )
                 ) {
-                    items(10){
-                        com.example.masiveprojectapp.screens.detailDesain.ProjectItem()
+                    items(desain.size) {
+                        ProjectItem(
+                            desain = desain[it]
+                        )
                     }
                 }
                 Text(
@@ -187,7 +202,7 @@ fun DetailArsitek(modifier: Modifier = Modifier, navController: NavController) {
                             fontWeight = FontWeight.SemiBold
                         )
                         Text(
-                            text = "+62-8123-4567-8901",
+                            text = arsitek[id].nohp,
                             modifier = Modifier.padding(
                                 start = 16.dp,
                                 end = 16.dp,
@@ -207,7 +222,7 @@ fun DetailArsitek(modifier: Modifier = Modifier, navController: NavController) {
                             fontWeight = FontWeight.SemiBold
                         )
                         Text(
-                            text = "Rp 30.000.000,00",
+                            text = arsitek[id].hargajasa,
                             modifier = Modifier.padding(
                                 start = 16.dp,
                                 end = 16.dp,
@@ -255,7 +270,9 @@ fun DetailArsitek(modifier: Modifier = Modifier, navController: NavController) {
 }
 
 @Composable
-fun ProjectItem(modifier: Modifier = Modifier) {
+fun ProjectItem(
+    desain: DesainNew
+) {
     Box(
         modifier = Modifier
             .width(170.dp)
@@ -268,44 +285,13 @@ fun ProjectItem(modifier: Modifier = Modifier) {
             )
         ) {
             Image(
-                painter = painterResource(R.drawable.rumah1),
+                painter = painterResource(desain.image),
                 contentDescription = "Project",
-                modifier = Modifier.clip(RoundedCornerShape(8.dp))
-            )
-            Text(
-                text = "Modern House White",
-                fontSize = 12.sp
-            )
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(
-                    imageVector = Icons.Default.LocationOn,
-                    contentDescription = "Location",
-                    modifier = Modifier
-                        .offset(y = (-1).dp)
-                        .size(12.dp),
-                    tint = Color("#888888".toColorInt())
-                )
-                Text(
-                    text = "Bali",
-                    fontSize = 12.sp,
-                    color = Color("#888888".toColorInt())
-                )
-            }
-            Button(
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.surface
-                ),
+                contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .padding(top = 8.dp, bottom = 16.dp)
-                    .height(33.dp),
-                shape = RoundedCornerShape(8.dp),
-                onClick = {}
-            ) {
-                Text(
-                    text = "Detail",
-                    modifier = Modifier.offset(y = -2.dp)
-                )
-            }
+                    .height(100.dp)
+                    .clip(RoundedCornerShape(8.dp))
+            )
         }
     }
 }
@@ -314,7 +300,18 @@ fun ProjectItem(modifier: Modifier = Modifier) {
 @Composable
 private fun ProjectItemPreview() {
     MasiveProjectAppTheme(dynamicColor = false) {
-        ProjectItem()
+        ProjectItem(
+            DesainNew(
+                image = R.drawable.rumah1,
+                name = "Modern House White",
+                designBy = "Bali",
+                description = "Modern House White",
+                rating = "5/5",
+                review = "30",
+                nohp = "+628574701234",
+                hargaDesain = "Rp 30.000.000,00"
+            )
+        )
     }
 }
 
@@ -322,6 +319,11 @@ private fun ProjectItemPreview() {
 @Composable
 private fun DetailArsitekPreview() {
     MasiveProjectAppTheme(dynamicColor = false) {
-        DetailArsitek(navController = rememberNavController())
+
+        DetailArsitek(
+            id = 0,
+            navigateBack = {}
+        )
+
     }
 }

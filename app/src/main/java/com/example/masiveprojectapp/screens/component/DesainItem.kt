@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -23,10 +24,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.masiveprojectapp.R
+import com.example.masiveprojectapp.model.DesainNew
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 
 @Composable
-fun DesainItem(modifier: Modifier = Modifier) {
+fun DesainItem(
+    modifier: Modifier = Modifier,
+    desain: DesainNew
+) {
     Column(
         modifier = modifier
             .background(color = Color.White)
@@ -35,21 +40,23 @@ fun DesainItem(modifier: Modifier = Modifier) {
             .clip(RoundedCornerShape(8.dp))
     ) {
         Image(
-            painter = painterResource(R.drawable.rumah1),
+            painter = painterResource(desain.image),
             contentDescription = "Japan Modern Sakura",
-            contentScale = ContentScale.FillWidth,
+            contentScale = ContentScale.Crop,
             modifier = Modifier
+                .height(125.dp)
         )
         Text(
-            text = "Japan Modern Sakura",
-            fontSize = 12.sp,
+            text = desain.name,
+            fontSize = 13.sp,
+            maxLines = 1,
             modifier = Modifier
                 .padding(top = 8.dp, start = 8.dp),
             fontWeight = FontWeight.SemiBold
         )
         Text(
-            text = "design by indah NW",
-            fontSize = 11.sp,
+            text = desain.designBy,
+            fontSize = 12.sp,
             fontWeight = FontWeight.Light,
             modifier = Modifier
                 .padding(start = 8.dp)
@@ -61,19 +68,19 @@ fun DesainItem(modifier: Modifier = Modifier) {
             Icon(
                 modifier = Modifier
                     .padding(start = 8.dp)
-                    .size(24.dp),
+                    .size(26.dp),
                 painter = painterResource(R.drawable.icon_arrows_expand),
                 contentDescription = "Arrows Expand",
             )
             Column(modifier = Modifier.padding(start = 8.dp)) {
                 Text(
                     text = "Lahan Minimal",
-                    fontSize = 10.sp,
+                    fontSize = 12.sp,
                     fontWeight = FontWeight.Light
                 )
                 Text(
                     text = "16 m x 7 m",
-                    fontSize = 10.sp,
+                    fontSize = 12.sp,
                 )
             }
         }
@@ -84,19 +91,19 @@ fun DesainItem(modifier: Modifier = Modifier) {
             Icon(
                 modifier = Modifier
                     .padding(start = 8.dp)
-                    .size(24.dp),
+                    .size(26.dp),
                 painter = painterResource(R.drawable.icon_cash),
                 contentDescription = "Cash",
             )
             Column(modifier = Modifier.padding(start = 8.dp)) {
                 Text(
                     text = "Biaya Konstruksi",
-                    fontSize = 10.sp,
+                    fontSize = 12.sp,
                     fontWeight = FontWeight.Light
                 )
                 Text(
                     text = "Rp 5.000.000,00",
-                    fontSize = 10.sp,
+                    fontSize = 12.sp,
                 )
             }
         }
@@ -107,6 +114,17 @@ fun DesainItem(modifier: Modifier = Modifier) {
 @Composable
 private fun DesainItemPreview() {
     MasiveProjectAppTheme {
-        DesainItem()
+        DesainItem(
+            desain = DesainNew(
+                image = R.drawable.desain1,
+                name = "Japan Modern Sakura",
+                designBy = "design by indah NW",
+                description = "Halo, saya merupakan seorang arsitek yang sudah berpengalaman menyelesaikan beberapa project Pembuatan arsitektur rumah. Saat ini, saya sudah membuat banyak kebutuhan klien, mulai dari kebutuhan arsitektur. Saya siap melayani Anda dengan memberikan hasil yang terbaik. Segera konsultasikan kebutuhan Anda!",
+                nohp = "+628574701234",
+                hargaDesain = "Rp 5.000.000,00",
+                rating = "5/5",
+                review = "30",
+            )
+        )
     }
 }

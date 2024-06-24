@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -30,10 +31,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.toColorInt
 import com.example.masiveprojectapp.R
+import com.example.masiveprojectapp.model.ArsitekNew
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 
 @Composable
-fun ArsitekItem2(modifier: Modifier = Modifier) {
+fun ArsitekItem2(
+    modifier: Modifier = Modifier,
+    data: ArsitekNew
+) {
     Column(
         modifier = modifier
             .background(color = Color.White)
@@ -42,20 +47,20 @@ fun ArsitekItem2(modifier: Modifier = Modifier) {
             .clip(RoundedCornerShape(8.dp))
     ) {
         Image(
-            painter = painterResource(R.drawable.arsitel_cewe1),
-            contentDescription = "Allisa Gerand",
+            painter = painterResource(data.image),
+            contentDescription = null,
             contentScale = ContentScale.FillWidth,
         )
         Text(
-            text = "Allisa Gerand",
-            fontSize = 12.sp,
+            text = data.name,
+            fontSize = 14.sp,
             modifier = Modifier
                 .padding(top = 8.dp, start = 8.dp),
             fontWeight = FontWeight.SemiBold
         )
         Text(
             text = "Architect & Building Designer",
-            fontSize = 12.sp,
+            fontSize = 14.sp,
             fontWeight = FontWeight.Light,
             modifier = Modifier
                 .padding(start = 8.dp)
@@ -92,19 +97,19 @@ fun ArsitekItem2(modifier: Modifier = Modifier) {
         ) {
             Icon(
                 modifier = Modifier
-                    .size(19.dp),
+                    .size(22.dp),
                 painter = painterResource(R.drawable.icon_cash),
                 contentDescription = "Cash",
             )
             Column(modifier = Modifier.padding(start = 8.dp)) {
                 Text(
                     text = "Verified License",
-                    fontSize = 10.sp,
+                    fontSize = 12.sp,
                     fontWeight = FontWeight.Light
                 )
                 Text(
-                    text = "RP 30.000.000,00",
-                    fontSize = 10.sp,
+                    text = data.hargajasa,
+                    fontSize = 12.sp,
                 )
             }
         }
@@ -114,7 +119,7 @@ fun ArsitekItem2(modifier: Modifier = Modifier) {
                 .padding(
                     end = 8.dp,
                     top = 6.dp,
-                    bottom = 8.dp
+                    bottom = 10.dp
                 )
                 .align(Alignment.End)
                 .wrapContentWidth()
@@ -124,7 +129,9 @@ fun ArsitekItem2(modifier: Modifier = Modifier) {
             ),
             shape = RoundedCornerShape(8.dp)
         ) {
-            Row() {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 Icon(
                     painter = painterResource(R.drawable.icon_email),
                     contentDescription = "Email",
@@ -136,7 +143,9 @@ fun ArsitekItem2(modifier: Modifier = Modifier) {
                 Text(
                     text = "Send Message",
                     fontSize = 10.sp,
-                    modifier = Modifier.padding(start = 6.dp)
+                    modifier = Modifier
+                        .padding(start = 6.dp)
+                        .offset(y = (-3).dp)
                 )
             }
         }
@@ -147,6 +156,16 @@ fun ArsitekItem2(modifier: Modifier = Modifier) {
 @Composable
 private fun ArsitekItem2Preview() {
     MasiveProjectAppTheme(dynamicColor = false) {
-        ArsitekItem2()
+        ArsitekItem2(
+            data = ArsitekNew(
+                image = R.drawable.arsitek1,
+                name = "Allisa Gerand",
+                description = "Halo, saya merupakan seorang arsitek yang sudah berpengalaman menyelesaikan beberapa project Pembuatan arsitektur rumah. Saat ini, saya sudah membuat banyak kebutuhan klien, mulai dari kebutuhan arsitektur. Saya siap melayani Anda dengan memberikan hasil yang terbaik. Segera konsultasikan kebutuhan Anda!",
+                nohp = "+628574701234",
+                hargajasa = "Rp 30.000.000,00",
+                rating = "5/5",
+                review = "30",
+            )
+        )
     }
 }

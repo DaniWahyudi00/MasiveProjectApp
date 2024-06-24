@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Divider
@@ -25,6 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.masiveprojectapp.data.local.datadummy
 import com.example.masiveprojectapp.screens.component.DesainItem
 import com.example.masiveprojectapp.screens.component.SearchBar
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
@@ -35,8 +37,11 @@ import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 fun DesainScreen(
     navController: NavController,
     navigateBack: () -> Unit,
-    navigateToDetail: (String) -> Unit
+    navigateToDetail: (Int) -> Unit
 ) {
+
+    val dataDummy = datadummy.designNew
+
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
         topBar = {
@@ -84,11 +89,12 @@ fun DesainScreen(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 columns = GridCells.Adaptive(161.dp),
             ) {
-                items(20){
+                itemsIndexed(dataDummy) { index, item ->
                     DesainItem(
+                        desain = item,
                         modifier = Modifier
                             .clickable {
-                                navigateToDetail("desain")
+                                navigateToDetail(index)
                             }
                     )
                 }
