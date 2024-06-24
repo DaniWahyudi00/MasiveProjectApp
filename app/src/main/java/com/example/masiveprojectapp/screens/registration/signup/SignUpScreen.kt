@@ -3,6 +3,7 @@ package com.example.masiveprojectapp.screens.registration.signup
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,6 +18,8 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,15 +35,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.masiveprojectapp.screens.component.alertdialog.AlertChangeProfile
-import com.example.masiveprojectapp.screens.component.alertdialog.AlertSuccessSignUp
+import com.example.masiveprojectapp.R
+import com.example.masiveprojectapp.screens.component.alertdialog.registration.AlertLoading
+import com.example.masiveprojectapp.screens.component.alertdialog.registration.AlertSuccess
 import com.example.masiveprojectapp.ui.theme.poppinsFontFamily
 import kotlinx.coroutines.launch
 
@@ -49,12 +57,25 @@ fun SignUpScreen(
     viewModel: SignUpViewModel = hiltViewModel(),
     navigateToLogin: () -> Unit
 ) {
-    var email by rememberSaveable { mutableStateOf("") }
-    var password by rememberSaveable { mutableStateOf("") }
+
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
     val state by viewModel.signUpState.collectAsState(initial = null)
-    var showDialog by remember { mutableStateOf(false) }
+    var showDialogSuccess by remember { mutableStateOf(false) }
+    var showDialogLoading by remember { mutableStateOf(false) }
+
+
+    var username by rememberSaveable { mutableStateOf("") }
+    var email by rememberSaveable { mutableStateOf("") }
+    var password by rememberSaveable { mutableStateOf("") }
+    var passwordError by remember { mutableStateOf(false) }
+    var passwordVisibility by remember { mutableStateOf(false) }
+
+    val icon = if (passwordVisibility)
+        painterResource(R.drawable.ic_visibility)
+    else
+        painterResource(R.drawable.ic_visibility_off)
+
 
     Column (
         modifier = Modifier
@@ -80,20 +101,28 @@ fun SignUpScreen(
             horizontalAlignment = Alignment.Start,
             modifier = Modifier.width(320.dp)
         ){
-//            Text(text = "Username")
-//
-//            CustomOutlinedTextField(
-//                label = "Your Username",
-//                onValueChange = { newText -> text = newText }
-//            )
+            Text(text = "Username")
 
-//            Spacer(modifier = Modifier.height(22.dp))
+            CustomOutlinedTextField(
+                errorMessage = "",
+                hint = "Enter your username",
+                isError = false,
+                value = username,
+                trailingIcon = {},
+                onValueChange = { newText -> username = newText },
+            )
+
+            Spacer(modifier = Modifier.height(22.dp))
 
             Text(text = "Email Address")
 
             CustomOutlinedTextField(
-                label = "Your Email Address",
-                onValueChange = { newText -> email = newText }
+                value = email,
+                hint = "Enter your email",
+                onValueChange = { newText -> email = newText },
+                trailingIcon = {},
+                isError = false,
+                errorMessage = ""
             )
 
             Spacer(modifier = Modifier.height(22.dp))
@@ -101,8 +130,26 @@ fun SignUpScreen(
             Text(text = "Password")
 
             CustomOutlinedTextField(
-                label = "Password",
-                onValueChange = { newText -> password = newText }
+                hint = "Enter your password",
+                value = password,
+                onValueChange = {
+                    password = it
+                    passwordError = password.length < 8
+                },
+                trailingIcon = {
+                    Icon(
+                        painter = icon,
+                        contentDescription = null,
+                        modifier = Modifier
+                            .clickable {
+                                passwordVisibility = !passwordVisibility
+                            }
+                    )
+                },
+                visualTransformation = if (passwordVisibility) VisualTransformation.None
+                        else PasswordVisualTransformation(),
+                isError = passwordError,
+                errorMessage = "Password must be at least 8 characters"
             )
 
 //            Spacer(modifier = Modifier.height(22.dp))
@@ -120,9 +167,10 @@ fun SignUpScreen(
         Button(
             onClick = {
                 scope.launch {
+                    val trimmedUsername = username.trim()
                     val trimmedEmail = email.trim()
                     val trimmedPassword = password.trim()
-                    viewModel.registerUser(trimmedEmail, trimmedPassword)
+                    viewModel.registerUser(trimmedUsername, trimmedEmail, trimmedPassword)
                 }
             },
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5E8451)),
@@ -169,47 +217,90 @@ fun SignUpScreen(
                     fontFamily = poppinsFontFamily,
                     fontWeight = FontWeight(700),
                     color = Color(0xFF5E8451),
-                )
+                ),
+                modifier = Modifier.clickable {
+                    navigateToLogin()
+                }
             )
         }
         LaunchedEffect(key1 = state) {
             scope.launch {
                 if (state?.isError?.isNotEmpty() == true) {
+                    showDialogLoading = false
                     val error = state?.isError
                     Toast.makeText(context, "$error", Toast.LENGTH_SHORT).show()
                     Log.d("Error coi", error.toString())
                 } else if (state?.isSucces?.isNotEmpty() == true) {
-                    showDialog = true
+                    showDialogSuccess = true
+                } else if (state?.isLoading == true) {
+                    Log.d("Loading", "Loading")
+                    showDialogLoading = true
                 }
             }
         }
     }
 
-    if (showDialog){
-        AlertSuccessSignUp(
+    if (showDialogLoading){
+        AlertLoading()
+    } else {
+        showDialogLoading = false
+    }
+
+    if (showDialogSuccess){
+        AlertSuccess(
             onConfirm = {
                 navigateToLogin()
             },
-            onDismiss = {}
+            onDismiss = {},
+            text = "Account has been created"
         )
     }
 }
 
 @Composable
-private fun CustomOutlinedTextField(label: String, onValueChange: (String) -> Unit) {
-    val textState = remember { mutableStateOf("") }
-    val isLabelVisible = textState.value.isEmpty()
-
+fun CustomOutlinedTextField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    trailingIcon: @Composable () -> Unit,
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    isError: Boolean,
+    errorMessage: String,
+    hint: String = ""
+) {
+    val keyboardController = LocalSoftwareKeyboardController.current
     OutlinedTextField(
-        value = textState.value,
-        onValueChange = {
-            textState.value = it
-            onValueChange(it)
+        value = value,
+        onValueChange = onValueChange,
+        placeholder =  {
+            Text(
+                text = hint,
+                color = MaterialTheme.colorScheme.outline
+            )
         },
-        label = { if (isLabelVisible) Text(text = label) },
         keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
-        keyboardActions = KeyboardActions(onDone = { /* Handle action done if needed */ }),
-        modifier = Modifier.fillMaxWidth()
+        keyboardActions = KeyboardActions(onDone = {
+            keyboardController?.hide()
+        }),
+        modifier = Modifier.fillMaxWidth(),
+        trailingIcon = {
+            trailingIcon()
+        },
+        visualTransformation = visualTransformation,
+        textStyle = TextStyle(
+            color = Color.Black,
+            fontFamily = poppinsFontFamily,
+            fontSize = 14.sp
+        ),
+        isError = isError,
+        supportingText = {
+            if (isError) {
+                Text(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = errorMessage,
+                    color = MaterialTheme.colorScheme.error
+                )
+            }
+        }
     )
 }
 

@@ -1,4 +1,4 @@
-package com.example.masiveprojectapp.screens.component.alertdialog
+package com.example.masiveprojectapp.screens.component.alertdialog.registration
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -33,9 +33,10 @@ import com.example.masiveprojectapp.R
 import com.example.masiveprojectapp.ui.theme.poppinsFontFamily
 
 @Composable
-fun AlertSuccessSignUp(
+fun AlertSuccess(
     onDismiss: () -> Unit,
-    onConfirm: () -> Unit
+    onConfirm: () -> Unit,
+    text: String = ""
 ) {
     Dialog(
         onDismissRequest = onDismiss,
@@ -78,7 +79,7 @@ fun AlertSuccessSignUp(
                 )
 
                 Text(
-                    text = "Account has been created",
+                    text = text,
                     style = TextStyle(
                         fontSize = 13.sp,
                         lineHeight = 20.sp,

@@ -11,14 +11,19 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.masiveprojectapp.data.local.datadummy
 import com.example.masiveprojectapp.screens.component.ArsitekItem2
 import com.example.masiveprojectapp.screens.component.DesainItem
 import com.example.masiveprojectapp.screens.component.HomeSection
@@ -29,8 +34,15 @@ import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 @Composable
 fun HomeScreen(
     navigateToSeeAll: (String) -> Unit,
-    navigateToDetail: (String) -> Unit
+    navigateToDetailArsitek: (Int) -> Unit,
+    navigateToDetailDesain: (Int) -> Unit,
+    viewModel: HomeViewModel = hiltViewModel()
 ) {
+
+    val dataDummyDesain = datadummy.designNew
+    val dataDummyArsitek = datadummy.arsiteksNew
+    val displayName by viewModel.displayName.collectAsState()
+
     Scaffold(
         topBar = {
             Box(
@@ -50,7 +62,7 @@ fun HomeScreen(
         ) {
             HomeSection(
                 showIcon = false,
-                title = "Hallo Users!",
+                title = "Hallo $displayName",
                 content = {
                     ImageSlider()
                 },
@@ -67,15 +79,16 @@ fun HomeScreen(
                                 top = 8.dp,
                                 bottom = 12.dp
                             )
-                            .height(243.dp),
+                            .height(300.dp),
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                         columns = GridCells.Adaptive(161.dp),
                     ) {
-                        items(2){
+                        itemsIndexed(dataDummyDesain.take(2)) { index, item ->
                             DesainItem(
+                                desain = item,
                                 modifier = Modifier
                                     .clickable {
-                                        navigateToDetail("desain")
+                                        navigateToDetailDesain(index)
                                     }
                             )
                         }
@@ -95,15 +108,16 @@ fun HomeScreen(
                                 end = 16.dp,
                                 top = 8.dp,
                             )
-                            .height(340.dp),
+                            .height(350.dp),
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                         columns = GridCells.Adaptive(161.dp),
                     ) {
-                        items(2){
+                        itemsIndexed(dataDummyArsitek.take(2)) { index, item ->
                             ArsitekItem2(
+                                data = item,
                                 modifier = Modifier
                                     .clickable {
-                                        navigateToDetail("arsitek")
+                                        navigateToDetailArsitek(index)
                                     }
                             )
                         }
@@ -123,7 +137,8 @@ private fun HomeScreenPreview() {
     MasiveProjectAppTheme(dynamicColor = false) {
         HomeScreen(
             navigateToSeeAll = {},
-            navigateToDetail = {}
+            navigateToDetailArsitek = {},
+            navigateToDetailDesain = {}
         )
     }
 }
