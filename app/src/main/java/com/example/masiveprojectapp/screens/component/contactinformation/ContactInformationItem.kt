@@ -1,6 +1,7 @@
-package com.example.masiveprojectapp.screens.component.contactinformationitem
+package com.example.masiveprojectapp.screens.component.contactinformation
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,8 +15,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,15 +28,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.masiveprojectapp.R
 import com.example.masiveprojectapp.ui.theme.poppinsFontFamily
 
 
 @Composable
 fun ContactInformationItem(
-    modifier: Modifier
+    modifier: Modifier,
+    navController : NavController,
+    navigateBack : () -> Unit
 ){
     Column(
         verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.Top),
@@ -58,50 +62,61 @@ fun ContactInformationItem(
                     fontWeight = FontWeight.Bold,
                     letterSpacing = (-0.22).sp)
             )
-            Icon(
-                painter = painterResource(R.drawable.icon_typeno),
-                contentDescription = "Close_Icon",
-                modifier = Modifier
-                    .requiredSize(size = 16.dp))
         }
-        Column(
-            verticalArrangement = Arrangement.spacedBy(15.dp, Alignment.Top),
+        Text(text = "Number : ",
             modifier = Modifier
+                .padding(top = 10.dp),
+            fontFamily = poppinsFontFamily,
+            style = MaterialTheme.typography.titleSmall,
+        )
+        Row(
+
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = modifier
+                .clip(
+                RoundedCornerShape(15.dp),
+            )
+                .background(Color.White)
+                .fillMaxWidth()
+
         ) {
-            Column(
-                verticalArrangement = Arrangement.spacedBy(2.dp, Alignment.Top)
-            ) {
-                Text(
-                    text = "Number",
-                    color = Color.Black,
-                    lineHeight = 1.54.em,
-                    style = TextStyle(
-                        fontSize = 14.sp))
-                TextField(
-                    value = "(+62)xxxxxxxxxx",
-                    onValueChange = {""},
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 10.dp,
-                            vertical = 8.dp))
-            }
-            Column(
-                verticalArrangement = Arrangement.spacedBy(2.dp, Alignment.Top)
-            ) {
-                Text(
-                    text = "Email",
-                    color = Color.Black,
-                    lineHeight = 1.54.em,
-                    style = TextStyle(
-                        fontSize = 14.sp))
-                TextField(
-                    value = "rizvinaimani@gmail.com",
-                    onValueChange = {""},
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 10.dp,
-                            vertical = 8.dp))
-            }
+            OutlinedTextField(
+                value = "+62-1234-5678-9012",
+                onValueChange = {""},
+                label = { Text("Phone") },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 10.dp,
+                        vertical = 8.dp))
+
+        }
+        Text(text = "Email : ",
+            modifier = Modifier
+                .padding(top = 10.dp),
+            fontFamily = poppinsFontFamily,
+            style = MaterialTheme.typography.titleSmall,
+        )
+        Row(
+
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = modifier
+                .clip(
+                    RoundedCornerShape(15.dp),
+                )
+                .background(Color.White)
+                .fillMaxWidth()
+
+        ) {
+
+            OutlinedTextField(
+                value = "rizvinaimani@gmail.com",
+                onValueChange = {""},
+                label = { Text("Email") },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 10.dp,
+                        vertical = 8.dp))
+
         }
         Row(
             horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
@@ -111,7 +126,7 @@ fun ContactInformationItem(
                 .padding(top = 15.dp)
         ) {
             Button(
-                onClick = { },
+                onClick = { navController.navigateUp()},
                 colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
                 modifier = Modifier
                     .requiredWidth(width = 247.dp)
@@ -120,6 +135,7 @@ fun ContactInformationItem(
                         color = MaterialTheme.colorScheme.primary,
                         shape = RoundedCornerShape(size = 11.dp)
                     )
+                    .clickable { navigateBack() }
             ) {
                 Text(
                     text = "Save Changes",
@@ -140,6 +156,6 @@ fun ContactInformationItem(
 @Composable
 private fun Preview(){
     MaterialTheme{
-        ContactInformationItem(modifier = Modifier)
+        ContactInformationItem(modifier = Modifier, navController = rememberNavController(), navigateBack = {})
     }
 }

@@ -39,7 +39,10 @@ import com.example.masiveprojectapp.screens.registration.welcome.WelcomeScreen
 import com.example.masiveprojectapp.screens.registration.changepassword.ForgotPassScreen
 import com.example.masiveprojectapp.screens.userprofile.UserProfileScreens
 import com.example.masiveprojectapp.screens.service.ServiceScreen
+import com.example.masiveprojectapp.screens.shipingaddress.ShippingAddress
+import com.example.masiveprojectapp.screens.shipingcontact.ShipingContactScreen
 import com.example.masiveprojectapp.screens.transaction.TransactionScreen
+import com.example.masiveprojectapp.screens.wishlist.WishlistScreen
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 
 @Composable
@@ -71,6 +74,7 @@ fun BuilderHomeApp(
     ) { innerPadding ->
         NavHost(
             navController = navController,
+
             startDestination = startDestination,
             modifier = Modifier.padding(innerPadding),
             enterTransition = { fadeIn(tween(500)) },
@@ -117,7 +121,7 @@ fun BuilderHomeApp(
                 ForgotPassScreen()
             }
             composable(route = Screen.Home.route) {
-                HomeScreen(
+                HomeScreen( navController,
                     navigateToSeeAll = {
                         if (it == "desain"){
                             navController.navigate(Screen.Desain.route)
@@ -191,6 +195,7 @@ fun BuilderHomeApp(
             }
             composable(route = Screen.Desain.route){
                 DesainScreen(
+                    navController = navController,
                     navigateBack = {
                         navController.navigateUp()
                     },
@@ -201,6 +206,7 @@ fun BuilderHomeApp(
             }
             composable(route = Screen.Arsitek.route){
                 ArsitekScreen(
+                    navController = navController,
                     navigateBack = {
                         navController.navigateUp()
                     },
@@ -210,10 +216,24 @@ fun BuilderHomeApp(
                 )
             }
             composable(route = Screen.Checkout.route){
-                CheckOutScreen()
+                CheckOutScreen(navController,
+                    navigateBack = {navController.navigateUp()
+                               },
+                    naviGateToContact = {navController.navigate(Screen.Contact.route)}
+                )
             }
             composable(route = Screen.DetailProduct.route){
                 DetailProductItem()
+            }
+
+            composable(route = Screen.Address.route){
+                ShippingAddress(modifier = Modifier, navController)
+            }
+            composable(route = Screen.Contact.route){
+                ShipingContactScreen( navController)
+            }
+            composable(route = Screen.Wishlist.route){
+                WishlistScreen(navController = navController, navigateBack = {navController.navigateUp()})
             }
         }
     }

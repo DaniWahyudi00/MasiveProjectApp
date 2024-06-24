@@ -58,6 +58,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.masiveprojectapp.R
+import com.example.masiveprojectapp.screens.component.alertdialog.AlertChangeProfile
+import com.example.masiveprojectapp.screens.component.alertdialog.AlertSuccessAddProject
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 import com.example.masiveprojectapp.ui.theme.poppinsFontFamily
 import kotlinx.coroutines.Dispatchers
@@ -66,8 +68,6 @@ import kotlinx.coroutines.withContext
 
 @Composable
 fun AddMyProjectItem(
-    onDismiss: () -> Unit,
-    onConfirm: () -> Unit,
     modifier: Modifier,
     navController: NavController
 
@@ -77,10 +77,11 @@ fun AddMyProjectItem(
     var owner by remember { mutableStateOf("") }
     var size by remember { mutableStateOf("") }
     var condition by remember { mutableStateOf("") }
-    val openDialog by remember { mutableStateOf(false) }
+    val openDialog = remember { mutableStateOf(false) }
     var description by remember { mutableStateOf("") }
     var mainImageUri by remember { mutableStateOf<Uri?>(null) }
     var additionalImageUris by remember { mutableStateOf<List<Uri>>(emptyList()) }
+
 
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetMultipleContents()
@@ -276,7 +277,7 @@ fun AddMyProjectItem(
                 .padding(top = 15.dp)
         ) {
             Button(
-                onClick = onDismiss,
+                onClick = { navController.navigateUp() },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD9D9D9)),
                 modifier = Modifier
                     .width(160.dp)
@@ -301,7 +302,7 @@ fun AddMyProjectItem(
             }
 
             Button(
-                onClick = onConfirm,
+                onClick = { openDialog.value = true },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5E8451)),
                 modifier = Modifier
                     .width(160.dp)
@@ -323,6 +324,9 @@ fun AddMyProjectItem(
                     )
                 )
             }
+        }
+        if (openDialog.value){
+            AlertSuccessAddProject(onDismiss = { openDialog.value = false}, navController = rememberNavController(), onConfirm = {navController.navigateUp()})
         }
     }
 }
@@ -350,7 +354,6 @@ fun loadImageFromUri(uri: Uri): ImageBitmap? {
 @Composable
 fun DetailProdukItemPreview() {
     MasiveProjectAppTheme {
-        AddMyProjectItem(modifier = Modifier, navController = rememberNavController(),
-            onConfirm = {}, onDismiss = {})
+        AddMyProjectItem(modifier = Modifier, navController = rememberNavController(),)
     }
 }

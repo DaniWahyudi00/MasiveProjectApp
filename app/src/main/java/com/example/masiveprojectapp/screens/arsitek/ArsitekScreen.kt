@@ -23,6 +23,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.masiveprojectapp.data.local.datadummy
 import com.example.masiveprojectapp.screens.component.ArsitekItem2
 import com.example.masiveprojectapp.screens.component.SearchBar
@@ -31,6 +33,7 @@ import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ArsitekScreen(
+    navController: NavController,
     modifier: Modifier = Modifier,
     navigateBack: () -> Unit,
     navigateToDetail: (Int) -> Unit
@@ -73,7 +76,7 @@ fun ArsitekScreen(
         }
     ) { innerPadding ->
         Column(modifier = Modifier.padding(innerPadding)) {
-            SearchBar()
+            SearchBar(navController)
             LazyVerticalGrid(
                 modifier = Modifier
                     .padding(
@@ -106,7 +109,8 @@ private fun ArsitekScreenPreview() {
     MasiveProjectAppTheme(dynamicColor = false) {
         ArsitekScreen(
             navigateBack = {},
-            navigateToDetail = {}
+            navigateToDetail = {},
+            navController = rememberNavController()
         )
     }
 }

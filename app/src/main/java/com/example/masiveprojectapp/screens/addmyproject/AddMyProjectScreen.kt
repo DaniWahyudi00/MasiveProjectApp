@@ -34,7 +34,7 @@ fun AddMyProjectScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.padding(innerPadding).fillMaxWidth()) {
             val openDialog1 = remember { mutableStateOf(false) }
-            AddMyProjectItem(modifier = Modifier, navController = rememberNavController(), onDismiss = {}, onConfirm = {openDialog1.value = true})
+            AddMyProjectItem(modifier = Modifier, navController = rememberNavController())
             if (openDialog1.value){
                 AlertProfileLogout(onDismiss = { openDialog1.value = false}, onConfirm = {})
             }

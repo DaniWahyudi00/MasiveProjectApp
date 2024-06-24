@@ -1,5 +1,6 @@
 package com.example.masiveprojectapp.screens.component
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,10 +16,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.example.masiveprojectapp.navigation.Screen
 
 
 @Composable
-fun SearchBar() {
+fun SearchBar(
+    navController: NavController
+) {
     Row(
         modifier = Modifier
             .padding(16.dp)
@@ -35,6 +41,7 @@ fun SearchBar() {
             contentDescription = "Favourite",
             modifier = Modifier
                 .padding(start = 16.dp)
+                .clickable { navController.navigate(Screen.Wishlist.route) }
         )
         Icon(
             imageVector = Icons.Default.Notifications,
@@ -49,6 +56,6 @@ fun SearchBar() {
 @Composable
 private fun SearchBarPreview() {
     MasiveProjectAppTheme {
-        SearchBar()
+        SearchBar(navController = rememberNavController())
     }
 }

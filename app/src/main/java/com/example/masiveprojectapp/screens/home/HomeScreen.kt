@@ -23,6 +23,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.masiveprojectapp.data.local.datadummy
 import com.example.masiveprojectapp.screens.component.ArsitekItem2
 import com.example.masiveprojectapp.screens.component.DesainItem
@@ -33,6 +35,7 @@ import com.example.masiveprojectapp.ui.theme.MasiveProjectAppTheme
 
 @Composable
 fun HomeScreen(
+    navController: NavController,
     navigateToSeeAll: (String) -> Unit,
     navigateToDetailArsitek: (Int) -> Unit,
     navigateToDetailDesain: (Int) -> Unit,
@@ -51,7 +54,7 @@ fun HomeScreen(
                     .wrapContentHeight()
                     .background(color = MaterialTheme.colorScheme.background)
             ) {
-                SearchBar()
+                SearchBar(navController)
             }
         }
     ) { innerPadding ->
@@ -137,8 +140,11 @@ private fun HomeScreenPreview() {
     MasiveProjectAppTheme(dynamicColor = false) {
         HomeScreen(
             navigateToSeeAll = {},
+            navController = rememberNavController()
+
             navigateToDetailArsitek = {},
             navigateToDetailDesain = {}
+
         )
     }
 }

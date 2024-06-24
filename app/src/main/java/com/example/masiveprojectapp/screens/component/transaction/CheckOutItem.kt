@@ -42,169 +42,97 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.masiveprojectapp.R
+import com.example.masiveprojectapp.navigation.Screen
 import com.example.masiveprojectapp.ui.theme.poppinsFontFamily
 
 @Composable
-fun CheckOutItem(modifier: Modifier = Modifier) {
-    Column(
-        modifier = Modifier
-            .fillMaxHeight()
-    ) {
+fun CheckOutItem(modifier: Modifier = Modifier,
+                 navController: NavController,
+                 navigateToContact: () -> Unit
+                 ) {
+    Column (modifier = Modifier
+        .fillMaxHeight()
+        .background(color = Color (0xfff6f6f6))
+        .padding(10.dp)
+    ){
         ShippingAddres(
+            navController = navController,
+            navigateToAdress = {navController.navigate(Screen.Address.route)},
+            navigateToContact = {navigateToContact},
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 16.dp, end = 10.dp)
         )
-        ContactInformation(
-            modifier = modifier
-                .fillMaxWidth()
-                .padding(start = 16.dp, end = 10.dp)
-        )
+
         Box(
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(top = 5.dp, bottom = 5.dp)
                 .requiredHeight(height = 2.dp)
-                .padding(start = 16.dp, end = 10.dp)
-                .background(color = Color(0xffd9d9d9))
+                .background(color = Color(0xffd9d9d9)))
+        AddVoucher(modifier = Modifier
+            .fillMaxWidth()
         )
+        Item(modifier = Modifier
+            .fillMaxWidth())
 
-        Spacer(modifier = Modifier.height(18.dp))
-
-        AddVoucher(
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 16.dp, end = 10.dp)
-        )
-        /*Box(
-            modifier = Modifier
-                .fillMaxWidth()
+                .padding(top = 5.dp, bottom = 5.dp)
                 .requiredHeight(height = 2.dp)
-                .padding(start = 16.dp, end = 10.dp)
-                .background(color = Color(0xffd9d9d9)))*/
-
-        Spacer(modifier = Modifier.padding(10.dp))
-
-        Item(
+                .background(color = Color(0xffd9d9d9)))
+        PaymentMethode(modifier = Modifier
+            .fillMaxWidth())
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 16.dp, end = 10.dp)
-        )
-        PaymentMethode(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 16.dp, end = 10.dp)
-        )
-        PaymentDetail(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 16.dp, end = 10.dp)
-        )
+                .padding(top = 5.dp, bottom = 5.dp)
+                .requiredHeight(height = 2.dp)
+                .background(color = Color(0xffd9d9d9)))
+        PaymentDetail(modifier = Modifier
+            .fillMaxWidth())
         ButtonPay(modifier = Modifier, onConfirm = {})
 
     }
 
 }
-
 @Composable
-fun ContactInformation(modifier: Modifier = Modifier) {
-    Row(
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.Bottom,
-        modifier = modifier
-            .fillMaxWidth()
-            .clip(shape = RoundedCornerShape(10.dp))
-            .background(color = Color(0xfff9f9f9))
-            .padding(vertical = 6.dp)
-    ) {
-        Column {
-            Text(
-                text = "Contact Information",
-                color = Color(0xff202020),
-                style = TextStyle(
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold,
-                    letterSpacing = (-0.14).sp
-                )
-            )
-            Text(
-                text = "(+62)xxx-xxxx-xxxx",
-                color = Color.Black,
-                lineHeight = 1.25.em,
-                style = TextStyle(
-                    fontSize = 12.sp
-                ),
-                modifier = Modifier
-                    .requiredWidth(width = 273.dp)
-                    .requiredHeight(height = 28.dp)
-            )
-        }
-        Button2(modifier = Modifier.padding(end = 10.dp))
-    }
-}
-
-@Composable
-fun AddVoucher(modifier: Modifier = Modifier) {
+fun AddVoucher(modifier: Modifier = Modifier){
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .fillMaxWidth()
+            .clip(shape = RoundedCornerShape(topEnd = 10.dp, topStart = 10.dp))
+            .background(color = Color.White)
     ) {
-        Row() {
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.Start),
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .padding(vertical = 6.dp)
+        ) {
+            Spacer(modifier = Modifier.width(10.dp))
             Text(
                 text = "Items",
                 color = Color(0xff202020),
                 lineHeight = 1.88.em,
                 style = TextStyle(
                     fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold,
-                    letterSpacing = (-0.21).sp
+                    fontWeight = FontWeight.Bold
                 ),
-                modifier = Modifier
-                    .requiredWidth(width = 50.dp)
             )
-            /*Box(
-                modifier = Modifier
-                    .requiredWidth(width = 23.dp)
-                    .requiredHeight(height = 22.dp)
-            ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.icon_items),
-                    contentDescription = "Ellipse 149",
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(color = Color(0xffe5ebfc)))
-                Text(
-                    text = "2",
-                    color = Color.Black,
-                    textAlign = TextAlign.Center,
-                    lineHeight = 2.em,
-                    style = TextStyle(
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.Bold,
-                        letterSpacing = (-0.18).sp),
-                    modifier = Modifier
-                        .align(alignment = Alignment.CenterStart)
-                        .offset(x = 0.dp,
-                            y = 0.5.dp)
-                        .fillMaxWidth()
-                        .requiredHeight(height = 15.dp)
-                        .wrapContentHeight(align = Alignment.CenterVertically))
-            }*/
-        }
 
-        /*OutlinedButton(
-            modifier = Modifier
-                .padding(end = 10.dp),
-            onClick = { },
-            shape = RoundedCornerShape(11.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
-            border = BorderStroke(1.dp, Color(0xff8e5e24))
-        ) {
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterHorizontally),
-                verticalAlignment = Alignment.CenterVertically
+            OutlinedButton(
+                modifier = Modifier
+                    .padding(start = 170.dp),
+                onClick = { },
+                shape = RoundedCornerShape(11.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
+                border = BorderStroke(1.dp, Color(0xff8e5e24))
             ) {
                 Text(
                     text = "Add Voucher",
@@ -212,210 +140,212 @@ fun AddVoucher(modifier: Modifier = Modifier) {
                     textAlign = TextAlign.Center,
                     lineHeight = 1.67.em,
                     style = TextStyle(
-                        fontSize = 12.sp))
+                        fontSize = 12.sp
+                    )
+                )
             }
-        }*/
+        }
     }
 }
 
 @Composable
-fun ShippingAddres(modifier: Modifier = Modifier) {
+fun ShippingAddres(
+    modifier: Modifier,
+    navController: NavController,
+    navigateToAdress: () -> Unit,
+    navigateToContact: () -> Unit
+    ){
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.Bottom,
         modifier = modifier
             .fillMaxWidth()
-            .clip(shape = RoundedCornerShape(10.dp))
-            .background(color = Color(0xfff9f9f9))
+            .clip(shape = RoundedCornerShape(topStart = 10.dp, topEnd = 10.dp))
+            .background(color = Color.White)
             .padding(vertical = 6.dp)
     ) {
-        Column {
-            Text(
-                text = "Shipping Address",
-                color = Color(0xff202020),
-                style = TextStyle(
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold,
-                    letterSpacing = (-0.14).sp
+        Column (
+            modifier
+                .clickable {  navController.navigate(Screen.Address.route)}
+        ){
+            Row(){
+                Spacer(modifier = Modifier.width(10.dp))
+                Text(
+                    text = "Shipping Address",
+                    color = Color(0xff202020),
+                    style = TextStyle(
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold,
+                        letterSpacing = (-0.14).sp
+                    )
                 )
-            )
-            Text(
-                text = "Jl. RS. Fatmawati Raya, Pondok Labu, Kec. Cilandak, Kota Depok, Jawa Barat 12450",
-                color = Color.Black,
-                lineHeight = 1.25.em,
-                style = TextStyle(
-                    fontSize = 12.sp
-                ),
-                modifier = Modifier
-                    .requiredWidth(width = 273.dp)
-                    .requiredHeight(height = 28.dp)
-            )
+            }
+            Row (
+                modifier
+            ) {
+                Spacer(modifier = Modifier.width(10.dp))
+                Text(
+                    text = "Jl. RS. Fatmawati Raya, Pondok Labu, Kec. Cilandak, Kota Depok, Jawa Barat 12450",
+                    color = Color.Black,
+                    style = TextStyle(
+                        fontSize = 14.sp
+                    ),
+                    modifier = Modifier
+                        .requiredWidth(width = 273.dp)
+                )
+                Spacer(modifier = Modifier.width(50.dp))
+                Box(
+                    modifier = Modifier
+                        .requiredSize(size = 30.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.icon_pencil),
+                        contentDescription = "edit_icon",
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .clickable {navController.navigate(Screen.Address.route)}
+                    )
+                }
+            }
         }
-        Button(modifier = Modifier.padding(end = 10.dp))
+    }
+    Row(
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.Bottom,
+        modifier = modifier
+            .fillMaxWidth()
+            .clip(shape = RoundedCornerShape(bottomStart = 10.dp, bottomEnd = 10.dp))
+            .background(color = Color.White)
+            .padding(vertical = 6.dp)
+            .clickable { navController.navigate(Screen.Contact.route) }
+    ) {
+        Column (
+            modifier.clickable {  navController.navigate(Screen.Address.route)}
+        ){
+            Row(){
+                Spacer(modifier = Modifier.width(10.dp))
+                Text(
+                    text = "Contact Information",
+                    color = Color(0xff202020),
+                    style = TextStyle(
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold,
+                        letterSpacing = (-0.14).sp
+                    )
+                )
+            }
+            Row {
+                Spacer(modifier = Modifier.width(10.dp))
+                Text(
+                    text = "(+62)xxx-xxxx-xxxx",
+                    color = Color.Black,
+
+                    style = TextStyle(
+                        fontSize = 14.sp
+                    ),
+                    modifier = Modifier
+                        .requiredWidth(width = 273.dp)
+                )
+                Spacer(modifier = Modifier.width(50.dp))
+                Box(
+                    modifier = Modifier
+                        .requiredSize(size = 30.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.icon_pencil),
+                        contentDescription = "edit_icon",
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .clickable { navController.navigate(Screen.Contact.route)}
+                    )
+                }
+            }
+        }
+
     }
 }
 
 @Composable
-fun Item(modifier: Modifier = Modifier) {
-    Column(
-        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
+fun Item(modifier: Modifier = Modifier){
+
+    Row (
         modifier = modifier
-    ) {
-        Box(
-            modifier = Modifier
-                .requiredHeight(height = 43.dp)
+            .clip(shape = RoundedCornerShape(bottomStart = 10.dp, bottomEnd = 10.dp))
+            .background(color = Color.White)
+            .fillMaxWidth()
+    ){
+        Column(
+            verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
+            modifier = modifier
         ) {
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(6.dp, Alignment.Start),
-                verticalAlignment = Alignment.CenterVertically
+            Box(
+                modifier = Modifier
+                    .requiredHeight(height = 80.dp)
+                    .padding(start = 10.dp)
             ) {
-                Box(
-                    modifier = Modifier
-                        .requiredWidth(width = 74.dp)
-                        .requiredHeight(height = 53.dp)
-                        .clip(shape = MaterialTheme.shapes.small)
-                        .background(color = Color.White)
+                Row(
+                    modifier = modifier
+                        .fillMaxHeight(),
+
+                    horizontalArrangement = Arrangement.spacedBy(6.dp, Alignment.Start),
+                    verticalAlignment = Alignment.CenterVertically
+
                 ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.arsitel_cewe1),
-                        contentDescription = "arsitek",
+                    Box(
                         modifier = Modifier
-                            .align(alignment = Alignment.TopStart)
-                            .offset(
-                                x = (-2).dp,
-                                y = (-2).dp
-                            )
-                            .requiredWidth(width = 73.dp)
-                            .requiredHeight(height = 49.dp)
-                    )
-                }
-                Column() {
+                            .requiredWidth(width = 71.dp)
+                            .requiredHeight(height = 50.dp)
+                            .clip(shape = RoundedCornerShape(8.dp))
+                            .background(color = Color.White)
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.arsitel_cewe1),
+                            contentDescription = "arsitek",
+                            modifier = Modifier
+                                .align(alignment = Alignment.TopStart)
+                        )
+                    }
+                    Column() {
+                        Text(
+                            text = "Alisa Gerald",
+                            color = Color.Black,
+                            style = TextStyle(
+                                fontSize = 14.sp,
+                                fontWeight = FontWeight.Medium
+                            ),
+                            modifier = Modifier
+                                .requiredWidth(width = 93.dp)
+                                .requiredHeight(height = 15.dp)
+                                .wrapContentHeight(align = Alignment.CenterVertically)
+                        )
+                        Text(
+                            text = "Architecture",
+                            color = Color.Black,
+                            style = TextStyle(
+                                fontSize = 12.sp
+                            ),
+                            modifier = Modifier
+                                .requiredWidth(width = 93.dp)
+                                .requiredHeight(height = 15.dp)
+                                .wrapContentHeight(align = Alignment.CenterVertically)
+                        )
+                    }
+
                     Text(
-                        text = "Alisa Gerald",
-                        color = Color.Black,
-                        lineHeight = 1.33.em,
+                        text = "Rp 7.800.000",
+                        color = Color(0xff202020),
+                        textAlign = TextAlign.End,
+                        lineHeight = 1.57.em,
                         style = TextStyle(
-                            fontSize = 12.sp,
-                            fontWeight = FontWeight.Medium
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold,
+                            letterSpacing = (-0.18).sp
                         ),
                         modifier = Modifier
-                            .requiredWidth(width = 93.dp)
-                            .requiredHeight(height = 15.dp)
-                            .wrapContentHeight(align = Alignment.CenterVertically)
-                    )
-                    Text(
-                        text = "Architecture",
-                        color = Color.Black,
-                        lineHeight = 1.6.em,
-                        style = TextStyle(
-                            fontSize = 10.sp
-                        ),
-                        modifier = Modifier
-                            .requiredWidth(width = 93.dp)
-                            .requiredHeight(height = 15.dp)
-                            .wrapContentHeight(align = Alignment.CenterVertically)
-                    )
+                            .padding (end = 10.dp, start = 80.dp))
                 }
             }
-            Text(
-                text = "Rp 7.800.000",
-                color = Color(0xff202020),
-                textAlign = TextAlign.End,
-                lineHeight = 1.57.em,
-                style = TextStyle(
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Bold,
-                    letterSpacing = (-0.18).sp
-                ),
-                modifier = Modifier
-                    .align(alignment = Alignment.CenterStart)
-                    .offset(
-                        x = 0.dp,
-                        y = (-0.5).dp
-                    )
-                    .fillMaxWidth()
-            )
         }
-
-        Spacer(modifier = Modifier.height(20.dp))
-        /*Box(
-            modifier = Modifier
-                .requiredHeight(height = 43.dp)
-        ) {
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(6.dp, Alignment.Start),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-
-                *//*Box(
-                    modifier = Modifier
-                        .requiredWidth(width = 64.dp)
-                        .requiredHeight(height = 43.dp)
-                        .clip(shape = MaterialTheme.shapes.small)
-                        .background(color = Color.White)
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.rumah1),
-                        contentDescription = "desainrumah",
-                        modifier = Modifier
-                            .align(alignment = Alignment.TopStart)
-                            .offset(
-                                x = (-4).dp,
-                                y = (-1).dp
-                            )
-                            .requiredWidth(width = 73.dp)
-                            .requiredHeight(height = 49.dp)
-                    )
-                }*//*
-                *//*Column() {
-                    Text(
-                        text = "Japan Minimalist",
-                        color = Color.Black,
-                        lineHeight = 1.6.em,
-                        style = TextStyle(
-                            fontSize = 10.sp,
-                            fontWeight = FontWeight.Medium
-                        ),
-                        modifier = Modifier
-                            .requiredWidth(width = 93.dp)
-                            .requiredHeight(height = 15.dp)
-                            .wrapContentHeight(align = Alignment.CenterVertically)
-                    )
-                    Text(
-                        text = "Room are 3 x 4 ",
-                        color = Color.Black,
-                        lineHeight = 1.6.em,
-                        style = TextStyle(
-                            fontSize = 10.sp
-                        ),
-                        modifier = Modifier
-                            .requiredWidth(width = 93.dp)
-                            .requiredHeight(height = 15.dp)
-                            .wrapContentHeight(align = Alignment.CenterVertically)
-                    )
-                }*//*
-
-            }
-            *//*Text(
-                text = "Rp 4.000.000",
-                color = Color(0xff202020),
-                textAlign = TextAlign.End,
-                lineHeight = 1.57.em,
-                style = TextStyle(
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Bold,
-                    letterSpacing = (-0.18).sp
-                ),
-                modifier = Modifier
-                    .align(alignment = Alignment.CenterStart)
-                    .offset(
-                        x = 0.dp,
-                        y = (-0.5).dp
-                    )
-                    .fillMaxWidth()
-            )*//*
-
-        }*/
     }
 }
 
@@ -423,27 +353,26 @@ fun Item(modifier: Modifier = Modifier) {
 fun PaymentMethode(
     modifier: Modifier = Modifier
 
-) {
-    Column(
-        verticalArrangement = Arrangement.spacedBy(3.dp, Alignment.Top),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
+){
+    Row(
+        modifier = modifier
+            .clip(shape = RoundedCornerShape(10.dp))
+            .background(Color.White)
     ) {
         Column(
-            verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically),
+            verticalArrangement = Arrangement.spacedBy(3.dp, Alignment.Top),
             modifier = Modifier
         ) {
             Row(
-                horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
-                    .padding()
                     .fillMaxWidth()
+                    .padding(top = 10.dp)
             ) {
+                Spacer(modifier = Modifier.width(10.dp))
                 Text(
                     text = "Payment Method",
                     color = Color(0xff202020),
-                    modifier = Modifier.padding(start = 16.dp),
                     lineHeight = 1.88.em,
                     style = TextStyle(
                         fontSize = 16.sp,
@@ -451,6 +380,7 @@ fun PaymentMethode(
                         letterSpacing = (-0.21).sp
                     )
                 )
+                Spacer(modifier = Modifier.width(200.dp))
                 Box(
                     modifier = Modifier
                         .requiredSize(size = 30.dp)
@@ -462,41 +392,18 @@ fun PaymentMethode(
                             .fillMaxSize()
                             .clickable { }
                     )
-//                    Image(
-//                        painter = painterResource(id = R.drawable.iconmaterialedit),
-//                        contentDescription = "Icon material-edit",
-//                        modifier = Modifier
-//                            .align(alignment = Alignment.TopStart)
-//                            .offset(x = 8.70001220703125.dp,
-//                                y = 8.dp)
-//                            .requiredSize(size = 14.dp))
                 }
             }
-        }
-        Column(
-            verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
-            modifier = Modifier
-                .padding(vertical = 4.dp)
-        ) {
-            Column(
-                verticalArrangement = Arrangement.spacedBy(7.dp, Alignment.Top),
-                modifier = Modifier
-                    .requiredWidth(width = 330.dp)
-            ) {
-                Box(
-                    modifier = Modifier
-                        .requiredWidth(width = 328.dp)
-                        .requiredHeight(height = 17.dp)
-                ) {
-                    Text(
-                        text = "Card",
-                        color = Color.Black,
-                        style = TextStyle(
-                            fontSize = 12.sp,
-                            fontWeight = FontWeight.Medium
-                        )
+            Row {
+                Spacer(modifier = Modifier.width(10.dp))
+                Text(
+                    text = "Card",
+                    color = Color.Black,
+                    style = TextStyle(
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Medium
                     )
-                }
+                )
             }
         }
     }
@@ -504,10 +411,12 @@ fun PaymentMethode(
 
 
 @Composable
-fun PaymentDetail(modifier: Modifier = Modifier) {
-    Box(
+fun PaymentDetail(modifier: Modifier = Modifier)
+{
+    Row(
         modifier = modifier
-            .requiredHeight(height = 323.dp)
+            .clip(RoundedCornerShape(10.dp))
+            .background(Color.White)
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(6.dp, Alignment.Top),
@@ -519,6 +428,7 @@ fun PaymentDetail(modifier: Modifier = Modifier) {
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
             ) {
+                Spacer(modifier = Modifier.width(10.dp))
                 Text(
                     text = "Payment Details ",
                     color = Color.Black,
@@ -531,117 +441,106 @@ fun PaymentDetail(modifier: Modifier = Modifier) {
                         .wrapContentHeight(align = Alignment.CenterVertically)
                 )
             }
-            Column(
-                verticalArrangement = Arrangement.spacedBy(7.dp, Alignment.Top),
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(5.dp)
             ) {
-                Row(
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                ) {
-                    Text(
-                        text = "Product subtotal ",
-                        color = Color.Black,
-                        style = TextStyle(
-                            fontSize = 14.sp,
-                            fontWeight = FontWeight.Medium
-                        )
+                Text(
+                    text = "Product subtotal ",
+                    color = Color.Black,
+                    style = TextStyle(
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Medium
                     )
-                    Text(
-                        text = "Rp 7.800.000",
-                        color = Color.Black,
-                        textAlign = TextAlign.End,
-                        style = TextStyle(
-                            fontSize = 14.sp,
-                            fontWeight = FontWeight.Bold
-                        )
+                )
+                Text(
+                    text = "Rp 7.800.000",
+                    color = Color.Black,
+                    textAlign = TextAlign.End,
+                    style = TextStyle(
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Bold
                     )
-                }
-                Row(
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                ) {
-                    Text(
-                        text = "Subtotal delivery",
-                        color = Color.Black,
-                        style = TextStyle(
-                            fontSize = 14.sp,
-                            fontWeight = FontWeight.Medium
-                        )
-                    )
-                    Text(
-                        text = "Rp 10.000",
-                        color = Color.Black,
-                        textAlign = TextAlign.End,
-                        style = TextStyle(
-                            fontSize = 14.sp,
-                            fontWeight = FontWeight.Bold
-                        )
-                    )
-                }
-                Row(
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                ) {
-                    Text(
-                        text = "Discount voucher",
-                        color = Color.Black,
-                        style = TextStyle(
-                            fontSize = 14.sp,
-                            fontWeight = FontWeight.Medium
-                        )
-                    )
-                    Text(
-                        text = "Rp 0",
-                        color = Color.Black,
-                        textAlign = TextAlign.End,
-                        style = TextStyle(
-                            fontSize = 14.sp
-                        )
-                    )
-                }
+                )
             }
-            Column(
-                verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
-                    .padding(vertical = 4.dp)
+                    .fillMaxWidth()
+                    .padding(start = 5.dp, end = 5.dp)
             ) {
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(7.dp, Alignment.Top),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                ) {
-                    Row(
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                    ) {
-                        Text(
-                            text = "Total Payment",
-                            color = Color.Black,
-                            style = TextStyle(
-                                fontSize = 14.sp,
-                                fontWeight = FontWeight.Bold
-                            )
-                        )
-                        Text(
-                            text = "Rp 7.810.000",
-                            color = Color.Black,
-                            textAlign = TextAlign.End,
-                            style = TextStyle(
-                                fontSize = 14.sp,
-                                fontWeight = FontWeight.Bold
-                            )
-                        )
-                    }
-                }
+                Text(
+                    text = "Subtotal delivery",
+                    color = Color.Black,
+                    style = TextStyle(
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Medium
+                    )
+                )
+                Text(
+                    text = "Rp 10.000",
+                    color = Color.Black,
+                    textAlign = TextAlign.End,
+                    style = TextStyle(
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                )
+            }
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 5.dp, end = 5.dp)
+            ) {
+                Text(
+                    text = "Discount voucher",
+                    color = Color.Black,
+                    style = TextStyle(
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Medium
+                    )
+                )
+                Text(
+                    text = "Rp 0",
+                    color = Color.Black,
+                    textAlign = TextAlign.End,
+                    style = TextStyle(
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                )
+            }
+            Spacer(modifier = Modifier.height(5.dp))
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 5.dp, end = 5.dp)
+            ) {
+                Text(
+                    text = "Total Payment",
+                    color = Color.Black,
+                    style = TextStyle(
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                )
+                Text(
+                    text = "Rp 7.810.000",
+                    color = Color.Black,
+                    textAlign = TextAlign.End,
+                    style = TextStyle(
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                )
             }
         }
     }
@@ -650,32 +549,32 @@ fun PaymentDetail(modifier: Modifier = Modifier) {
 @Composable
 fun ButtonPay(
     modifier: Modifier,
-    onConfirm: () -> Unit
+    onConfirm : () -> Unit
 ) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 15.dp)
+        modifier = Modifier.fillMaxWidth().padding(top = 15.dp)
     ) {
-
         Button(
             onClick = onConfirm,
-            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5E8451)),
+            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
             modifier = Modifier
-                .width(300.dp)
-                .height(46.dp)
-                .background(color = Color(0xFF5E8451), shape = RoundedCornerShape(size = 10.dp))
+                .requiredWidth(width = 247.dp)
+                .requiredHeight(height = 41.dp)
+                .background(
+                    color = MaterialTheme.colorScheme.primary,
+                    shape = RoundedCornerShape(size = 11.dp)
+                )
         ) {
             Text(
                 text = "Pay",
                 style = TextStyle(
                     fontSize = 16.sp,
-                    lineHeight = 20.sp,
+                    lineHeight = 25.sp,
                     fontFamily = poppinsFontFamily,
-                    fontWeight = FontWeight(600),
-                    color = Color(0xFFFFFFFF),
+                    fontWeight = FontWeight(500),
+                    textAlign = TextAlign.Center,
                 )
             )
         }
@@ -683,64 +582,8 @@ fun ButtonPay(
 }
 
 
-@Composable
-fun Button(modifier: Modifier = Modifier) {
-
-    Box(
-        modifier = modifier
-            .requiredSize(size = 30.dp)
-    ) {
-        Image(
-            painter = painterResource(id = R.drawable.icon_pencil),
-            contentDescription = "Ellipse 149",
-            modifier = Modifier
-                .fillMaxSize()
-                .clickable { }
-        )
-        Image(
-            painter = painterResource(id = R.drawable.icon_pencil),
-            contentDescription = "Icon material-edit",
-            modifier = Modifier
-                .align(alignment = Alignment.TopStart)
-                .offset(
-                    x = 8.70001220703125.dp,
-                    y = 8.dp
-                )
-                .requiredSize(size = 14.dp)
-        )
-    }
-}
-
-@Composable
-fun Button2(modifier: Modifier = Modifier) {
-
-    Box(
-        modifier = modifier
-            .requiredSize(size = 30.dp)
-    ) {
-        Image(
-            painter = painterResource(id = R.drawable.icon_pencil),
-            contentDescription = "Ellipse 149",
-            modifier = Modifier
-                .fillMaxSize()
-                .clickable { }
-        )
-        Image(
-            painter = painterResource(id = R.drawable.icon_pencil),
-            contentDescription = "Icon material-edit",
-            modifier = Modifier
-                .align(alignment = Alignment.TopStart)
-                .offset(
-                    x = 8.70001220703125.dp,
-                    y = 8.dp
-                )
-                .requiredSize(size = 14.dp)
-        )
-    }
-}
-
 @Preview(showBackground = true)
 @Composable
 private fun ShippingAddressPreview() {
-    CheckOutItem(Modifier)
+    CheckOutItem(Modifier, navController = rememberNavController(), navigateToContact = {})
 }

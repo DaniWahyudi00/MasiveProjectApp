@@ -34,6 +34,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.toColorInt
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.masiveprojectapp.R
 import com.example.masiveprojectapp.data.local.datadummy
 import com.example.masiveprojectapp.model.DesainNew
@@ -48,9 +50,10 @@ fun DetailDesain(
 
     val desain = datadummy.designNew
 
+
     Scaffold(
         topBar = {
-            SearchBar()
+            SearchBar(navController)
         }
     ) { innerPadding ->
         Box(
